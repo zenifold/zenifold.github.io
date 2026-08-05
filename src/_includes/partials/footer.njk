@@ -13,7 +13,9 @@
 
       {%- for heading, links in nav.footer %}
       <div>
-        <h4>{{ heading }}</h4>
+        {#- h3, not h4: the footer follows an h2 section, and jumping two
+            levels breaks the outline for screen readers. -#}
+        <h2>{{ heading }}</h2>
         <ul>
           {%- for link in links %}
           <li><a href="{{ link.url }}">{{ link.text }}</a></li>
@@ -23,7 +25,7 @@
       {%- endfor %}
 
       <div>
-        <h4>Stay in Touch</h4>
+        <h2>Stay in Touch</h2>
         <p class="newsletter__note">I send almost nothing. When I do, it&rsquo;s worth opening.</p>
         {% if site.newsletterAction %}
         <form class="newsletter__form" action="{{ site.newsletterAction }}" method="post">

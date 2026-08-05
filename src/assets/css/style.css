@@ -762,9 +762,10 @@ p:last-child {
   font-style: normal;
 }
 
-.footer h4 {
+.footer h2 {
   font-family: var(--serif);
   font-size: 1.2rem;
+  letter-spacing: normal;
   margin: 0 0 1.5rem;
 }
 

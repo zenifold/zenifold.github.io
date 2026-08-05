@@ -14,7 +14,7 @@ description: "Selected case studies by Max Murphy — enterprise logistics, fint
     {%- for study in caseStudies %}
     <article class="book">
       <a href="/case-studies/{{ study.slug }}/"><img class="book__cover" src="{{ study.image }}" alt="" width="400" height="600" loading="lazy"></a>
-      <h3><a href="/case-studies/{{ study.slug }}/" style="text-decoration:none">{{ study.title }}</a></h3>
+      <h2 style="font-size:1.45rem;margin-bottom:.5rem"><a href="/case-studies/{{ study.slug }}/" style="text-decoration:none">{{ study.title }}</a></h2>
       <p>{{ study.summary }}</p>
       <p style="font-size:.85rem;color:var(--ink-faint);margin-top:.5rem">
         {{ study.role }}{% if study.year %} &middot; {{ study.year }}{% endif %}
