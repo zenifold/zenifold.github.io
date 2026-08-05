@@ -1,0 +1,141 @@
+---
+layout: layouts/base.njk
+hasReading: true
+hasViz: true
+---
+{#
+  Layout for the Data series. The structured blocks — question, methodology,
+  sources, limitations, reproducibility — come from front matter so every post
+  in the series carries them consistently. An analysis missing its methodology
+  is an opinion with numbers attached.
+#}
+<article data-reading>
+  <section class="page-head wrap">
+    <div class="post-card__meta" style="margin-bottom:1rem">
+      <a class="post-card__cat" href="/data/">Data</a>
+      {%- for tag in tags %}{% if tag != "Data" %}
+      <a class="post-card__cat" href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>
+      {% endif %}{% endfor %}
+      <span><time datetime="{{ page.date | htmlDate }}">{{ page.date | readableDate }}</time></span>
+      {% if status %}<span>{{ status }}</span>{% endif %}
+    </div>
+
+    <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ title }}</h1>
+    <p class="prose measure" style="font-size:1.2rem">{{ description }}</p>
+
+    {% if question %}
+    <div class="viz" style="margin-top:2.5rem">
+      <div class="hero-figure" style="border-top-color:var(--blue)">
+        <p class="viz__title" style="margin-bottom:.75rem">The question</p>
+        <p class="headline" style="font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--ink);max-width:46rem">{{ question }}</p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <div class="wrap">
+
+    {#- Headline findings. Rendered only when present — an empty findings block
+        on an unfinished analysis would read as "no result found". -#}
+    {% if findings.length %}
+    <div class="viz">
+      <div class="viz__head"><p class="viz__title">What I found</p></div>
+      <div class="kpi-row">
+        {%- for f in findings %}
+        <div class="kpi">
+          <div class="kpi__value">{{ f.value }}</div>
+          <div class="kpi__label">{{ f.label }}</div>
+          {% if f.note %}<div class="kpi__note">{{ f.note }}</div>{% endif %}
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="about-grid" style="padding-top:1rem">
+      <div class="prose post-body">
+        {{ content | safe }}
+      </div>
+
+      <nav class="toc" data-toc aria-label="On this page" hidden>
+        <p class="toc__label">On this page</p>
+      </nav>
+    </div>
+
+    {% if methodology.length %}
+    <section class="study-section">
+      <h2>Methodology</h2>
+      <div class="stages">
+        {%- for step in methodology %}
+        <div class="stage">
+          <div class="stage__num">{{ "0" + (loop.index | string) }}</div>
+          <div>
+            <h3 class="stage__title" style="font-size:1.15rem">{{ step.title }}</h3>
+            <p class="stage__body">{{ step.body }}</p>
+          </div>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if sources.length %}
+    <section class="study-section">
+      <h2>Data sources</h2>
+      <table class="compare">
+        <thead><tr><th scope="col">Source</th><th scope="col">What it provides</th></tr></thead>
+        <tbody>
+          {%- for s in sources %}
+          <tr>
+            <th scope="row">{% if s.url %}<a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</th>
+            <td>{{ s.note }}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </section>
+    {% endif %}
+
+    {% if limitations.length %}
+    <section class="study-section">
+      <h2>Limitations</h2>
+      <div class="challenge-list measure">
+        {%- for l in limitations %}
+        <div class="challenge">
+          <div class="challenge__num">{{ "0" + (loop.index | string) }}</div>
+          <div class="challenge__text">{{ l }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+      <p class="viz__note measure">Stated by me rather than left for you to find. If one of these invalidates the conclusion for your use case, it probably does.</p>
+    </section>
+    {% endif %}
+
+    {% if repro %}
+    <section class="study-section">
+      <h2>Reproduce it</h2>
+      <div class="measure prose">
+        <p>{{ repro.note }}</p>
+        <div class="stack-pills">
+          {% if repro.repo %}<a class="stack-pill" href="{{ repro.repo }}" rel="noopener" target="_blank">Code &amp; data &rarr;</a>{% endif %}
+          {%- for tool in repro.tools %}<span class="stack-pill">{{ tool }}</span>{% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="study-section">
+      <p><a class="arrow-link" href="/data/">All Data posts</a></p>
+    </section>
+  </div>
+</article>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Disagree with the method?</h2>
+    <p class="prose measure" style="margin-inline:auto">The code and data are linked above. If I&rsquo;ve got something wrong I&rsquo;d rather know.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Tell me</a>
+    </p>
+  </div>
+</section>

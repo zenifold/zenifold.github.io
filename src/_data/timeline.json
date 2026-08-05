@@ -1,0 +1,82 @@
+[
+  {
+    "org": "Modea",
+    "roles": [
+      { "title": "Principal Strategy Consultant", "dates": "Jun 2026 – Present" }
+    ]
+  },
+  {
+    "org": "SINSA",
+    "roles": [
+      { "title": "Founder", "dates": "2021 – Present" }
+    ]
+  },
+  {
+    "org": "YO",
+    "roles": [
+      { "title": "Co-Founder", "dates": "Sep 2024 – Present" }
+    ]
+  },
+  {
+    "org": "SourceFuse",
+    "roles": [
+      { "title": "Director of Product Management & Strategy (US Market)", "dates": "Jan 2025 – Jun 2026" },
+      { "title": "Senior Program Manager", "dates": "Mar 2024 – Jan 2025" }
+    ]
+  },
+  {
+    "org": "Relief Financial",
+    "roles": [
+      { "title": "Principal Product Manager", "dates": "Feb 2023 – Jan 2024" }
+    ]
+  },
+  {
+    "org": "PayPal",
+    "roles": [
+      { "title": "Senior Product Manager", "dates": "Jun 2022 – Jan 2023" }
+    ]
+  },
+  {
+    "org": "People Rocket",
+    "roles": [
+      { "title": "Senior Consultant / Engagement Manager", "dates": "Mar 2021 – Feb 2023" }
+    ]
+  },
+  {
+    "org": "Quanti Research",
+    "roles": [
+      { "title": "Founder", "dates": "2020 – 2023" }
+    ]
+  },
+  {
+    "org": "CraniumTap Research",
+    "roles": [
+      { "title": "Founder — acquired by Tribune Publishing", "dates": "Jun 2018 – Sep 2021" }
+    ]
+  },
+  {
+    "org": "Cognizant",
+    "roles": [
+      { "title": "Product Lifecycle Consultant", "dates": "Oct 2019 – Mar 2021" },
+      { "title": "Project Manager", "dates": "Feb 2019 – Oct 2019" }
+    ]
+  },
+  {
+    "org": "Innovate Hampton Roads",
+    "roles": [
+      { "title": "Founding Member", "dates": "Jun 2018 – Jul 2021" }
+    ]
+  },
+  {
+    "org": "Dominion Enterprises",
+    "roles": [
+      { "title": "Technical Project Manager", "dates": "Mar 2016 – Feb 2019" }
+    ]
+  },
+  {
+    "org": "Marathon Consulting",
+    "roles": [
+      { "title": "Marketing Analyst", "dates": "Jun 2012 – Mar 2016" }
+    ]
+  }
+]

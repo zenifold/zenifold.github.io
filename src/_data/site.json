@@ -1,0 +1,29 @@
+{
+  "name": "Max Murphy",
+  "shortName": "Max",
+  "_comment_url": "Local placeholder. Replace with the real domain before deploying — this feeds every canonical URL, the sitemap, both feeds, and all structured data.",
+  "url": "http://localhost:8080",
+  "_comment_email": "TODO: This is your work address. Use a personal one for a personal site — work email breaks if you change jobs, and it's the contact point in your structured data.",
+  "email": "maximilian.murphy@sourcefuse.com",
+  "locale": "en",
+  "jobTitle": "Principal Strategy Consultant at Modea · Founder of SINSA",
+  "tagline": "Product Strategist, Architect & Builder",
+  "_comment_description": "Keep under ~160 characters — the GEO Readiness Check flags anything longer as truncated in search results.",
+  "description": "Product strategist and builder. Principal Strategy Consultant at Modea, founder of the AI consultancy SINSA. Formerly PayPal, Relief Financial, Cognizant.",
+  "address": {
+    "locality": "Roanoke",
+    "region": "VA",
+    "country": "USA"
+  },
+  "socials": {
+    "linkedin": "https://www.linkedin.com/in/maximilian-murphy/",
+    "github": "https://github.com/zenifold"
+  },
+  "identifiers": {
+    "orcid": "",
+    "wikidata": "",
+    "googleScholar": ""
+  },
+  "newsletterAction": "",
+  "allowAiCrawlers": true
+}

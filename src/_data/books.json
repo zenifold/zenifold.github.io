@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "book-one",
+    "draft": true,
+    "title": "TODO: First book title",
+    "subtitle": "TODO: A subtitle that says who it's for and what it does for them.",
+    "status": "In progress",
+    "published": "",
+    "cover": "/assets/img/book-1.jpg",
+    "buyUrl": "",
+    "summary": "TODO: Two or three sentences. What the book argues, who should read it, and what they'll be able to do afterwards that they can't now.",
+    "blurb": [
+      "TODO: A longer description — two or three paragraphs. This is the page that has to convince someone to care before the book exists.",
+      "TODO: Second paragraph. The specific problem the book solves, ideally with the reason existing books on the topic don't."
+    ],
+    "chapters": [
+      { "slug": "chapter-1", "number": 1, "title": "TODO: Chapter title", "summary": "TODO: One sentence on what this chapter covers.", "draft": true },
+      { "slug": "chapter-2", "number": 2, "title": "TODO: Chapter title", "summary": "TODO: One sentence.", "draft": true },
+      { "slug": "chapter-3", "number": 3, "title": "TODO: Chapter title", "summary": "TODO: One sentence.", "draft": true }
+    ]
+  },
+  {
+    "slug": "book-two",
+    "draft": true,
+    "title": "TODO: Second book title",
+    "subtitle": "TODO: Subtitle.",
+    "status": "In progress",
+    "published": "",
+    "cover": "/assets/img/book-2.jpg",
+    "buyUrl": "",
+    "summary": "TODO: Two or three sentences.",
+    "blurb": [
+      "TODO: Longer description."
+    ],
+    "chapters": [
+      { "slug": "chapter-1", "number": 1, "title": "TODO: Chapter title", "summary": "TODO: One sentence.", "draft": true }
+    ]
+  }
+]

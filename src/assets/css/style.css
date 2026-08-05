@@ -1,0 +1,1875 @@
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --blue: #2463eb;
+  --blue-hover: #1d4fd8;
+  --blue-tint: #eef3fe;
+  /* The full-bleed band keeps the brand blue in both themes — it's a brand
+     surface, not UI chrome, so it shouldn't dim with the theme. */
+  --band-blue: #2463eb;
+  --panel: #ffffff;
+  --bg: #fdfdfd;
+  --ink: #0c0c0c;
+  --ink-muted: #4a4a4a;
+  --ink-faint: #6b6b6b;
+  --dark: #0a0a0a;
+  --dark-muted: #a8a8a8;
+  --line: rgba(12, 12, 12, 0.12);
+  --line-light: rgba(255, 255, 255, 0.22);
+
+  /* Type */
+  --serif: "Crimson Text", Georgia, "Times New Roman", serif;
+  --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Layout */
+  --wrap: 1240px;
+  --gutter: 2rem;
+  --header-h: 6.25rem;
+
+  /* The angled section divider depth */
+  --slant: 5rem;
+  --slant-x: 74%;
+}
+
+/* ==========================================================================
+   Dark theme
+   --------------------------------------------------------------------------
+   Selected, not flipped. The chart hues are the validated dark steps
+   (#3987e5 / #d95926 / #199e70) — checked against the #121212 surface with the
+   dataviz validator: lightness band, chroma floor, CVD separation, and 3:1
+   contrast all pass. Auto-inverting the light palette would fail the band.
+
+   Declared under both scopes so the OS setting is honoured AND the explicit
+   toggle wins in both directions.
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --blue: #4f8ef7;
+    --blue-hover: #6fa3f9;
+    --blue-tint: #17233d;
+    --bg: #121212;
+    --ink: #f4f4f4;
+    --ink-muted: #b4b4b4;
+    --ink-faint: #8a8a8a;
+    --dark: #0a0a0a;
+    --dark-muted: #a8a8a8;
+    --line: rgba(255, 255, 255, 0.14);
+    --line-light: rgba(255, 255, 255, 0.22);
+    --band-blue: #1d4fd8;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --blue: #4f8ef7;
+  --blue-hover: #6fa3f9;
+  --blue-tint: #17233d;
+  --bg: #121212;
+  --ink: #f4f4f4;
+  --ink-muted: #b4b4b4;
+  --ink-faint: #8a8a8a;
+  --dark: #0a0a0a;
+  --dark-muted: #a8a8a8;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-light: rgba(255, 255, 255, 0.22);
+  --band-blue: #1d4fd8;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Reset & base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1.25rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* Accessible skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  background: var(--blue);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: 7rem;
+}
+
+.section--tight {
+  padding-block: 5rem;
+}
+
+/* The signature full-bleed blue band with chevron top and bottom edges. */
+.band {
+  background: var(--band-blue);
+  color: #fff;
+  padding-block: calc(7rem + var(--slant));
+  margin-block: -1px;
+  clip-path: polygon(
+    0 0,
+    var(--slant-x) var(--slant),
+    100% 0,
+    100% calc(100% - var(--slant)),
+    var(--slant-x) 100%,
+    0 calc(100% - var(--slant))
+  );
+}
+
+.band h1,
+.band h2,
+.band h3 {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Typographic scale
+   ========================================================================== */
+
+.display {
+  font-family: var(--serif);
+  font-size: clamp(2.75rem, 6.2vw, 5.15rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--blue);
+  margin: 0 0 1.75rem;
+}
+
+.headline {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.6vw, 3.05rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+}
+
+.headline em,
+.display em {
+  font-style: italic;
+  color: inherit;
+  opacity: 0.82;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  color: var(--blue);
+  text-align: center;
+  margin: 0 0 2.5rem;
+}
+
+/* Small uppercase label preceded by a short rule */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+.lede {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.prose {
+  color: var(--ink-muted);
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.band .prose {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.band .prose strong {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Buttons & links
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.7rem 0.25rem;
+  border-bottom: 2px solid var(--ink);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.btn:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn--solid {
+  background: var(--blue);
+  color: #fff;
+  border: 0;
+  padding: 0.85rem 1.6rem;
+  transition: background 0.18s ease;
+}
+
+.btn--solid:hover {
+  background: var(--blue-hover);
+  color: #fff;
+}
+
+.arrow-link {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--blue);
+  text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+
+.arrow-link::after {
+  content: " \2192";
+}
+
+.arrow-link:hover {
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253, 253, 253, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  min-height: var(--header-h);
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 2.05rem;
+  letter-spacing: -0.02em;
+  color: var(--blue);
+  text-decoration: none;
+  flex: none;
+  line-height: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;
+  margin-right: auto;
+}
+
+.nav a {
+  font-size: 1.0625rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+/* Child combinator on purpose: links inside the blue dropdown panel must not
+   pick up the blue current-page colour, or they turn invisible. */
+.nav > a:hover,
+.nav > a[aria-current="page"] {
+  color: var(--blue);
+}
+
+/* Dropdown ("Areas of Work") */
+.nav__item {
+  position: relative;
+}
+
+.nav__toggle {
+  font: inherit;
+  font-size: 1.0625rem;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.18s ease;
+}
+
+.nav__toggle:hover,
+.nav__item:hover .nav__toggle {
+  color: var(--blue);
+}
+
+.nav__toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.nav__item:hover .nav__toggle svg,
+.nav__toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.nav__menu {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: -1.25rem;
+  min-width: 16rem;
+  background: var(--blue);
+  padding: 1rem 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.nav__item:hover .nav__menu,
+.nav__item:focus-within .nav__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__menu a {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.nav__menu a:hover {
+  color: #fff;
+  background: var(--blue-hover);
+}
+
+/* Current page within the dropdown. The panel is already blue, so this is
+   marked with weight and a filled background rather than colour. */
+.nav__menu a[aria-current="page"] {
+  color: #fff;
+  font-weight: 600;
+  background: var(--blue-hover);
+}
+
+.nav__item.is-current-section .nav__toggle {
+  color: var(--blue);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex: none;
+}
+
+.social {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.social a {
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: color 0.18s ease;
+}
+
+.social a:hover {
+  color: var(--blue);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  padding-block: 5rem 8rem;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+.hero__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #ececec;
+}
+
+.hero__body {
+  padding-top: 1.5rem;
+}
+
+/* ==========================================================================
+   Experience card grid
+   ========================================================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 4.5rem;
+  border-top: 1px solid var(--line-light);
+}
+
+.card {
+  padding: 2.5rem 2.5rem 3rem;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.card:nth-child(odd) {
+  border-right: 1px solid var(--line-light);
+  padding-left: 0;
+}
+
+.card:nth-child(even) {
+  padding-right: 0;
+}
+
+.card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.card__num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.75;
+}
+
+.card__title {
+  font-family: var(--serif);
+  font-size: 1.95rem;
+  margin: 0 0 1.5rem;
+}
+
+/* ==========================================================================
+   Books
+   ========================================================================== */
+
+.books__intro {
+  max-width: 52rem;
+  margin-inline: auto;
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.books__note {
+  max-width: 52rem;
+  margin: 1.5rem auto 0;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.book__cover {
+  aspect-ratio: 2 / 3;
+  background: var(--blue-tint);
+  margin-bottom: 1.25rem;
+  object-fit: cover;
+}
+
+.book h3 {
+  font-size: 1.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.book p {
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   Articles
+   ========================================================================== */
+
+.posts {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.post__date {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-top: 0.4rem;
+}
+
+.post__tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.post__title {
+  font-size: 1.75rem;
+  margin: 0 0 0.9rem;
+}
+
+.post__title a {
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.post__title a:hover {
+  color: var(--blue);
+}
+
+.post__excerpt {
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+}
+
+.posts-more {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 4rem;
+  margin-top: 3rem;
+}
+
+.quote {
+  border-left: 2px solid var(--blue);
+  padding-left: 1.75rem;
+}
+
+.quote blockquote {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+}
+
+.quote__name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+}
+
+.quote__role {
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Contact CTA
+   ========================================================================== */
+
+.cta {
+  text-align: center;
+}
+
+.cta .display {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--dark);
+  color: #fff;
+  padding-block: 5rem 3rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.3fr;
+  gap: 3rem;
+}
+
+.footer__brand {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.footer__bio,
+.footer__address {
+  color: var(--dark-muted);
+  font-size: 1rem;
+}
+
+.footer__address {
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+  font-style: normal;
+}
+
+.footer h4 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.footer a {
+  color: var(--dark-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.18s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.footer__link-blue {
+  color: var(--blue) !important;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+.newsletter__note {
+  color: var(--dark-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.newsletter__form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.newsletter__form input {
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #d0d0d0;
+  background: var(--panel);
+  color: #0c0c0c;
+}
+
+.newsletter__form button {
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  background: var(--blue);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.newsletter__form button:hover {
+  background: var(--blue-hover);
+}
+
+.footer-bottom {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--dark-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Interior page header
+   ========================================================================== */
+
+.page-head {
+  padding-block: 4.5rem 3rem;
+}
+
+.page-head .display {
+  margin-bottom: 1.25rem;
+}
+
+.page-head .prose {
+  max-width: 46rem;
+  font-size: 1.15rem;
+}
+
+.measure {
+  max-width: 46rem;
+}
+
+/* ==========================================================================
+   About page: bio + fact sidebar
+   ========================================================================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 0.8fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+.factbar {
+  border-top: 1px solid var(--line);
+}
+
+.factbar__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.factbar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  padding-top: 0.15rem;
+}
+
+.factbar__value {
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+.factbar__value a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.factbar__value a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Principle blocks ("How I work")
+   ========================================================================== */
+
+.principle {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.principle:last-child {
+  border-bottom: 0;
+}
+
+.principle h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.band .principle {
+  border-color: var(--line-light);
+}
+
+/* ==========================================================================
+   Career timeline
+   ========================================================================== */
+
+.timeline__group {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline__group:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.timeline__org {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.timeline__role {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  padding: 0.45rem 0;
+  align-items: baseline;
+}
+
+.timeline__title {
+  color: var(--ink-muted);
+}
+
+.timeline__dates {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   FAQ accordion
+   ========================================================================== */
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq details:first-of-type {
+  border-top: 1px solid var(--line);
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.25rem 2rem 1.25rem 0;
+  position: relative;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  transition: color 0.18s ease;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary:hover {
+  color: var(--blue);
+}
+
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 1.1rem;
+  font-size: 1.4rem;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: "\2013";
+}
+
+.faq__answer {
+  padding: 0 0 1.5rem;
+  color: var(--ink-muted);
+  max-width: 46rem;
+}
+
+/* ==========================================================================
+   Recognition list
+   ========================================================================== */
+
+.recognition__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.recognition__name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+}
+
+.recognition__detail {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+.recognition__when {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Question cards (Areas of Work teasers)
+   ========================================================================== */
+
+.card__question {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 0 0 1rem;
+}
+
+.card .arrow-link {
+  color: inherit;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .timeline__role,
+  .recognition__item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .timeline__dates,
+  .recognition__when {
+    white-space: normal;
+  }
+}
+
+/* ==========================================================================
+   Filter bar (products, blog categories)
+   ========================================================================== */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 2.5rem 0 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.filter-chip {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.filter-chip:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.filter-chip[aria-pressed="true"],
+.filter-chip[aria-current="page"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.filter-count {
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Product cards
+   ========================================================================== */
+
+.product-grid {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 16rem;
+  gap: 3rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.product-card[hidden] {
+  display: none;
+}
+
+.product-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.75rem;
+}
+
+.product-card__meta span:not(:first-child) {
+  color: var(--ink-faint);
+}
+
+.product-card__name {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  margin: 0 0 0.6rem;
+}
+
+.product-card__summary {
+  color: var(--ink-muted);
+  margin: 0 0 0.9rem;
+}
+
+.product-card__tech {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.product-card__metrics {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.product-metric__value {
+  font-family: var(--sans);
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.product-metric__label {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Post cards (blog index)
+   ========================================================================== */
+
+.post-card {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: 2.5rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.post-card[hidden] {
+  display: none;
+}
+
+.post-card__thumb {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--blue-tint);
+  width: 100%;
+}
+
+.post-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+  align-items: center;
+}
+
+.post-card__cat {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.post-card__cat:hover {
+  text-decoration: underline;
+}
+
+.post-card__title {
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  line-height: 1.2;
+  margin: 0 0 0.7rem;
+}
+
+.post-card__title a {
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.post-card__title a:hover {
+  color: var(--blue);
+}
+
+.post-card__excerpt {
+  color: var(--ink-muted);
+  margin: 0 0 1rem;
+}
+
+/* ==========================================================================
+   Post body (long-form article typography)
+   ========================================================================== */
+
+.post-body h2 {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  margin: 3rem 0 1rem;
+}
+
+.post-body h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  margin: 2.25rem 0 0.75rem;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.post-body li {
+  margin-bottom: 0.5rem;
+}
+
+.post-body blockquote {
+  margin: 2rem 0;
+  padding-left: 1.75rem;
+  border-left: 2px solid var(--blue);
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.post-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--blue-tint);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.post-body pre {
+  background: var(--dark);
+  color: #f4f4f4;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  font-size: 0.9rem;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.post-body img {
+  margin: 2rem 0;
+}
+
+.post-body hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 3rem 0;
+}
+
+/* Tag pills under a post */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.tag-pill {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  text-decoration: none;
+}
+
+.tag-pill:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+@media (max-width: 900px) {
+  .product-card,
+  .post-card {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .product-card__metrics {
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 2rem;
+  }
+
+  .post-card__thumb {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  :root {
+    --slant: 3.5rem;
+  }
+
+  .nav {
+    gap: 1.5rem;
+  }
+
+  .nav a,
+  .nav__toggle {
+    font-size: 1rem;
+  }
+
+  .header-actions {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 1.5rem;
+    --header-h: 5rem;
+  }
+
+  .nav-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    padding: 1rem var(--gutter) 2rem;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav > * {
+    width: 100%;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav__menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    padding: 0.75rem 0 0;
+    display: none;
+  }
+
+  .nav__menu a {
+    color: var(--ink);
+    padding: 0.45rem 0 0.45rem 1rem;
+  }
+
+  .nav__menu a:hover {
+    background: none;
+    color: var(--blue);
+  }
+
+  /* On mobile the panel sits on the light background, so blue reads fine. */
+  .nav__menu a[aria-current="page"] {
+    color: var(--blue);
+    background: none;
+  }
+
+  .nav__item.is-open .nav__menu {
+    display: block;
+  }
+
+  .header-actions .social,
+  .header-actions .palette-trigger {
+    display: none;
+  }
+
+  /* The theme toggle survives to mobile — it's the one control with no
+     equivalent inside the collapsed menu. */
+  .header-actions {
+    gap: 0.75rem;
+  }
+
+  .hero__grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__grid {
+    gap: 2.5rem;
+  }
+
+  .hero__portrait {
+    max-width: 20rem;
+  }
+
+  .cards,
+  .quotes,
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .card:nth-child(odd),
+  .card:nth-child(even) {
+    padding: 2rem 0 2.5rem;
+    border-right: 0;
+  }
+
+  .post {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .section {
+    padding-block: 4.5rem;
+  }
+
+  .band {
+    padding-block: calc(4.5rem + var(--slant));
+  }
+
+  .books__intro {
+    font-size: 1.2rem;
+  }
+}
+
+/* ==========================================================================
+   Command palette
+   ========================================================================== */
+
+.palette {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(12, 12, 12, 0.45);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: start center;
+  padding: 8vh 1.5rem 1.5rem;
+}
+
+.palette[hidden] {
+  display: none;
+}
+
+.palette__panel {
+  width: 100%;
+  max-width: 40rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(12, 12, 12, 0.25);
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.palette__search {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+
+.palette__search svg {
+  color: var(--ink-faint);
+  flex: none;
+}
+
+.palette__input {
+  font: inherit;
+  font-size: 1.05rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  width: 100%;
+  outline: none;
+}
+
+.palette__input::placeholder {
+  color: var(--ink-faint);
+}
+
+.palette__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.palette__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.7rem 1.25rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.palette__list [aria-selected="true"] .palette__item {
+  background: var(--blue-tint);
+}
+
+.palette__item-main {
+  min-width: 0;
+}
+
+.palette__item-title {
+  display: block;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.palette__item-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.15rem;
+}
+
+.palette__item-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  flex: none;
+}
+
+.palette__empty {
+  padding: 2rem 1.25rem;
+  color: var(--ink-faint);
+  font-size: 0.95rem;
+}
+
+.palette__foot {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  flex: none;
+}
+
+kbd {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+  background: var(--blue-tint);
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   Theme toggle
+   ========================================================================== */
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ink);
+  transition: color 0.18s ease;
+  flex: none;
+}
+
+.theme-toggle:hover {
+  color: var(--blue);
+}
+
+/* Show the icon for the theme you'd switch TO, so the button reads as an
+   action rather than a status indicator. */
+.theme-toggle__sun { display: none; }
+.theme-toggle__moon { display: block; }
+
+.theme-toggle[data-mode="dark"] .theme-toggle__sun { display: block; }
+.theme-toggle[data-mode="dark"] .theme-toggle__moon { display: none; }
+
+/* Header trigger */
+.palette-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.palette-trigger:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+@media (max-width: 1080px) {
+  .palette-trigger span {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Reading progress + section nav
+   ========================================================================== */
+
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 200;
+  background: transparent;
+  pointer-events: none;
+}
+
+.read-progress__fill {
+  height: 100%;
+  width: 0;
+  background: var(--blue);
+  transition: width 0.1s linear;
+}
+
+.toc {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  align-self: start;
+}
+
+.toc__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1rem;
+}
+
+.toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--line);
+}
+
+.toc__list a {
+  display: block;
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.toc__list a:hover {
+  color: var(--blue);
+}
+
+.toc__list a[aria-current="true"] {
+  color: var(--blue);
+  border-left-color: var(--blue);
+}
+
+/* Heading anchors */
+.heading-anchor {
+  opacity: 0;
+  margin-left: 0.5rem;
+  font-size: 0.7em;
+  color: var(--blue);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+.heading-anchor:focus {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .toc {
+    position: static;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* ==========================================================================
+   Print — mainly for /resume/ saved as PDF
+   ========================================================================== */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .band,
+  .no-print,
+  .skip-link,
+  .filter-bar,
+  .viz-table-toggle {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    background: #fff;
+    color: #000;
+  }
+
+  .wrap {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .section,
+  .section--tight,
+  .page-head {
+    padding-block: 0 1rem;
+  }
+
+  .display {
+    font-size: 24pt;
+    color: #000;
+  }
+
+  .headline {
+    font-size: 14pt;
+    page-break-after: avoid;
+  }
+
+  .timeline__group,
+  .recognition__item {
+    page-break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  /* Expand link targets so a printed copy is still actionable. */
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

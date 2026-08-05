@@ -1,0 +1,17 @@
+{
+  "name": "m2mx-portfolio",
+  "version": "1.0.0",
+  "description": "Personal site for Max Murphy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "node -e \"fs.rmSync('_site',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "luxon": "^3.5.0"
+  }
+}

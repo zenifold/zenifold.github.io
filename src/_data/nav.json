@@ -1,0 +1,55 @@
+{
+  "primary": [
+    {
+      "text": "Areas of Work",
+      "url": "/work/",
+      "children": [
+        { "text": "Product Strategy", "url": "/work/product-strategy/" },
+        { "text": "AI-Native Products", "url": "/work/ai-native-products/" },
+        { "text": "Enterprise Platforms", "url": "/work/enterprise-platforms/" },
+        { "text": "0 → 1 Product", "url": "/work/zero-to-one/" },
+        { "text": "Explore Everything →", "url": "/work/" }
+      ]
+    },
+    { "text": "About", "url": "/about/" },
+    { "text": "Case Studies", "url": "/case-studies/" },
+    { "text": "Products", "url": "/products/" },
+    { "text": "Apps", "url": "/apps/" },
+    { "text": "Tools", "url": "/tools/" },
+    { "text": "Blog", "url": "/blog/" },
+    { "text": "Contact", "url": "/contact/" }
+  ],
+  "footer": {
+    "Areas of Work": [
+      { "text": "Product Strategy", "url": "/work/product-strategy/" },
+      { "text": "AI-Native Products", "url": "/work/ai-native-products/" },
+      { "text": "Enterprise Platforms", "url": "/work/enterprise-platforms/" },
+      { "text": "0 → 1 Product", "url": "/work/zero-to-one/" }
+    ],
+    "Site": [
+      { "text": "About", "url": "/about/" },
+      { "text": "Case Studies", "url": "/case-studies/" },
+      { "text": "Products", "url": "/products/" },
+      { "text": "Apps", "url": "/apps/" },
+      { "text": "Blog", "url": "/blog/" },
+      { "text": "Contact", "url": "/contact/" }
+    ],
+    "Tools": [
+      { "text": "All Tools", "url": "/tools/" },
+      { "text": "Operational Drag Scan", "url": "/tools/operational-drag/" },
+      { "text": "GEO Readiness Check", "url": "/tools/geo-readiness/" },
+      { "text": "Data Series", "url": "/data/" }
+    ],
+    "More": [
+      { "text": "Résumé", "url": "/resume/" },
+      { "text": "FAQ", "url": "/faq/" },
+      { "text": "Links", "url": "/links/" },
+      { "text": "Explore Everything", "url": "/explore/" }
+    ],
+    "Verify": [
+      { "text": "Name Disambiguation", "url": "/who-is-max-murphy/" },
+      { "text": "Résumé (JSON)", "url": "/resume.json" },
+      { "text": "For AI Agents", "url": "/llms.txt" }
+    ]
+  }
+}

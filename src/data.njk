@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+permalink: "/data/"
+title: "Data"
+description: "Original data analyses by Max Murphy — prediction market calibration, economic modelling, and geo-strategic risk. Methodology, sources, and code published with every finding."
+---
+{%- set s = series.data %}
+
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">{{ s.label }} series</p>
+  <h1 class="display">{{ s.headline }}</h1>
+  <p class="prose measure" style="font-size:1.15rem">{{ s.intro }}</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <p class="eyebrow" style="color:var(--blue)">How I work</p>
+  <h2 class="headline">Four rules for the series.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for p in s.principles %}
+    <div class="principle">
+      <p class="prose" style="font-family:var(--serif);font-size:1.25rem;color:var(--ink);margin:0">{{ p }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  {% if collections.dataPosts.length %}
+  <p class="eyebrow" style="color:var(--blue)">Analyses</p>
+  <h2 class="headline">Published.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for post in collections.dataPosts %}
+    <article class="post-card">
+      <a href="{{ post.url }}" aria-hidden="true" tabindex="-1">
+        <img class="post-card__thumb" src="{{ post.data.image if post.data.image else '/assets/img/post-default.jpg' }}"
+             alt="" width="576" height="360" loading="lazy">
+      </a>
+      <div>
+        <div class="post-card__meta">
+          <span><time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time></span>
+          {% if post.data.status %}<span>{{ post.data.status }}</span>{% endif %}
+        </div>
+        <h3 class="post-card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        {% if post.data.question %}
+        <p class="prose" style="font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.75rem">{{ post.data.question }}</p>
+        {% endif %}
+        <p class="post-card__excerpt">{{ post.data.description }}</p>
+        <a class="arrow-link" href="{{ post.url }}">Read the analysis</a>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+  {% else %}
+  <p class="eyebrow" style="color:var(--blue)">Analyses</p>
+  <h2 class="headline">First one lands soon.</h2>
+  <p class="prose measure" style="margin-top:1rem">The series is in progress. Three analyses are scoped and in the pipeline &mdash; prediction market calibration against World Cup outcomes, the margin effect of AI adoption in services firms, and maritime chokepoint concentration risk.</p>
+  <p style="margin-top:1.75rem"><a class="btn" href="/contact/">Tell me what you&rsquo;d want analysed</a></p>
+  {% endif %}
+</section>

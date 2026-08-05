@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+permalink: "/case-studies/"
+title: "Case Studies"
+description: "Selected case studies by Max Murphy — enterprise logistics, fintech 0→1, and cross-functional operating frameworks."
+---
+<section class="page-head wrap">
+  <h1 class="display">Case Studies</h1>
+  <p class="prose measure">Three engagements that show the range: an enterprise logistics platform for the world&rsquo;s largest QSR, a fintech product taken from nothing to market, and an operating framework for a company growing faster than its own priorities. Different sectors, same job.</p>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="book-grid">
+    {%- for study in caseStudies %}
+    <article class="book">
+      <a href="/case-studies/{{ study.slug }}/"><img class="book__cover" src="{{ study.image }}" alt="" width="400" height="600" loading="lazy"></a>
+      <h3><a href="/case-studies/{{ study.slug }}/" style="text-decoration:none">{{ study.title }}</a></h3>
+      <p>{{ study.summary }}</p>
+      <p style="font-size:.85rem;color:var(--ink-faint);margin-top:.5rem">
+        {{ study.role }}{% if study.year %} &middot; {{ study.year }}{% endif %}
+        {%- if study.tech.length %}<br>{{ study.tech | join(", ") }}{% endif %}
+      </p>
+      <p style="margin-top:.75rem"><a class="arrow-link" href="/case-studies/{{ study.slug }}/">Read case study</a></p>
+    </article>
+    {%- endfor %}
+  </div>
+</section>

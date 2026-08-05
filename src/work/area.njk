@@ -1,0 +1,113 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: areas
+  size: 1
+  alias: area
+  # Without this, Eleventy adds only the FIRST paginated page to collections,
+  # so the other area pages silently vanish from the sitemap.
+  addAllPagesToCollections: true
+permalink: "/work/{{ area.slug }}/"
+eleventyComputed:
+  title: "{{ area.title }}"
+  description: "{{ area.summary }}"
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">{{ area.eyebrow }}</p>
+  <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ area.title }}</h1>
+  {% if area.question %}
+  <p class="prose measure" style="font-size:1.3rem;font-family:var(--serif);font-style:italic;color:var(--ink)">{{ area.question }}</p>
+  {% endif %}
+</section>
+
+<section class="section section--tight wrap">
+  <div class="measure prose">
+    {%- for para in area.body %}
+    <p>{{ para }}</p>
+    {%- endfor %}
+  </div>
+</section>
+
+{% if area.practice.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">In practice</p>
+  <h2 class="headline">How this actually plays out.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for item in area.practice %}
+    <div class="principle">
+      <h3>{{ item.title }}</h3>
+      <p class="prose">{{ item.body }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+{#- Internal links from a specialism to the work that proves it. Good for
+    readers, and it connects these pages to the case studies for crawlers. -#}
+{% if area.relatedStudies.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Related work</p>
+  <h2 class="headline">Where I&rsquo;ve done this.</h2>
+
+  <div class="posts" style="margin-top:2rem">
+    {%- for slug in area.relatedStudies %}
+    {%- for study in caseStudies %}
+    {%- if study.slug == slug %}
+    <article class="post">
+      <div class="post__date">{{ study.year }}<span class="post__tag">{{ study.tech[0] }}</span></div>
+      <div>
+        <h3 class="post__title"><a href="/case-studies/{{ study.slug }}/">{{ study.title }}</a></h3>
+        <p class="post__excerpt">{{ study.summary }}</p>
+        <a class="arrow-link" href="/case-studies/{{ study.slug }}/">Read case study</a>
+      </div>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+{#- "Latest in [Area]": posts whose tags overlap this area's postTags. Connects
+    each specialism page to the writing that backs it. -#}
+{%- set areaPosts = [] -%}
+{%- for post in collections.posts -%}
+  {%- for t in area.postTags -%}
+    {%- if t in post.data.tags and post not in areaPosts -%}
+      {%- set areaPosts = (areaPosts.push(post), areaPosts) -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{% if areaPosts.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Go deeper</p>
+  <h2 class="headline">Latest in {{ area.title }}.</h2>
+
+  <div class="posts" style="margin-top:2rem">
+    {%- for post in areaPosts %}
+    <article class="post">
+      <div class="post__date">
+        <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
+      </div>
+      <div>
+        <h3 class="post__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p class="post__excerpt">{{ post.data.description }}</p>
+        <a class="arrow-link" href="{{ post.url }}">Read</a>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Want to talk about this?</h2>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "product-strategy",
+    "title": "Product Strategy",
+    "eyebrow": "Areas of Work",
+    "question": "What separates a roadmap that aligns a company from one that just lists features?",
+    "summary": "Vision, roadmaps, and OKRs that align teams around outcomes rather than output.",
+    "body": [
+      "Product strategy is mostly the discipline of deciding what not to build. Every company I've worked with could list twenty reasonable things to do next; almost none could explain why the top three earned their place over the other seventeen. Strategy is the argument that connects a company objective to a team's Tuesday — and if that argument can't be stated in a sentence, the roadmap is a wish list with dates on it.",
+      "The failure I see most often isn't a bad plan, it's an unshared one. Leadership agrees on priorities in a room, and three layers down two teams are optimising for measures that quietly contradict each other. Neither team is wrong; nobody connected their key results. Fixing that is rarely about better documents. It's about making the dependencies between teams explicit enough that misalignment becomes visible early, while it's still cheap.",
+      "I use OKRs for that, with one adjustment that matters: the key results that cross team boundaries get owned jointly rather than split. At a hyper-growth startup I architected a cross-functional OKR framework on exactly that principle, which raised goal completion and cut the friction that came from teams discovering conflicts late. Today I apply the same approach across a US client portfolio of six product managers and more than $6M in annual delivery."
+    ],
+    "practice": [
+      { "title": "Start from the decision, not the document", "body": "A roadmap exists to make trade-offs legible. If it doesn't say what got cut and why, it isn't doing its job." },
+      { "title": "Make cross-team dependencies shared, not split", "body": "A key result owned by two teams gets negotiated. The same result split in half gets optimised in two directions." },
+      { "title": "Write outcomes you could be wrong about", "body": "An objective nobody could fail is an objective nobody is steering by." },
+      { "title": "Inspect on a cadence you'll actually keep", "body": "A quarterly review that slips to twice a year is worse than a monthly one that holds." }
+    ],
+    "relatedStudies": ["cross-functional-okrs"],
+    "postTags": ["Strategy", "Operations"]
+  },
+
+  {
+    "slug": "ai-native-products",
+    "title": "AI-Native Products",
+    "eyebrow": "Areas of Work",
+    "question": "Where does AI actually change the product, and where is it just the pitch?",
+    "summary": "Predictive systems, internal tooling, and agentic workflows that earn their place in production.",
+    "body": [
+      "The useful question about AI in a product is never whether you can add it. It's whether it changes a number somebody already cared about before you arrived. That test kills most AI features at the whiteboard, which is the point — and it's also why the ones that survive tend to be unglamorous. The best AI work I've shipped looks less like a demo and more like a workflow that quietly got shorter.",
+      "Most of it has been internal. At SourceFuse I lead AI product innovation across delivery: a user story generator, infrastructure-as-code scaffolding, and automated code review. None of that is customer-facing, and all of it compounds — tooling that gives six product managers and their teams back hours every week is worth more than a feature that demos well once. Earlier, at People Rocket, an AI-powered QA tool cut critical deliverable errors by 65%, which is the kind of result that only shows up if you point the model at a problem people were already losing sleep over.",
+      "The customer-facing version follows the same rule. For the world's largest QSR I led the design of a logistics platform where AI drove predictive ordering — a domain where a better forecast has an immediate, physical consequence in inventory and waste. At Relief Financial, improving ML prediction accuracy by 35% for debt and credit risk mattered because the model's output was the product, not a garnish on it.",
+      "The part teams underestimate is the human loop. A prediction that nobody trusts doesn't get used, and a prediction nobody can override gets routed around. Deciding where an operator stays in the loop is a product decision, not an ML one, and it usually determines whether the system survives contact with the people who have to run it."
+    ],
+    "practice": [
+      { "title": "Point it at a number that already mattered", "body": "If nobody was tracking the metric before the AI, the AI isn't the reason it moved." },
+      { "title": "Internal tooling compounds", "body": "Hours returned to a delivery team every week outrun a customer-facing feature that demos once." },
+      { "title": "Design the override before the model", "body": "Where a human can intervene decides whether the system gets adopted or routed around." },
+      { "title": "Accuracy is a product spec", "body": "Decide what accuracy is good enough for the decision being made, then build to it." }
+    ],
+    "relatedStudies": ["qsr-supply-chain", "consumer-debt"],
+    "postTags": ["AI"]
+  },
+
+  {
+    "slug": "enterprise-platforms",
+    "title": "Enterprise Platforms",
+    "eyebrow": "Areas of Work",
+    "question": "How do you replace the systems a business runs on without stopping the business?",
+    "summary": "Consolidating legacy systems and shipping platforms that hold up at scale.",
+    "body": [
+      "Enterprise replacement work is rarely hard because the new system is hard to design. It's hard because the old one is load-bearing. Three legacy systems that each own part of a workflow have, between them, absorbed a decade of exceptions nobody documented — and those exceptions are the business. The risk in consolidation isn't building the wrong thing, it's discovering the undocumented thing at the worst possible moment.",
+      "For the world's largest QSR I led the design of a platform that consolidated three legacy systems into one. The design work was the visible part; the real work was sequencing — deciding what to absorb first so that each step delivered something usable and nothing critical depended on a migration completing perfectly on a date. At PayPal I led the Enterprise Content Management platform, which quadrupled content velocity and lifted conversion 40% across nine global markets. Nine markets is the detail that changes the job: every assumption gets tested against a locale, a regulation, or a team that does it differently for a good reason.",
+      "That pattern repeated at Cognizant, where I led product implementations for Wells Fargo, Comcast, Merck, and Lely — four industries with almost nothing in common except that the incumbent system had opinions and the people using it had workarounds. The through line is that scale is mostly a coordination problem wearing a technical costume."
+    ],
+    "practice": [
+      { "title": "Sequence so every step is shippable", "body": "A migration that only pays off at the end is a migration that can fail entirely." },
+      { "title": "Find the undocumented exceptions early", "body": "The workarounds people built around the old system are requirements nobody wrote down." },
+      { "title": "Treat each market as a real constraint", "body": "Nine markets isn't one rollout nine times. Local rules and habits are the spec." },
+      { "title": "Give people a reason to switch", "body": "Adoption isn't a training problem if the new system is genuinely faster for the person doing the work." }
+    ],
+    "relatedStudies": ["qsr-supply-chain"],
+    "postTags": ["Product"]
+  },
+
+  {
+    "slug": "zero-to-one",
+    "title": "0 → 1 Product",
+    "eyebrow": "Areas of Work",
+    "question": "How do you find the market while you're still building the thing?",
+    "summary": "Taking an ambiguous idea to a shipped MVP, and learning what it's worth in the process.",
+    "body": [
+      "Building from nothing is a different job from improving something. There's no baseline to move, no analytics to consult, and no way to distinguish a good decision from a lucky one until much later. The instinct to research your way to certainty is the main trap — at some point the only remaining way to learn is to ship something and watch what people do.",
+      "I joined Relief Financial as the second product hire, pre-MVP. That meant scoping a B2B SaaS platform for consumer debt resolution with very little signal: deciding what the first version had to do, what could wait, and which assumptions were worth betting the release on. We shipped to market and exceeded the initial revenue target by 80%, and lifted ML prediction accuracy 35% for the debt and credit risk models that sat underneath it.",
+      "What I'd take from it is that scoping is the whole discipline. Most failed first versions aren't badly built, they're built to answer too many questions at once. A version that tests one real assumption and reaches actual customers teaches you more than a broader release three months later — and in an early-stage company, three months is most of your runway."
+    ],
+    "practice": [
+      { "title": "Ship to learn, not to launch", "body": "The first version's job is to answer a question you can't answer any other way." },
+      { "title": "Cut until one assumption is being tested", "body": "A first release carrying five bets tells you nothing when it underperforms." },
+      { "title": "Decide what 'working' means in advance", "body": "Without a threshold set beforehand, every result can be read as encouraging." },
+      { "title": "Expect to be wrong in public", "body": "Being wrong early and visibly is cheaper than being wrong quietly for two quarters." }
+    ],
+    "relatedStudies": ["consumer-debt"],
+    "postTags": ["Product", "Craft"]
+  }
+]

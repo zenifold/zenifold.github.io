@@ -1,0 +1,95 @@
+---
+permalink: "/resume.json"
+eleventyExcludeFromCollections: true
+---
+{#
+  JSON Resume (https://jsonresume.org) — an established open schema for career
+  data. Worth serving because it is a real standard: parsers, validators, and
+  themes already exist, so an agent asked to "summarise this person's career"
+  gets typed fields instead of having to scrape prose out of HTML.
+#}
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": {{ site.name | dump | safe }},
+    "label": {{ site.jobTitle | dump | safe }},
+    "email": {{ site.email | dump | safe }},
+    "url": "{{ site.url }}/",
+    "summary": {{ profile.bioThirdPerson | dump | safe }},
+    "location": {
+      "city": {{ site.address.locality | dump | safe }},
+      "region": {{ site.address.region | dump | safe }},
+      "countryCode": {{ site.address.country | dump | safe }}
+    },
+    "profiles": [
+      {#- Skip placeholder URLs: a profile link pointing at github.com/TODO is a
+          broken link in machine-readable data, which is worse than an omission. -#}
+      {%- set entries = [] -%}
+      {%- for key, value in site.socials -%}
+        {%- if value and 'TODO' not in value -%}{%- set entries = (entries.push({network: key, url: value}), entries) -%}{%- endif -%}
+      {%- endfor -%}
+      {%- for entry in entries %}
+      {
+        "network": {{ entry.network | capitalize | dump | safe }},
+        "url": {{ entry.url | dump | safe }}
+      }{{ "," if not loop.last }}
+      {%- endfor %}
+    ]
+  },
+  "work": [
+    {%- for job in profile.experience %}
+    {
+      "name": {{ job.org | dump | safe }},
+      "position": {{ job.title | dump | safe }},
+      {%- if job.orgUrl %}
+      "url": {{ job.orgUrl | dump | safe }},
+      {%- endif %}
+      "startDate": {{ job.startDate | dump | safe }},
+      {%- if job.endDate %}
+      "endDate": {{ job.endDate | dump | safe }},
+      {%- endif %}
+      "summary": {{ job.summary | plain | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  {#- Skip unfilled placeholder entries: emitting "TODO: Institution" as career
+      data is worse than an empty array, since parsers treat it as real. -#}
+  {%- set schools = [] -%}
+  {%- for item in profile.education -%}
+    {%- if 'TODO' not in item.institution -%}{%- set schools = (schools.push(item), schools) -%}{%- endif -%}
+  {%- endfor %}
+  "education": [
+    {%- for item in schools %}
+    {
+      "institution": {{ item.institution | dump | safe }},
+      "area": {{ item.area | dump | safe }},
+      "studyType": {{ item.studyType | dump | safe }},
+      "startDate": {{ item.startDate | dump | safe }},
+      "endDate": {{ item.endDate | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  {#- "projects" is the JSON Resume schema's own field name, so it stays even
+      though the site calls these case studies. -#}
+  "projects": [
+    {%- for study in caseStudies %}
+    {
+      "name": {{ study.title | dump | safe }},
+      "description": {{ study.summary | dump | safe }},
+      "url": "{{ ('/case-studies/' + study.slug + '/') | absolute(site.url) }}",
+      "roles": [{{ study.role | dump | safe }}],
+      "keywords": {{ study.tech | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  "skills": [
+    {%- for topic in profile.knowsAbout %}
+    { "name": {{ topic | dump | safe }} }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  "meta": {
+    "canonical": "{{ '/resume.json' | absolute(site.url) }}",
+    "version": "1.0.0",
+    "lastModified": "{{ build.time }}"
+  }
+}

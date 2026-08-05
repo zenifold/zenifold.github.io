@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ site.locale }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{#- Applied before first paint so a dark-theme visitor never sees a white
+    flash. Inline and synchronous on purpose — a deferred script is too late. -#}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+{% if hasViz %}<link rel="stylesheet" href="/assets/css/viz.css">{% endif %}
+
+{% include "partials/seo.njk" %}
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+{% if hasReading %}
+<div class="read-progress" aria-hidden="true"><div class="read-progress__fill" data-read-progress></div></div>
+{% endif %}
+
+{% include "partials/header.njk" %}
+{% include "partials/palette.njk" %}
+
+<main id="main">
+{{ content | safe }}
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/main.js"></script>
+{% if hasViz %}<script src="/assets/js/viz.js" defer></script>{% endif %}
+{% if hasFilter %}<script src="/assets/js/filter.js" defer></script>{% endif %}
+{% if hasAssessment %}<script src="/assets/js/assessment.js" defer></script>{% endif %}
+{% if hasReading %}<script src="/assets/js/reading.js" defer></script>{% endif %}
+{% if hasGeoCheck %}<script src="/assets/js/geo-check.js" defer></script>{% endif %}
+<script src="/assets/js/palette.js" defer></script>
+<script src="/assets/js/theme.js" defer></script>
+</body>
+</html>

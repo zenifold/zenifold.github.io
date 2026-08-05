@@ -1,0 +1,92 @@
+{
+  "title": "Operational Drag Assessment",
+  "intro": "Operational drag is the compounding cost of work that exists only because your systems don't talk to each other. It never appears as a line item, nobody is assigned to it, and it shows up as everything taking slightly longer than it should — forever.",
+  "context": "In SINSA's research, 68% of executives named disconnected systems and manual tasks as their single biggest threat — ahead of competitors, talent, and capital.",
+  "instructions": "Twelve questions, about three minutes. Answer for one team or business unit rather than the whole company — drag is local, and averaging it across an org hides it.",
+
+  "scale": [
+    { "value": 0, "label": "Never" },
+    { "value": 1, "label": "Rarely" },
+    { "value": 2, "label": "Sometimes" },
+    { "value": 3, "label": "Often" },
+    { "value": 4, "label": "Constantly" }
+  ],
+
+  "categories": [
+    {
+      "key": "reentry",
+      "label": "Re-entry",
+      "series": 1,
+      "description": "The same information typed into more than one system because nothing bridges them.",
+      "advice": "Re-entry is the cheapest drag to remove and the easiest to measure. Pick the single highest-volume duplicate entry and bridge those two systems first — it's usually an integration or a scheduled sync, not a platform migration."
+    },
+    {
+      "key": "reconciliation",
+      "label": "Reconciliation",
+      "series": 2,
+      "description": "Time spent deciding which of two numbers is correct, rather than acting on either.",
+      "advice": "Reconciliation drag means you have no system of record. Before automating anything, name the authoritative source for each contested number — half the work disappears once people stop arguing about whose export is right."
+    },
+    {
+      "key": "chasing",
+      "label": "Chasing",
+      "series": 3,
+      "description": "Work that stalls because a status lives in someone's head, inbox, or a message thread.",
+      "advice": "Chasing is a visibility problem masquerading as a communication problem. Make state explicit and queryable in one place; the status meetings you'll delete are the return on it."
+    },
+    {
+      "key": "workarounds",
+      "label": "Workarounds",
+      "series": 1,
+      "description": "Spreadsheets and manual processes built to patch a gap that are now load-bearing and undocumented.",
+      "advice": "Every load-bearing spreadsheet is a precise map of where your tooling doesn't meet. Don't delete them — read them. They are the requirements document nobody wrote."
+    }
+  ],
+
+  "questions": [
+    { "id": "re1", "category": "reentry", "text": "People on this team enter the same data into two or more systems." },
+    { "id": "re2", "category": "reentry", "text": "Someone copies information between tools by hand as a routine part of their week." },
+    { "id": "re3", "category": "reentry", "text": "A customer or partner is asked for information you already hold somewhere." },
+
+    { "id": "rc1", "category": "reconciliation", "text": "Two systems report different numbers for the same thing." },
+    { "id": "rc2", "category": "reconciliation", "text": "Meetings stall while people work out which figure is correct." },
+    { "id": "rc3", "category": "reconciliation", "text": "Someone maintains a 'true' version of a report separately from the system that produces it." },
+
+    { "id": "ch1", "category": "chasing", "text": "Work waits on a status update that only one person can give." },
+    { "id": "ch2", "category": "chasing", "text": "You hold recurring meetings whose main purpose is finding out where things stand." },
+    { "id": "ch3", "category": "chasing", "text": "Finding the current state of a project means asking someone rather than looking somewhere." },
+
+    { "id": "wa1", "category": "workarounds", "text": "A spreadsheet does work that a system was supposed to do." },
+    { "id": "wa2", "category": "workarounds", "text": "A critical process would break if one specific person were unavailable." },
+    { "id": "wa3", "category": "workarounds", "text": "New joiners are taught steps that exist only to work around a tool's limitations." }
+  ],
+
+  "bands": [
+    {
+      "max": 15,
+      "label": "Low drag",
+      "verdict": "Your systems are broadly doing their job. The highest-return work here is probably not integration — it's whatever you were going to do next anyway.",
+      "action": "Re-run this in two quarters, or after your next tool purchase. Drag accumulates quietly during growth."
+    },
+    {
+      "max": 27,
+      "label": "Moderate drag",
+      "verdict": "There's real friction, concentrated in one or two places rather than spread evenly. That's good news — concentrated drag is tractable drag.",
+      "action": "Take your highest-scoring category below and fix one workflow inside it end to end. Measure the before and after; you'll need that number to fund the next one."
+    },
+    {
+      "max": 38,
+      "label": "High drag",
+      "verdict": "A meaningful share of this team's week is going into work that exists only because the tooling doesn't meet. This is usually invisible in planning because no single instance is big enough to escalate.",
+      "action": "Measure one drag path end to end, including waiting time. The number is normally indefensible once written down, and that's what unlocks the budget to fix it."
+    },
+    {
+      "max": 48,
+      "label": "Severe drag",
+      "verdict": "At this level the workarounds are the process. People are almost certainly running the business from spreadsheets and message threads next to your systems rather than inside them.",
+      "action": "Don't start with a transformation programme. Find the load-bearing spreadsheet, work out which two systems failed to meet where it sits, and bridge exactly that gap."
+    }
+  ],
+
+  "_comment_benchmark": "TODO: The benchmark layer is the part nobody else could copy, and it needs your real survey distributions — median total score, quartile cut-offs, and ideally a per-category median. Supply those and the results panel gains a 'you versus 4,000 executives' comparison. Left out rather than estimated: an invented benchmark in a research-branded tool is the one error that would genuinely damage SINSA."
+}

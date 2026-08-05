@@ -1,0 +1,161 @@
+{
+  "lede": "I'm a product strategist and builder who turns ambitious ideas into tangible results — from MVP to enterprise scale.",
+  "intro": "I'm Principal Strategy Consultant at <strong>Modea</strong>, where I built the strategy practice and now lead it alongside the consulting arm of their software agency. I'm also the founder of <strong>SINSA</strong>, an AI consulting company that builds systems meant for production rather than for a pitch deck, and co-founder of <strong>YO</strong>, a GenAI platform for personalized interactive stories. Before this I built products at <strong>SourceFuse</strong>, <strong>PayPal</strong>, <strong>Relief Financial</strong>, <strong>People Rocket</strong>, <strong>Cognizant</strong>, and <strong>Dominion Enterprises</strong>.",
+  "throughLine": "I work at the intersection of design, technology, and business. It isn't about making things look good — it's about building systems that work, solving real problems for real people, and creating experiences that feel less like software and more like well-crafted tools. I thrive in the space between a rough idea and a polished product.",
+  "sideWork": "I've also been building the web for over 20 years. It started with customizing MySpace pages in HTML and CSS and turned into more than 150 websites as a freelance developer — work that has run alongside every job I've held, and where most of the product instincts came from.",
+  "current": "I take on a small number of strategic engagements each year, and I'm available for new work in 2026.",
+  "footerBio": "Builder, creator, problem solver. Twenty years turning ambiguous ideas into things people actually use.",
+  "bioThirdPerson": "Max Murphy is a product strategist, architect, and builder with more than 12 years of experience shipping products from MVP to enterprise scale. He is Principal Strategy Consultant at Modea, where he built the strategy practice and leads the consulting arm of its software agency, and the founder of SINSA, an AI consulting company. He is also co-founder of the GenAI storytelling platform YO. He previously founded CraniumTap Research, a survey analytics SaaS acquired by Tribune Publishing in 2021, and built products at SourceFuse, PayPal, Relief Financial, People Rocket, Cognizant, and Dominion Enterprises. He has also worked as a freelance web developer for over 20 years, building more than 150 websites alongside his product career.",
+
+  "sectionHeadline": "A decade of <em>shipping</em> the work across fintech, enterprise, and AI-native products.",
+  "sectionIntro": "Product strategy engagements across enterprise platforms, editorial systems, and AI-native products — each anchored by the same approach: integrate hard and soft data into every plan, then iterate toward something real.",
+
+  "knowsAbout": [
+    "Product Strategy",
+    "Product Management",
+    "AI-Native Products",
+    "AI Strategy & Consulting",
+    "RAG & Model Fine-Tuning",
+    "Enterprise Platforms",
+    "Prototyping & Design",
+    "Technical Delivery"
+  ],
+
+  "stats": [
+    { "value": "12+", "label": "Years in product", "note": "Fintech, enterprise SaaS, marketplaces" },
+    { "value": "40+", "label": "Products shipped", "note": "MVP through enterprise scale" },
+    { "value": "150+", "label": "Websites built", "note": "Freelance, over 20 years" }
+  ],
+
+  "experience": [
+    {
+      "meta": "Current · Strategy Consulting",
+      "title": "Principal Strategy Consultant",
+      "org": "Modea",
+      "orgUrl": "https://modea.com",
+      "startDate": "2026-06",
+      "endDate": "",
+      "featured": 1,
+      "summary": "I built <strong>Modea's strategy practice</strong> from the ground up and now lead both the practice and the consulting arm of their software agency."
+    },
+    {
+      "meta": "Current · AI Consulting",
+      "title": "Founder",
+      "org": "SINSA",
+      "orgUrl": "https://sinsa.ai",
+      "startDate": "2021-12",
+      "endDate": "",
+      "featured": 2,
+      "summary": "I founded SINSA to build AI systems that go into production rather than into a deck. The work spans <strong>AI strategy and roadmapping, rapid prototyping, custom model fine-tuning and RAG, and full application development</strong> — backed by a research division whose survey of 4,000+ executives informs where we tell clients to start."
+    },
+    {
+      "meta": "Current · GenAI",
+      "title": "Co-Founder",
+      "org": "YO",
+      "orgUrl": "",
+      "startDate": "2024-09",
+      "endDate": "",
+      "summary": "A <strong>GenAI-powered platform</strong> for creating and sharing personalized, interactive stories."
+    },
+    {
+      "meta": "Previous · Enterprise SaaS",
+      "title": "Director of Product Management & Strategy",
+      "org": "SourceFuse",
+      "orgUrl": "https://www.sourcefuse.com",
+      "startDate": "2025-01",
+      "endDate": "2026-06",
+      "featured": 3,
+      "summary": "I direct the US client portfolio — <strong>6 product managers and $6M+ in annual delivery</strong> — and lead internal AI product innovation, including a User Story Generator, IaC scaffolding, and automated code review."
+    },
+    {
+      "meta": "Previous · FinTech",
+      "title": "Principal Product Manager",
+      "org": "Relief Financial",
+      "orgUrl": "",
+      "startDate": "2023-02",
+      "endDate": "2024-01",
+      "featured": 4,
+      "summary": "Second product hire at an early-stage fintech. I scoped the MVP, shipped it to market, and lifted <strong>ML prediction accuracy 35%</strong> for debt and credit risk."
+    },
+    {
+      "meta": "Previous · Payments",
+      "title": "Senior Product Manager",
+      "org": "PayPal",
+      "orgUrl": "https://www.paypal.com",
+      "startDate": "2022-06",
+      "endDate": "2023-01",
+      "summary": "Led the new Enterprise Content Management platform for global marketing tech, <strong>4x'ing content velocity</strong> and lifting conversion 40% across nine global markets."
+    },
+    {
+      "meta": "Previous · Consulting",
+      "title": "Senior Consultant & Engagement Manager",
+      "org": "People Rocket",
+      "orgUrl": "",
+      "startDate": "2021-03",
+      "endDate": "2023-02",
+      "summary": "Strategic advisory and program management across industries. Launched an <strong>AI-powered QA tool that cut critical deliverable errors by 65%</strong>."
+    },
+    {
+      "meta": "Previous · Research",
+      "title": "Founder",
+      "org": "Quanti Research",
+      "orgUrl": "",
+      "startDate": "2020",
+      "endDate": "2023",
+      "summary": "A solo <strong>research and analytics</strong> firm, run alongside my consulting and product work."
+    },
+    {
+      "meta": "Previous · Research SaaS",
+      "title": "Founder",
+      "org": "CraniumTap Research",
+      "orgUrl": "",
+      "startDate": "2018-06",
+      "endDate": "2021-09",
+      "summary": "A Qualtrics-based SaaS product for advanced survey analytics and data visualization. <strong>Acquired by Tribune Publishing in 2021.</strong>"
+    },
+    {
+      "meta": "Previous · Enterprise",
+      "title": "Product Lifecycle Consultant",
+      "org": "Cognizant",
+      "orgUrl": "https://www.cognizant.com",
+      "startDate": "2019-10",
+      "endDate": "2021-03",
+      "summary": "Led enterprise product implementations for <strong>Wells Fargo, Comcast, Merck, and Lely</strong> — requirements, UX, and deployment strategy."
+    },
+    {
+      "meta": "Foundational · Marketplaces",
+      "title": "Technical Project Manager",
+      "org": "Dominion Enterprises",
+      "orgUrl": "",
+      "startDate": "2016-03",
+      "endDate": "2019-02",
+      "summary": "Delivered Homes.com to <strong>10M+ monthly users</strong> and launched the AutoTrader vehicle listing ads platform, driving <strong>$25M+ in annual revenue</strong>."
+    },
+    {
+      "meta": "Foundational · Marketing",
+      "title": "Marketing Analyst",
+      "org": "Marathon Consulting",
+      "orgUrl": "",
+      "startDate": "2012-06",
+      "endDate": "2016-03",
+      "summary": "First professional role. Analytics and marketing across client engagements."
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "Quantic School of Business and Technology",
+      "area": "Business Administration",
+      "studyType": "Master of Business Administration (MBA)",
+      "startDate": "2023-01",
+      "endDate": "2024-06"
+    },
+    {
+      "institution": "ECPI University",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2010-08",
+      "endDate": "2014-06"
+    }
+  ]
+}

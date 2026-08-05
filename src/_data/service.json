@@ -1,0 +1,73 @@
+{
+  "advisory": [
+    {
+      "org": "Venture Starters",
+      "role": "Board Member",
+      "dates": "Dec 2022 – Present",
+      "category": "Economic Empowerment",
+      "summary": "Mentoring and advising early-stage founders on product strategy and fundraising."
+    },
+    {
+      "org": "RepresentUs",
+      "role": "Action Brigade Member",
+      "dates": "May 2023 – Present",
+      "category": "Politics",
+      "summary": "Volunteering for non-partisan campaigns focused on anti-corruption and voting rights."
+    },
+    {
+      "org": "ForKids, Inc.",
+      "role": "Technology Steering Committee Advisor",
+      "dates": "Oct 2019 – Nov 2021",
+      "category": "Children",
+      "summary": "Guidance on technology infrastructure and digital literacy programs for a non-profit serving homeless families."
+    },
+    {
+      "org": "Norfolk Environmental Commission",
+      "role": "Communications Committee Chair",
+      "dates": "Jul 2019 – Aug 2021",
+      "category": "Environment",
+      "summary": "Led communication efforts promoting environmental awareness and city-wide sustainability initiatives."
+    },
+    {
+      "org": "Norfolk Innovation Corridor",
+      "role": "Research & Strategy Partner",
+      "dates": "Jul 2019 – Mar 2021",
+      "category": "Science & Technology",
+      "summary": "Contributed research on developing a tech-focused economic corridor in Norfolk."
+    },
+    {
+      "org": "StartWheel",
+      "role": "Marketing & Branding Consultant",
+      "dates": "Apr 2018 – Nov 2020",
+      "category": "Economic Empowerment",
+      "summary": "Advised local businesses on marketing and branding to accelerate growth."
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Kinder for Norfolk",
+      "role": "Political Marketer",
+      "dates": "2021",
+      "summary": "Ran campaign marketing for a 2021 run for Virginia's House of Delegates, District 89."
+    },
+    {
+      "name": "LightVision",
+      "role": "Creator",
+      "dates": "2020",
+      "summary": "An open source light and sound visualization tool producing real-time visual and auditory haptic feedback."
+    },
+    {
+      "name": "Blocktivity",
+      "role": "Contributor",
+      "dates": "May 2020 – Nov 2020",
+      "summary": "A tool comparing blockchains by daily transaction volume rather than market cap. Built automated processes for the 'Add My Chain' feature."
+    },
+    {
+      "name": "DMP Sound Productions",
+      "role": "Co-Founder",
+      "dates": "2019",
+      "summary": "A group of sound and light engineers producing in-person and virtual events for the electronic/EDM market."
+    }
+  ]
+}

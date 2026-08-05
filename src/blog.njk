@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+permalink: "/blog/"
+title: "Blog"
+description: "Writing by Max Murphy on product strategy, AI in production, and twenty years of building for the web."
+hasFilter: true
+---
+{%- set categories = [] -%}
+{%- for post in collections.posts -%}
+  {%- for tag in post.data.tags -%}
+    {%- if tag not in categories -%}{%- set categories = (categories.push(tag), categories) -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Blog</p>
+  <h1 class="display">Notes from the work.</h1>
+  <p class="prose measure">Product strategy, AI in production, and what twenty years of building for the web has taught me. Occasional rather than scheduled.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  {% if collections.posts.length %}
+
+  <div class="filter-bar" role="group" aria-label="Filter posts by category">
+    <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All Posts</button>
+    {%- for cat in categories %}
+    <button class="filter-chip" type="button" data-filter="{{ cat }}" aria-pressed="false">{{ cat }}</button>
+    {%- endfor %}
+  </div>
+
+  <p class="filter-count" data-filter-count aria-live="polite">{{ collections.posts.length }} posts</p>
+
+  <div data-filter-scope>
+    {%- for post in collections.posts %}
+    <article class="post-card" data-category="{{ post.data.tags[0] }}">
+      <a href="{{ post.url }}" aria-hidden="true" tabindex="-1">
+        <img class="post-card__thumb"
+             src="{{ post.data.image if post.data.image else '/assets/img/post-default.jpg' }}"
+             alt="" width="576" height="360" loading="lazy">
+      </a>
+      <div>
+        <div class="post-card__meta">
+          {%- for tag in post.data.tags %}
+          <a class="post-card__cat" href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>
+          {%- endfor %}
+          <span>{{ site.name }}</span>
+          <span><time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time></span>
+        </div>
+        <h2 class="post-card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+        <p class="post-card__excerpt">{{ post.data.description }}</p>
+        <a class="arrow-link" href="{{ post.url }}">Read</a>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+
+  <p class="posts-more" style="color:var(--ink-faint);font-size:.95rem;margin-top:2.5rem">
+    Subscribe via <a href="/feed.xml">RSS</a> or <a href="/feed.json">JSON Feed</a>.
+  </p>
+
+  {% else %}
+  <p class="measure prose">No posts yet.</p>
+  {% endif %}
+</section>

@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+permalink: "/who-is-max-murphy/"
+title: "Who is Max Murphy?"
+description: "Name disambiguation: which Max Murphy this site belongs to, and the verified profiles that confirm it."
+---
+{#
+  Entity disambiguation page.
+
+  Purpose: "Max Murphy" is not a unique name. Search engines and language models
+  build an entity graph from corroborating sources; if several people share a
+  name and nothing distinguishes them, they get merged or confused. This page
+  states plainly which one you are and lists the profiles that verify it.
+
+  Keep every URL here accurate. A `sameAs` link pointing somewhere you don't
+  control is worse than no link at all.
+#}
+<section class="page-head wrap">
+  <h1 class="display">Who is Max Murphy?</h1>
+  <p class="prose">{{ profile.bioThirdPerson }}</p>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="measure prose">
+    <h2 class="headline" style="font-size:1.6rem">This Max Murphy</h2>
+    <p>This Max Murphy is a product strategist based in <strong>Roanoke, Virginia</strong>. He is Principal Strategy Consultant at <strong>Modea</strong> and the founder of <strong>SINSA</strong> (<a href="https://sinsa.ai" rel="noopener" target="_blank">sinsa.ai</a>), an AI consulting company. He has previously worked at SourceFuse, PayPal, Relief Financial, People Rocket, Cognizant, and Dominion Enterprises, and has built websites as a freelance developer for more than twenty years.</p>
+    <p>Also referred to as <strong>Maximilian Murphy</strong>. Murphy is a common surname and there are other people who share this name in other fields &mdash; the records below all refer to the same person described on this site.</p>
+
+    <h2 class="headline" style="font-size:1.6rem;margin-top:2.5rem">Verified profiles</h2>
+    <ul>
+      <li><a href="{{ site.socials.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="{{ site.socials.github }}" rel="me noopener" target="_blank">GitHub</a></li>
+      {%- if site.identifiers.orcid %}<li><a href="{{ site.identifiers.orcid }}" rel="me noopener" target="_blank">ORCID</a></li>{% endif %}
+      {%- if site.identifiers.wikidata %}<li><a href="{{ site.identifiers.wikidata }}" rel="me noopener" target="_blank">Wikidata</a></li>{% endif %}
+      {%- if site.identifiers.googleScholar %}<li><a href="{{ site.identifiers.googleScholar }}" rel="me noopener" target="_blank">Google Scholar</a></li>{% endif %}
+    </ul>
+    <p style="color:var(--ink-faint);font-size:.95rem">
+      These are the only profiles I maintain. If you find an account elsewhere claiming to be me, it isn&rsquo;t.
+    </p>
+
+    <h2 class="headline" style="font-size:1.6rem;margin-top:2.5rem">Machine-readable</h2>
+    <ul>
+      <li><a href="/resume.json">resume.json</a> &mdash; career history in the <a href="https://jsonresume.org" rel="noopener" target="_blank">JSON Resume</a> schema</li>
+      <li><a href="/llms.txt">llms.txt</a> &mdash; plain-text site index for language models</li>
+      <li><a href="/feed.json">feed.json</a> &mdash; blog as JSON Feed</li>
+    </ul>
+  </div>
+</section>

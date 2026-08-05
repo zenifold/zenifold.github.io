@@ -1,0 +1,99 @@
+---
+layout: layouts/base.njk
+permalink: "/explore/"
+title: "Explore Everything"
+description: "A complete index of maxmurphy.com — every page, case study, product, area of work, and post."
+---
+{#
+  A human-readable index of the whole site. Useful for readers who want the
+  full picture, and it gives crawlers one page that links to everything —
+  the HTML counterpart to sitemap.xml and llms.txt.
+#}
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Explore</p>
+  <h1 class="display">Everything on this site.</h1>
+  <p class="prose measure">A full index. Machine-readable equivalents live at
+    <a href="/sitemap.xml">sitemap.xml</a> and <a href="/llms.txt">llms.txt</a>.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="about-grid">
+
+    <div>
+      <h2 class="headline" style="font-size:1.5rem;margin-bottom:1rem">Areas of work</h2>
+      <ul class="prose" style="margin-bottom:2.5rem">
+        {%- for area in areas %}
+        <li><a href="/work/{{ area.slug }}/">{{ area.title }}</a> &mdash; {{ area.summary }}</li>
+        {%- endfor %}
+      </ul>
+
+      <h2 class="headline" style="font-size:1.5rem;margin-bottom:1rem">Case studies</h2>
+      <ul class="prose" style="margin-bottom:2.5rem">
+        {%- for study in caseStudies %}
+        <li><a href="/case-studies/{{ study.slug }}/">{{ study.title }}</a> &mdash; {{ study.year }}</li>
+        {%- endfor %}
+      </ul>
+
+      <h2 class="headline" style="font-size:1.5rem;margin-bottom:1rem">Writing</h2>
+      <ul class="prose" style="margin-bottom:2.5rem">
+        {%- for post in collections.posts %}
+        <li><a href="{{ post.url }}">{{ post.data.title }}</a> &mdash; {{ post.date | readableDate }}</li>
+        {%- endfor %}
+      </ul>
+
+      <h2 class="headline" style="font-size:1.5rem;margin-bottom:1rem">Products</h2>
+      <ul class="prose">
+        {%- for p in products %}
+        <li>{{ p.name }} &mdash; {{ p.org }}, {{ p.years }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <div class="factbar">
+        <div class="factbar__row">
+          <div class="factbar__label">Site</div>
+          <div class="factbar__value">
+            <a href="/">Home</a><br>
+            <a href="/about/">About</a><br>
+            <a href="/products/">Products</a><br>
+            <a href="/case-studies/">Case studies</a><br>
+            <a href="/blog/">Blog</a><br>
+            <a href="/work/">Areas of work</a><br>
+            <a href="/contact/">Contact</a>
+          </div>
+        </div>
+        <div class="factbar__row">
+          <div class="factbar__label">Background</div>
+          <div class="factbar__value">
+            <a href="/resume/">Résumé</a><br>
+            <a href="/faq/">FAQ</a><br>
+            <a href="/links/">Links</a><br>
+            <a href="/who-is-max-murphy/">Disambiguation</a>
+          </div>
+        </div>
+        <div class="factbar__row">
+          <div class="factbar__label">Categories</div>
+          <div class="factbar__value">
+            {%- for tag in collections.postTags %}
+            <a href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a><br>
+            {%- endfor %}
+          </div>
+        </div>
+        <div class="factbar__row">
+          <div class="factbar__label">For machines</div>
+          <div class="factbar__value">
+            <a href="/resume.json">resume.json</a><br>
+            <a href="/api/profile.json">api/profile.json</a><br>
+            <a href="/llms.txt">llms.txt</a><br>
+            <a href="/llms-full.txt">llms-full.txt</a><br>
+            <a href="/feed.xml">feed.xml</a><br>
+            <a href="/feed.json">feed.json</a><br>
+            <a href="/sitemap.xml">sitemap.xml</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

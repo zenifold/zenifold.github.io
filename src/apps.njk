@@ -1,0 +1,103 @@
+---
+layout: layouts/base.njk
+permalink: "/apps/"
+title: "Apps"
+description: "Open source and personal apps Max Murphy is building — including Aurora, an open source productivity and collaboration operating system."
+hasViz: true
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Apps</p>
+  <h1 class="display">Things I&rsquo;m building.</h1>
+  <p class="prose measure">Personal projects and open source apps I ship on the side. Most start as scratching my own itch and end up as something other people want to use too.</p>
+</section>
+
+{%- for app in apps %}
+<section class="section section--tight wrap" style="padding-top:0">
+
+  <div class="study-facts">
+    <div class="study-fact">
+      <div class="study-fact__label">Status</div>
+      <div class="study-fact__value">{{ app.status }}</div>
+    </div>
+    <div class="study-fact">
+      <div class="study-fact__label">Tags</div>
+      <div class="study-fact__value">{{ app.tags | join(" · ") }}</div>
+    </div>
+    <div class="study-fact">
+      <div class="study-fact__label">Source</div>
+      <div class="study-fact__value">
+        {% if app.github %}<a href="{{ app.github }}" rel="noopener" target="_blank">GitHub</a>{% else %}&mdash;{% endif %}
+      </div>
+    </div>
+    <div class="study-fact">
+      <div class="study-fact__label">Live</div>
+      <div class="study-fact__value">
+        {% if app.url %}<a href="{{ app.url }}" rel="noopener" target="_blank">Visit {{ app.name }}</a>{% else %}&mdash;{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem">
+    <h2 class="display" style="font-size:clamp(2rem,3.6vw,3rem);margin-bottom:.75rem">{{ app.name }}</h2>
+    <p class="headline" style="font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--ink);margin-bottom:1.5rem">{{ app.tagline }}</p>
+    <p class="prose measure">{{ app.summary }}</p>
+  </div>
+
+  {#- The one-in / one-out comparison: six tools replaced by six capabilities.
+      A table rather than a chart — these are labels, not magnitudes. -#}
+  {% if app.replaces.length %}
+  <div class="viz">
+    <div class="viz__head">
+      <p class="viz__title">One workspace, six tools</p>
+      <p class="viz__sub">What {{ app.name }} is built to consolidate, and the capability that replaces each.</p>
+    </div>
+
+    <div data-viz-tabs>
+      <div class="viz-tabs" role="tablist" aria-label="{{ app.name }} scope">
+        <button class="viz-tab" role="tab" type="button" id="tab-replaces-{{ app.slug }}"
+                aria-controls="panel-replaces-{{ app.slug }}" aria-selected="true">Replaces</button>
+        <button class="viz-tab" role="tab" type="button" id="tab-caps-{{ app.slug }}"
+                aria-controls="panel-caps-{{ app.slug }}" aria-selected="false">Capabilities</button>
+      </div>
+
+      <div class="viz-tabpanel" role="tabpanel" id="panel-replaces-{{ app.slug }}" aria-labelledby="tab-replaces-{{ app.slug }}">
+        <div class="stack-pills" style="margin-top:0">
+          {%- for tool in app.replaces %}
+          <span class="stack-pill">{{ tool }}</span>
+          {%- endfor %}
+        </div>
+        <p class="viz__note">Six subscriptions, six logins, six places a decision can go missing.</p>
+      </div>
+
+      <div class="viz-tabpanel" role="tabpanel" id="panel-caps-{{ app.slug }}" aria-labelledby="tab-caps-{{ app.slug }}" hidden>
+        <div class="stages" style="margin-top:0">
+          {%- for cap in app.capabilities %}
+          <div class="stage">
+            <div class="stage__num">{{ "0" + (loop.index | string) }}</div>
+            <div>
+              <h3 class="stage__title" style="font-size:1.15rem">{{ cap }}</h3>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <p style="margin-top:2.5rem">
+    {% if app.url %}<a class="btn" href="{{ app.url }}" rel="noopener" target="_blank">Visit {{ app.name }}</a>{% endif %}
+    {% if app.github %}<a class="arrow-link" href="{{ app.github }}" rel="noopener" target="_blank" style="margin-left:1.5rem">View on GitHub</a>{% endif %}
+  </p>
+</section>
+{%- endfor %}
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">More coming.</h2>
+    <p class="prose measure" style="margin-inline:auto">Always cooking something new. If you want to collaborate, drop me a note.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

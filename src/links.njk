@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+permalink: "/links/"
+title: "Links"
+description: "Everywhere to find Max Murphy — SINSA, LinkedIn, writing, résumé, and how to get in touch."
+---
+{#
+  A link hub, for the bio field on a social profile or the end of a talk.
+  Deliberately short: a link list that needs scrolling defeats the purpose.
+#}
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Links</p>
+  <h1 class="display">Everything, in one place.</h1>
+  <p class="prose measure">{{ profile.lede }}</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="measure">
+    <div class="posts">
+
+      <article class="post">
+        <div class="post__date">Company</div>
+        <div>
+          <h2 class="post__title"><a href="https://sinsa.ai" rel="noopener" target="_blank">SINSA</a></h2>
+          <p class="post__excerpt">My AI consulting company. Strategy, prototyping, fine-tuning and RAG, and application development.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Profile</div>
+        <div>
+          <h2 class="post__title"><a href="{{ site.socials.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a></h2>
+          <p class="post__excerpt">Career history and the place I&rsquo;m easiest to reach.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Writing</div>
+        <div>
+          <h2 class="post__title"><a href="/blog/">Blog</a></h2>
+          <p class="post__excerpt">Product strategy, AI in production, and twenty years of building for the web.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Work</div>
+        <div>
+          <h2 class="post__title"><a href="/case-studies/">Case studies</a></h2>
+          <p class="post__excerpt">Enterprise logistics, fintech 0&rarr;1, and cross-functional operating frameworks.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Work</div>
+        <div>
+          <h2 class="post__title"><a href="/products/">Products</a></h2>
+          <p class="post__excerpt">Everything I&rsquo;ve built that I can name publicly.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Background</div>
+        <div>
+          <h2 class="post__title"><a href="/resume/">Résumé</a></h2>
+          <p class="post__excerpt">Full history &mdash; roles, ventures, education, advisory work. Also available as <a href="/resume.json">JSON</a>.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post__date">Contact</div>
+        <div>
+          <h2 class="post__title"><a href="mailto:{{ site.email }}">Email</a></h2>
+          <p class="post__excerpt">{{ site.email }}</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>

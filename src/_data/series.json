@@ -1,0 +1,15 @@
+{
+  "data": {
+    "slug": "data",
+    "label": "Data",
+    "title": "Data",
+    "headline": "Questions I wanted answered, so I ran the numbers.",
+    "intro": "An ongoing series of original analyses — prediction market calibration, economic modelling, and geo-strategic risk. Every post publishes its methodology, its sources, its limitations, and the code, so you can disagree with the conclusion on the evidence rather than on vibes.",
+    "principles": [
+      "The question comes before the dataset. If the answer isn't interesting when it goes the other way, it isn't a good question.",
+      "Methodology and sources are published with the finding, not on request.",
+      "Limitations are stated by the author, not discovered by the reader.",
+      "Every analysis is reproducible from the linked code and public data."
+    ]
+  }
+}

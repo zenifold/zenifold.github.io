@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: publishedBooks
+  size: 1
+  alias: book
+  addAllPagesToCollections: true
+permalink: "/books/{{ book.slug }}/"
+eleventyComputed:
+  title: "{{ book.title }}"
+  description: "{{ book.summary }}"
+  image: "{{ book.cover }}"
+---
+<section class="page-head wrap">
+  <div class="about-grid">
+    <div>
+      <p class="eyebrow" style="color:var(--blue)">Book{% if book.status %} &middot; {{ book.status }}{% endif %}</p>
+      <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ book.title }}</h1>
+      {% if book.subtitle %}<p class="prose" style="font-size:1.25rem">{{ book.subtitle }}</p>{% endif %}
+
+      <div class="prose" style="margin-top:1.75rem">
+        {%- for para in book.blurb %}
+        <p>{{ para }}</p>
+        {%- endfor %}
+      </div>
+
+      {% if book.buyUrl %}
+      <p style="margin-top:2rem"><a class="btn" href="{{ book.buyUrl }}" rel="noopener" target="_blank">Get the book</a></p>
+      {% endif %}
+    </div>
+
+    <div>
+      <img src="{{ book.cover }}" alt="Cover of {{ book.title }}" width="400" height="600"
+           style="width:100%;aspect-ratio:2/3;object-fit:cover;background:var(--blue-tint)">
+    </div>
+  </div>
+</section>
+
+{%- set chapters = [] -%}
+{%- for ch in publishedChapters -%}
+  {%- if ch.bookSlug == book.slug -%}{%- set chapters = (chapters.push(ch), chapters) -%}{%- endif -%}
+{%- endfor -%}
+
+{% if chapters.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Contents</p>
+  <h2 class="headline">Chapters.</h2>
+
+  <div class="stages" style="margin-top:2rem">
+    {%- for ch in chapters %}
+    <div class="stage">
+      <div class="stage__num">{{ "0" + (ch.number | string) if ch.number < 10 else ch.number }}</div>
+      <div>
+        <h3 class="stage__title">
+          <a href="/books/{{ book.slug }}/{{ ch.slug }}/" style="text-decoration:none">{{ ch.title }}</a>
+        </h3>
+        <p class="stage__body">{{ ch.summary }}</p>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="section section--tight wrap">
+  <p><a class="arrow-link" href="/books/">All books</a></p>
+</section>

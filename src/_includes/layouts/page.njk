@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-head wrap">
+  <h1 class="display">{{ title }}</h1>
+  {% if intro %}<p class="prose">{{ intro }}</p>{% endif %}
+</section>
+
+<section class="section section--tight wrap">
+  <div class="measure prose">
+    {{ content | safe }}
+  </div>
+</section>

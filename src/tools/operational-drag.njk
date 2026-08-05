@@ -1,0 +1,86 @@
+---
+layout: layouts/base.njk
+permalink: "/tools/operational-drag/"
+title: "Operational Drag Scan"
+description: "A free 12-question diagnostic that scores how much of your team's week goes into work that exists only because your systems don't talk to each other."
+hasViz: true
+hasAssessment: true
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)"><a href="/tools/" style="color:inherit">Tools</a> &middot; Operations</p>
+  <h1 class="display">Operational Drag Scan</h1>
+  <p class="prose measure" style="font-size:1.2rem">{{ assessment.intro }}</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="measure prose">
+    <p style="border-left:2px solid var(--blue);padding-left:1.5rem;font-family:var(--serif);font-size:1.2rem;color:var(--ink)">
+      {{ assessment.context }}
+    </p>
+    <p>{{ assessment.instructions }}</p>
+    <p style="font-size:.9rem;color:var(--ink-faint)">
+      Nothing you enter leaves your browser. There is no submit endpoint, no cookie, and no email gate &mdash;
+      you are being asked about your employer&rsquo;s dysfunction, so it shouldn&rsquo;t go anywhere.
+    </p>
+  </div>
+</section>
+
+<div data-assessment>
+  <script type="application/json" id="assessment-config">{{ assessment | jsonify | safe }}</script>
+
+  <section class="section section--tight wrap" style="padding-top:0">
+
+    <div class="assess-progress no-print">
+      <div class="assess-progress__track">
+        <div class="assess-progress__fill" data-assessment-progress style="width:0%"></div>
+      </div>
+      <p class="assess-progress__text" data-assessment-progress-text aria-live="polite">0 of {{ assessment.questions | length }} answered</p>
+    </div>
+
+    <form data-assessment-form>
+      {%- for cat in assessment.categories %}
+      <fieldset class="assess-group">
+        <legend class="assess-group__legend">
+          <span class="assess-group__label">{{ cat.label }}</span>
+          <span class="assess-group__desc">{{ cat.description }}</span>
+        </legend>
+
+        {%- for q in assessment.questions %}
+        {%- if q.category == cat.key %}
+        <div class="assess-q">
+          <p class="assess-q__text" id="{{ q.id }}-label">{{ q.text }}</p>
+          <div class="assess-q__scale" role="radiogroup" aria-labelledby="{{ q.id }}-label">
+            {%- for opt in assessment.scale %}
+            <label class="assess-opt">
+              <input type="radio" name="{{ q.id }}" value="{{ opt.value }}">
+              <span class="assess-opt__box">{{ opt.value }}</span>
+              <span class="assess-opt__label">{{ opt.label }}</span>
+            </label>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+        {%- endfor %}
+      </fieldset>
+      {%- endfor %}
+
+      <div class="assess-actions no-print">
+        <button class="btn btn--solid" type="submit" data-assessment-submit disabled>See my result</button>
+        <button class="viz-table-toggle" type="button" data-assessment-reset>Start over</button>
+      </div>
+    </form>
+
+    <div data-assessment-results hidden></div>
+  </section>
+</div>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Want help removing it?</h2>
+    <p class="prose measure" style="margin-inline:auto">This is the problem <a href="https://sinsa.ai" rel="noopener" target="_blank" style="color:#fff">SINSA</a> exists to solve &mdash; automating the boring middle rather than the customer-facing edge. Tell me what your result said.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+    <p style="margin-top:1.5rem"><a class="arrow-link" href="/tools/" style="color:#fff">All tools</a></p>
+  </div>
+</section>

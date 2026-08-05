@@ -1,0 +1,125 @@
+---
+layout: layouts/base.njk
+permalink: "/resume/"
+title: "Résumé"
+description: "Full career history for Max Murphy — founder, product strategist, and builder. Roles, ventures, education, and advisory work."
+hasViz: true
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Résumé</p>
+  <h1 class="display">{{ site.name }}</h1>
+  <p class="prose measure">{{ profile.bioThirdPerson }}</p>
+
+  <p class="prose" style="margin-top:1.5rem;font-size:.95rem;color:var(--ink-faint)">
+    {{ site.address.locality }}, {{ site.address.region }} &middot;
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a> &middot;
+    <a href="{{ site.socials.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a> &middot;
+    <a href="/resume.json">Machine-readable version</a>
+  </p>
+
+  <p class="no-print" style="margin-top:2rem">
+    <button class="btn" type="button" onclick="window.print()">Print / save as PDF</button>
+  </p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+
+  <!-- ===================== CAREER CHART ===================== -->
+  <div class="no-print">
+    {% include "partials/career-chart.njk" %}
+  </div>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Experience</h2>
+
+  <div style="margin-bottom:3.5rem">
+    {%- for job in profile.experience %}
+    <div class="timeline__group">
+      <div class="timeline__role" style="align-items:baseline">
+        <div>
+          <h3 class="timeline__org" style="font-size:1.3rem;margin-bottom:.2rem">{{ job.title }}</h3>
+          <div class="timeline__title">
+            {% if job.orgUrl %}<a href="{{ job.orgUrl }}" rel="noopener" target="_blank">{{ job.org }}</a>{% else %}{{ job.org }}{% endif %}
+          </div>
+        </div>
+        <div class="timeline__dates">{{ job.startDate }} &ndash; {{ job.endDate if job.endDate else "Present" }}</div>
+      </div>
+      <p class="prose" style="margin-top:.75rem;max-width:46rem">{{ job.summary | safe }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+
+  <!-- ===================== VENTURES ===================== -->
+  {% if ventures.length %}
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Founded companies</h2>
+
+  <div style="margin-bottom:3.5rem">
+    {%- for v in ventures %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">
+          {% if v.url %}<a href="{{ v.url }}" rel="noopener" target="_blank" style="text-decoration:none">{{ v.name }}</a>{% else %}{{ v.name }}{% endif %}
+        </div>
+        <div class="recognition__detail">{{ v.role }}{% if v.status %} &middot; {{ v.status }}{% endif %} &mdash; {{ v.summary }}</div>
+      </div>
+      <div class="recognition__when">{{ v.dates }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ===================== EDUCATION ===================== -->
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Education</h2>
+
+  <div style="margin-bottom:3.5rem">
+    {%- for item in profile.education %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ item.institution }}</div>
+        <div class="recognition__detail">{{ item.studyType }}{% if item.area %}, {{ item.area }}{% endif %}</div>
+      </div>
+      <div class="recognition__when">{{ item.startDate }} &ndash; {{ item.endDate }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+
+  <!-- ===================== SKILLS ===================== -->
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Areas of expertise</h2>
+
+  <p class="prose measure" style="margin-bottom:3.5rem">{{ profile.knowsAbout | join(" · ") }}</p>
+
+  <!-- ===================== ADVISORY ===================== -->
+  {% if service.advisory.length %}
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Volunteer &amp; advisory</h2>
+
+  <div style="margin-bottom:3.5rem">
+    {%- for a in service.advisory %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ a.org }}</div>
+        <div class="recognition__detail">{{ a.role }} &mdash; {{ a.summary }}</div>
+      </div>
+      <div class="recognition__when">{{ a.dates }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ===================== PROJECTS ===================== -->
+  {% if service.projects.length %}
+  <h2 class="headline" style="font-size:1.7rem;margin-bottom:1.5rem">Selected side projects</h2>
+
+  <div>
+    {%- for p in service.projects %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ p.name }}</div>
+        <div class="recognition__detail">{{ p.role }} &mdash; {{ p.summary }}</div>
+      </div>
+      <div class="recognition__when">{{ p.dates }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+  {% endif %}
+
+</section>

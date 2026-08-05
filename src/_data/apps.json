@@ -1,0 +1,21 @@
+[
+  {
+    "slug": "aurora",
+    "name": "Aurora",
+    "tagline": "One workspace to replace ten.",
+    "status": "In development",
+    "tags": ["Open Source", "Productivity", "AI", "Collaboration"],
+    "github": "https://github.com/zenifold/aurora-os",
+    "url": "https://auraz.lovable.app/",
+    "summary": "A complete open source productivity and collaboration operating system for a company. It unifies whiteboarding, docs, project management, knowledge base, and AI meeting notes into a single, fast workspace — built for teams tired of context-switching between six tools.",
+    "replaces": ["Miro", "Notion", "ClickUp", "Jira", "Confluence", "Fathom"],
+    "capabilities": [
+      "Infinite canvas whiteboards",
+      "Block-based docs & wiki",
+      "Issues, sprints & roadmaps",
+      "AI meeting notetaker",
+      "AI agents across every surface",
+      "Self-host or cloud"
+    ]
+  }
+]

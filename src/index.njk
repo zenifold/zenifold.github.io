@@ -1,0 +1,157 @@
+---
+layout: layouts/base.njk
+hasViz: true
+eleventyNavigation:
+  key: Home
+---
+<!-- ===================== HERO ===================== -->
+<section class="hero wrap">
+  <div class="hero__grid">
+    <img class="hero__portrait" src="/assets/img/portrait.jpg" alt="Portrait of {{ site.name }}" width="640" height="800">
+
+    <div class="hero__body">
+      <h1 class="display">Hi, I&rsquo;m {{ site.name }}.</h1>
+      <p class="lede">{{ profile.lede }}</p>
+      <p class="prose">{{ profile.intro | safe }}</p>
+      <p class="prose">{{ profile.throughLine }}</p>
+      {% if profile.current %}<p class="prose">{{ profile.current }}</p>{% endif %}
+    </div>
+  </div>
+
+  {% if profile.stats.length %}
+  <div class="viz" style="margin-top:4rem">
+    <div class="kpi-row">
+      {%- for s in profile.stats %}
+      <div class="kpi">
+        <div class="kpi__value">{{ s.value }}</div>
+        <div class="kpi__label">{{ s.label }}</div>
+        {% if s.note %}<div class="kpi__note">{{ s.note }}</div>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Experience</p>
+    <h2 class="headline">{{ profile.sectionHeadline | safe }}</h2>
+    <p class="prose measure">{{ profile.sectionIntro }}</p>
+
+    {#- Only the four featured roles here. The full history lives on /about/
+        and /resume/ — a homepage listing nine jobs buries the current ones. -#}
+    {%- set featured = profile.experience | selectattr("featured") | sort(false, false, "featured") %}
+    <div class="cards">
+      {%- for job in featured %}
+      <article class="card">
+        <div class="card__meta">
+          <span>{{ job.meta }}</span>
+          <span class="card__num">{{ "0" + (loop.index | string) }}</span>
+        </div>
+        <h3 class="card__title">{{ job.title }}</h3>
+        <p class="prose" style="font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:.75rem">{{ job.org }}</p>
+        <p class="prose">{{ job.summary | safe }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <p style="margin-top:3rem"><a class="arrow-link" href="/resume/" style="color:#fff">See the full history</a></p>
+  </div>
+</section>
+
+<!-- ===================== CASE STUDIES ===================== -->
+<section class="section wrap">
+  <h2 class="section-title">Case Studies</h2>
+
+  <div class="book-grid">
+    {%- for study in caseStudies %}
+    <article class="book">
+      <a href="/case-studies/{{ study.slug }}/"><img class="book__cover" src="{{ study.image }}" alt="" width="400" height="600" loading="lazy"></a>
+      <h3><a href="/case-studies/{{ study.slug }}/" style="text-decoration:none">{{ study.title }}</a></h3>
+      <p>{{ study.summary }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+
+  <p class="posts-more"><a class="btn" href="/case-studies/">All Case Studies</a></p>
+</section>
+
+<!-- ===================== ARTICLES ===================== -->
+{%- set recent = collections.posts | reverse | slice(3) | first %}
+{% if collections.posts.length %}
+<section class="section section--tight wrap">
+  <h2 class="section-title">Recent Articles</h2>
+
+  <div class="posts">
+    {%- for post in recent %}
+    <article class="post">
+      <div class="post__date">
+        <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
+        {%- for tag in post.data.tags %}<span class="post__tag">{{ tag }}</span>{% endfor %}
+      </div>
+      <div>
+        <h3 class="post__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p class="post__excerpt">{{ post.data.description }}</p>
+        <a class="arrow-link" href="{{ post.url }}">Read</a>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+
+  <p class="posts-more"><a class="btn" href="/blog/">View All Posts</a></p>
+</section>
+{% endif %}
+
+<!-- ===================== TOOLS PROMO ===================== -->
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Free tools</p>
+  <h2 class="headline">Things that do the work, not describe it.</h2>
+  <p class="prose measure" style="margin-top:1rem">Diagnostics and calculators across operations, SEO, marketing, AI, and product. Everything runs in your browser &mdash; no accounts, no email gates.</p>
+
+  <div class="posts" style="margin-top:2.5rem">
+    {%- for t in tools %}
+    {%- if t.status == "live" %}
+    <article class="post">
+      <div class="post__date">{{ t.category }}<span class="post__tag">{{ t.time }}</span></div>
+      <div>
+        <h3 class="post__title"><a href="/tools/{{ t.slug }}/">{{ t.name }}</a></h3>
+        <p class="post__excerpt">{{ t.tagline }}</p>
+        <a class="arrow-link" href="/tools/{{ t.slug }}/">Open it</a>
+      </div>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+  </div>
+
+  <p class="posts-more"><a class="btn" href="/tools/">All tools</a></p>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section wrap">
+  <h2 class="section-title">What People Say</h2>
+
+  <div class="quotes">
+    {%- for item in testimonials %}
+    <figure class="quote">
+      <blockquote>{{ item.quote }}</blockquote>
+      <figcaption>
+        <div class="quote__name">{{ item.name }}</div>
+        <div class="quote__role">{{ item.role }}</div>
+      </figcaption>
+    </figure>
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- ===================== CONTACT CTA ===================== -->
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="display">Have an ambitious idea?</h2>
+    <p class="prose measure" style="margin-inline:auto">I take on a small number of strategic engagements each year. Tell me about your problem &mdash; I&rsquo;ll tell you what I&rsquo;d do about it.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Contact {{ site.name }}</a>
+    </p>
+  </div>
+</section>

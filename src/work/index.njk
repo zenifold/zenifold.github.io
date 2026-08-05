@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+permalink: "/work/"
+title: "Areas of Work"
+description: "The four areas Max Murphy works across: product strategy, AI-native products, enterprise platforms, and 0→1 product."
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Areas of Work</p>
+  <h1 class="display">Four questions I keep working on.</h1>
+  <p class="prose measure">Twelve years of product work across fintech, enterprise SaaS, marketplaces, and early-stage ventures keeps coming back to the same four problems. These are the ones I&rsquo;ve spent the most time on and have the most to say about.</p>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="posts">
+    {%- for area in areas %}
+    <article class="post">
+      <div class="post__date">{{ "0" + (loop.index | string) }}</div>
+      <div>
+        <h2 class="post__title"><a href="/work/{{ area.slug }}/">{{ area.title }}</a></h2>
+        <p class="prose" style="font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);margin-bottom:.75rem">{{ area.question }}</p>
+        <p class="post__excerpt">{{ area.summary }}</p>
+        <a class="arrow-link" href="/work/{{ area.slug }}/">Explore {{ area.title }}</a>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Have an ambitious idea?</h2>
+    <p class="prose measure" style="margin-inline:auto">I take on a small number of strategic engagements each year. Tell me about your problem &mdash; I&rsquo;ll tell you what I&rsquo;d do about it.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

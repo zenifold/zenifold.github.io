@@ -1,0 +1,49 @@
+{
+  "_comment": "Decimal years for plotting (2012.417 = June 2012). `end: null` means ongoing. Axis is set by axisStart/axisEnd. Keep in sync with profile.json, ventures.json, and service.json — this file exists separately because a chart needs numeric positions, not display strings.",
+  "axisStart": 2012,
+  "axisEnd": 2027,
+  "today": 2026.6,
+
+  "lanes": [
+    {
+      "key": "employment",
+      "label": "Employment",
+      "series": 1,
+      "items": [
+        { "label": "Marathon Consulting", "role": "Marketing Analyst", "start": 2012.417, "end": 2016.167 },
+        { "label": "Dominion Enterprises", "role": "Technical Project Manager", "start": 2016.167, "end": 2019.083 },
+        { "label": "Cognizant", "role": "Project Manager → Product Lifecycle Consultant", "start": 2019.083, "end": 2021.167 },
+        { "label": "People Rocket", "role": "Senior Consultant & Engagement Manager", "start": 2021.167, "end": 2023.083 },
+        { "label": "PayPal", "role": "Senior Product Manager", "start": 2022.417, "end": 2023.0 },
+        { "label": "Relief Financial", "role": "Principal Product Manager", "start": 2023.083, "end": 2024.0 },
+        { "label": "SourceFuse", "role": "Senior Program Manager → Director of Product", "start": 2024.167, "end": 2026.417 },
+        { "label": "Modea", "role": "Principal Strategy Consultant", "start": 2026.417, "end": null }
+      ]
+    },
+    {
+      "key": "ventures",
+      "label": "Founded",
+      "series": 2,
+      "items": [
+        { "label": "Innovate Hampton Roads", "role": "Founding Member", "start": 2018.417, "end": 2021.5 },
+        { "label": "CraniumTap Research", "role": "Founder — acquired by Tribune Publishing", "start": 2018.417, "end": 2021.667 },
+        { "label": "Quanti Research", "role": "Founder", "start": 2020.0, "end": 2023.99 },
+        { "label": "SINSA", "role": "Founder", "start": 2021.917, "end": null },
+        { "label": "YO", "role": "Co-Founder", "start": 2024.667, "end": null }
+      ]
+    },
+    {
+      "key": "advisory",
+      "label": "Advisory & volunteer",
+      "series": 3,
+      "items": [
+        { "label": "StartWheel", "role": "Marketing & Branding Consultant", "start": 2018.25, "end": 2020.833 },
+        { "label": "Norfolk Innovation Corridor", "role": "Research & Strategy Partner", "start": 2019.5, "end": 2021.167 },
+        { "label": "Norfolk Environmental Commission", "role": "Communications Committee Chair", "start": 2019.5, "end": 2021.583 },
+        { "label": "ForKids, Inc.", "role": "Technology Steering Committee Advisor", "start": 2019.75, "end": 2021.833 },
+        { "label": "Venture Starters", "role": "Board Member", "start": 2022.917, "end": null },
+        { "label": "RepresentUs", "role": "Action Brigade Member", "start": 2023.333, "end": null }
+      ]
+    }
+  ]
+}

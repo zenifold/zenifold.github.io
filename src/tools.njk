@@ -1,0 +1,82 @@
+---
+layout: layouts/base.njk
+permalink: "/tools/"
+title: "Tools"
+description: "Free tools by Max Murphy — operational diagnostics, GEO and SEO readiness, product scoping, and forecast calibration. All run in your browser."
+hasFilter: true
+---
+{%- set categories = [] -%}
+{%- for t in tools -%}
+  {%- if t.category not in categories -%}{%- set categories = (categories.push(t.category), categories) -%}{%- endif -%}
+{%- endfor -%}
+{%- set liveCount = (tools | selectattr("status", "equalto", "live") | list | length) -%}
+
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Tools</p>
+  <h1 class="display">Things that do the work, not describe it.</h1>
+  <p class="prose measure" style="font-size:1.15rem">A growing suite of diagnostics and calculators across operations, SEO, marketing, AI, and product. Every one runs entirely in your browser &mdash; no accounts, no email gates, and nothing you enter leaves your machine.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+
+  <div class="filter-bar" role="group" aria-label="Filter tools by category">
+    <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
+    {%- for cat in categories %}
+    <button class="filter-chip" type="button" data-filter="{{ cat }}" aria-pressed="false">{{ cat }}</button>
+    {%- endfor %}
+  </div>
+
+  <p class="filter-count" data-filter-count aria-live="polite">{{ tools | length }} tools</p>
+
+  <div class="product-grid" data-filter-scope>
+    {%- for t in tools %}
+    <article class="product-card" data-category="{{ t.category }}">
+      <div>
+        <div class="product-card__meta">
+          <span>{{ t.category }}</span>
+          <span>{{ "Live" if t.status == "live" else "In development" }}</span>
+        </div>
+
+        <h2 class="product-card__name">
+          {% if t.status == "live" %}<a href="/tools/{{ t.slug }}/" style="text-decoration:none">{{ t.name }}</a>{% else %}{{ t.name }}{% endif %}
+        </h2>
+
+        <p class="prose" style="font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.75rem">{{ t.tagline }}</p>
+        <p class="product-card__summary">{{ t.summary }}</p>
+
+        {% if t.status == "live" %}
+        <p style="margin-top:.9rem"><a class="arrow-link" href="/tools/{{ t.slug }}/">Open {{ t.name }}</a></p>
+        {% else %}
+        <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-faint)">Not built yet. <a href="/contact/">Tell me if you&rsquo;d use it</a> and it moves up the list.</p>
+        {% endif %}
+      </div>
+
+      <div class="product-card__metrics">
+        <div>
+          <div class="product-metric__label">Output</div>
+          <div style="font-size:.95rem;color:var(--ink-muted)">{{ t.output }}</div>
+        </div>
+        <div>
+          <div class="product-metric__label">Time</div>
+          <div style="font-size:.95rem;color:var(--ink-muted)">{{ t.time }}</div>
+        </div>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+
+  <p class="viz__note" style="margin-top:2rem">
+    {{ liveCount }} of {{ tools | length }} are built. The rest are scoped rather than
+    promised &mdash; I&rsquo;d rather ship two that work properly than seven that rot.
+  </p>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">What would you actually use?</h2>
+    <p class="prose measure" style="margin-inline:auto">These come from problems I keep running into. If you have one worth building, tell me.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Suggest a tool</a>
+    </p>
+  </div>
+</section>

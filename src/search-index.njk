@@ -1,0 +1,99 @@
+---
+permalink: "/search-index.json"
+eleventyExcludeFromCollections: true
+---
+{#
+  Build-time search index for the command palette. Generated rather than
+  hand-maintained so it can never drift from the site: every entry below comes
+  from the same data that renders the pages.
+#}
+{%- set entries = [] -%}
+
+{#- Static pages -#}
+{%- set pages = [
+  { t: "Home", u: "/", k: "homepage start" },
+  { t: "About", u: "/about/", k: "bio background story history" },
+  { t: "Résumé", u: "/resume/", k: "cv career experience education print pdf" },
+  { t: "Case Studies", u: "/case-studies/", k: "work stories portfolio" },
+  { t: "Products", u: "/products/", k: "built shipped platforms" },
+  { t: "Apps", u: "/apps/", k: "open source side projects aurora" },
+  { t: "Blog", u: "/blog/", k: "writing posts articles notes" },
+  { t: "Data", u: "/data/", k: "analysis research data science modelling series" },
+  { t: "Areas of Work", u: "/work/", k: "specialisms services expertise" },
+  { t: "Tools", u: "/tools/", k: "free tools calculators diagnostics suite" },
+  { t: "FAQ", u: "/faq/", k: "questions answers" },
+  { t: "Links", u: "/links/", k: "elsewhere social profiles" },
+  { t: "Explore Everything", u: "/explore/", k: "index sitemap all pages" },
+  { t: "Who is Max Murphy?", u: "/who-is-max-murphy/", k: "disambiguation verify identity maximilian" },
+  { t: "Contact", u: "/contact/", k: "email get in touch hire" }
+] -%}
+{%- for p in pages -%}
+  {%- set entries = (entries.push({ title: p.t, url: p.u, type: "Page", desc: "", keywords: p.k }), entries) -%}
+{%- endfor -%}
+
+{%- for study in caseStudies -%}
+  {%- set entries = (entries.push({
+    title: study.title, url: "/case-studies/" + study.slug + "/", type: "Case study",
+    desc: study.summary, keywords: (study.tech | join(" ")) + " " + study.role
+  }), entries) -%}
+{%- endfor -%}
+
+{%- for area in areas -%}
+  {%- set entries = (entries.push({
+    title: area.title, url: "/work/" + area.slug + "/", type: "Area of work",
+    desc: area.summary, keywords: area.question
+  }), entries) -%}
+{%- endfor -%}
+
+{%- for post in collections.posts -%}
+  {%- set entries = (entries.push({
+    title: post.data.title, url: post.url, type: "Post",
+    desc: post.data.description, keywords: (post.data.tags | join(" "))
+  }), entries) -%}
+{%- endfor -%}
+
+{%- for p in products -%}
+  {%- set entries = (entries.push({
+    title: p.name, url: "/products/", type: "Product",
+    desc: p.summary, keywords: p.org + " " + p.category + " " + (p.tech | join(" "))
+  }), entries) -%}
+{%- endfor -%}
+
+{%- for t in tools -%}
+  {%- if t.status == "live" -%}
+  {%- set entries = (entries.push({
+    title: t.name, url: "/tools/" + t.slug + "/", type: "Tool",
+    desc: t.tagline, keywords: t.category + " tool diagnostic " + t.output
+  }), entries) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for app in apps -%}
+  {%- set entries = (entries.push({
+    title: app.name, url: "/apps/", type: "App",
+    desc: app.summary, keywords: (app.tags | join(" ")) + " " + (app.replaces | join(" "))
+  }), entries) -%}
+{%- endfor -%}
+
+{%- for job in profile.experience -%}
+  {%- set entries = (entries.push({
+    title: job.title + " — " + job.org, url: "/resume/", type: "Role",
+    desc: job.summary | plain, keywords: job.org + " " + job.meta
+  }), entries) -%}
+{%- endfor -%}
+
+{
+  "generated": "{{ build.time }}",
+  "count": {{ entries.length }},
+  "entries": [
+    {%- for e in entries %}
+    {
+      "title": {{ e.title | dump | safe }},
+      "url": {{ e.url | dump | safe }},
+      "type": {{ e.type | dump | safe }},
+      "desc": {{ (e.desc | truncate(140)) | dump | safe }},
+      "keywords": {{ e.keywords | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}

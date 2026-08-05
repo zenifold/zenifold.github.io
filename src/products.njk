@@ -1,0 +1,92 @@
+---
+layout: layouts/base.njk
+permalink: "/products/"
+title: "Products"
+description: "Products and platforms Max Murphy has built — marketplaces, fintech, enterprise platforms, AI tooling, and operating frameworks."
+hasViz: true
+hasFilter: true
+---
+{%- set categories = [] -%}
+{%- for p in products -%}
+  {%- if p.category not in categories -%}{%- set categories = (categories.push(p.category), categories) -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Products</p>
+  <h1 class="display">Things I&rsquo;ve built.</h1>
+  <p class="prose measure">Marketplaces reaching millions, fintech platforms taken from nothing to market, enterprise systems replacing the ones a business runs on, and internal AI tooling. Twelve years of product work, plus twenty years of building the web alongside it.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+
+  <div class="viz" style="margin:0 0 1rem">
+    <div class="kpi-row">
+      {%- for s in profile.stats %}
+      <div class="kpi">
+        <div class="kpi__value">{{ s.value }}</div>
+        <div class="kpi__label">{{ s.label }}</div>
+        {% if s.note %}<div class="kpi__note">{{ s.note }}</div>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  {#- Category filter. Progressive enhancement: without JS every card is
+      visible and nothing is gated behind the buttons. -#}
+  <div class="filter-bar" role="group" aria-label="Filter products by category">
+    <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
+    {%- for cat in categories %}
+    <button class="filter-chip" type="button" data-filter="{{ cat }}" aria-pressed="false">{{ cat }}</button>
+    {%- endfor %}
+  </div>
+
+  <p class="filter-count" data-filter-count aria-live="polite">{{ products.length }} products</p>
+
+  <div class="product-grid" data-filter-scope>
+    {%- for p in products %}
+    <article class="product-card" data-category="{{ p.category }}">
+      <div>
+        <div class="product-card__meta">
+          <span>{{ p.category }}</span>
+          <span>{{ p.org }}</span>
+          <span>{{ p.years }}</span>
+        </div>
+        <h2 class="product-card__name">{{ p.name }}</h2>
+        <p class="product-card__summary">{{ p.summary }}</p>
+        <p class="product-card__tech">{{ p.role }}{% if p.tech.length %} &middot; {{ p.tech | join(" · ") }}{% endif %}</p>
+        {%- if p.caseStudy %}
+        <p style="margin-top:.9rem"><a class="arrow-link" href="/case-studies/{{ p.caseStudy }}/">Read the case study</a></p>
+        {%- endif %}
+      </div>
+
+      {%- if p.metrics.length %}
+      <div class="product-card__metrics">
+        {%- for m in p.metrics %}
+        <div>
+          <div class="product-metric__value">{{ m.value }}</div>
+          <div class="product-metric__label">{{ m.label }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+      {%- else %}
+      <div></div>
+      {%- endif %}
+    </article>
+    {%- endfor %}
+  </div>
+
+  <p class="viz__note" style="margin-top:2rem;color:var(--ink-faint);font-size:.9rem">
+    This list covers the products I can name publicly. Client work under NDA and the
+    freelance sites aren&rsquo;t included.
+  </p>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Have an ambitious idea?</h2>
+    <p class="prose measure" style="margin-inline:auto">I take on a small number of strategic engagements each year. Tell me about your problem &mdash; I&rsquo;ll tell you what I&rsquo;d do about it.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

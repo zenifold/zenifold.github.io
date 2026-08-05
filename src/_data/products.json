@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Homes.com",
+    "org": "Dominion Enterprises",
+    "category": "Marketplaces",
+    "years": "2016–2019",
+    "role": "Technical Project Manager",
+    "summary": "Consumer real estate marketplace. Delivered to more than ten million monthly users.",
+    "metrics": [{ "value": "10M+", "label": "Monthly users" }],
+    "tech": ["Marketplace", "Consumer web", "Scale"]
+  },
+  {
+    "name": "AutoTrader Vehicle Listing Ads",
+    "org": "Dominion Enterprises",
+    "category": "Marketplaces",
+    "years": "2016–2019",
+    "role": "Technical Project Manager",
+    "summary": "Advertising platform for automotive dealer inventory, launched from the ground up.",
+    "metrics": [{ "value": "$25M+", "label": "Annual revenue" }],
+    "tech": ["Ad platform", "Marketplace", "0→1"]
+  },
+  {
+    "name": "Enterprise Content Management Platform",
+    "org": "PayPal",
+    "category": "Enterprise Platforms",
+    "years": "2022–2023",
+    "role": "Senior Product Manager",
+    "summary": "New content platform serving nine global markets, replacing a slower publishing path.",
+    "metrics": [
+      { "value": "4x", "label": "Content velocity" },
+      { "value": "+40%", "label": "Conversion" },
+      { "value": "9", "label": "Global markets" }
+    ],
+    "tech": ["CMS", "Enterprise", "Localization"]
+  },
+  {
+    "name": "Debt Resolution Platform",
+    "org": "Relief Financial",
+    "category": "FinTech",
+    "years": "2023–2024",
+    "role": "Principal Product Manager",
+    "summary": "B2B SaaS platform for consumer debt resolution, scoped and shipped from nothing as the second product hire.",
+    "metrics": [
+      { "value": "80%", "label": "Above revenue target" },
+      { "value": "+35%", "label": "ML prediction accuracy" }
+    ],
+    "tech": ["B2B SaaS", "ML", "0→1"],
+    "caseStudy": "consumer-debt"
+  },
+  {
+    "name": "QSR Logistics Platform",
+    "org": "Enterprise client",
+    "category": "Enterprise Platforms",
+    "years": "2024",
+    "role": "Product Strategy & Design Lead",
+    "summary": "Enterprise logistics platform for the world's largest QSR, consolidating three legacy systems and adding AI-driven predictive ordering.",
+    "metrics": [{ "value": "3 → 1", "label": "Systems consolidated" }],
+    "tech": ["AI/ML", "Logistics", "Enterprise"],
+    "caseStudy": "qsr-supply-chain"
+  },
+  {
+    "name": "User Story Generator",
+    "org": "SourceFuse",
+    "category": "AI Tooling",
+    "years": "2024–2026",
+    "role": "Director of Product Management & Strategy",
+    "summary": "Internal AI tool that drafts user stories from requirements, cutting the time between intake and a ready backlog.",
+    "metrics": [],
+    "tech": ["AI", "Internal tooling", "Delivery"]
+  },
+  {
+    "name": "Infrastructure-as-Code Scaffolding",
+    "org": "SourceFuse",
+    "category": "AI Tooling",
+    "years": "2024–2026",
+    "role": "Director of Product Management & Strategy",
+    "summary": "AI-assisted generation of infrastructure scaffolding, standardising how new client environments get stood up.",
+    "metrics": [],
+    "tech": ["AI", "IaC", "Platform"]
+  },
+  {
+    "name": "Automated Code Review",
+    "org": "SourceFuse",
+    "category": "AI Tooling",
+    "years": "2024–2026",
+    "role": "Director of Product Management & Strategy",
+    "summary": "AI review layer in the delivery pipeline, catching issues before they reach a human reviewer.",
+    "metrics": [],
+    "tech": ["AI", "Developer tooling", "Quality"]
+  },
+  {
+    "name": "AI-Powered QA Tool",
+    "org": "People Rocket",
+    "category": "AI Tooling",
+    "years": "2021–2023",
+    "role": "Senior Consultant & Engagement Manager",
+    "summary": "Quality assurance tool applied to client deliverables, targeting the errors that were most expensive to miss.",
+    "metrics": [{ "value": "−65%", "label": "Critical deliverable errors" }],
+    "tech": ["AI", "QA", "Consulting"]
+  },
+  {
+    "name": "Cross-Functional OKR Framework",
+    "org": "Hyper-growth startup",
+    "category": "Operating Frameworks",
+    "years": "2023",
+    "role": "Delivery Lead",
+    "summary": "Operating framework that made cross-team key results jointly owned rather than split, so conflicts surfaced early.",
+    "metrics": [],
+    "tech": ["OKRs", "Operating model", "Alignment"],
+    "caseStudy": "cross-functional-okrs"
+  },
+  {
+    "name": "Enterprise Product Implementations",
+    "org": "Cognizant",
+    "category": "Enterprise Platforms",
+    "years": "2019–2021",
+    "role": "Product Lifecycle Consultant",
+    "summary": "Product implementations for Wells Fargo, Comcast, Merck, and Lely — requirements, UX, and deployment strategy across four industries.",
+    "metrics": [{ "value": "4", "label": "Enterprise clients" }],
+    "tech": ["Enterprise", "Implementation", "UX"]
+  }
+]

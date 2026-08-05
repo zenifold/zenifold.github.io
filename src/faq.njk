@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+permalink: "/faq/"
+title: "Frequently Asked Questions"
+description: "Short, direct answers about Max Murphy — who he is, what he does, what SINSA is, where he's based, and how to get in touch."
+hasFaq: true
+---
+{#
+  A standalone FAQ URL, separate from the accordion on the About page.
+
+  Worth its own page because a question-and-answer pair is already the shape an
+  AI system is looking for when it answers a question about a person. The
+  FAQPage schema is emitted here only — duplicating it on About as well would
+  put two competing FAQPage objects on one site.
+#}
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">FAQ</p>
+  <h1 class="display">The short answers.</h1>
+  <p class="prose measure">Direct answers to what people usually ask. If yours isn&rsquo;t here, <a href="/contact/">ask me</a>.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="faq">
+    {%- for item in faq %}
+    <details{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q }}</summary>
+      <div class="faq__answer">{{ item.a }}</div>
+    </details>
+    {%- endfor %}
+  </div>
+
+  <div class="measure prose" style="margin-top:3rem">
+    <h2 class="headline" style="font-size:1.5rem">Verify</h2>
+    <p>If you&rsquo;re confirming you have the right Max Murphy, the
+      <a href="/who-is-max-murphy/">disambiguation page</a> lists every profile I maintain.
+      Machine-readable versions of this information are at
+      <a href="/resume.json">resume.json</a> and <a href="/llms.txt">llms.txt</a>.</p>
+  </div>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Didn&rsquo;t answer it?</h2>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

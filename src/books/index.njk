@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: booksIndexGate
+  size: 1
+  alias: gate
+permalink: "/books/"
+title: "Books"
+description: "Books by Max Murphy on product, AI, and building things that reach production."
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Books</p>
+  <h1 class="display">Books.</h1>
+  <p class="prose measure">TODO: A line framing what the books have in common.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="book-grid">
+    {%- for book in publishedBooks %}
+    <article class="book">
+      <a href="/books/{{ book.slug }}/">
+        <img class="book__cover" src="{{ book.cover }}" alt="Cover of {{ book.title }}" width="400" height="600" loading="lazy">
+      </a>
+      <h2 style="font-size:1.45rem;margin-bottom:.4rem">
+        <a href="/books/{{ book.slug }}/" style="text-decoration:none">{{ book.title }}</a>
+      </h2>
+      {% if book.subtitle %}<p style="font-size:.95rem;color:var(--ink-faint);margin-bottom:.6rem">{{ book.subtitle }}</p>{% endif %}
+      <p>{{ book.summary }}</p>
+      <p style="margin-top:.75rem"><a class="arrow-link" href="/books/{{ book.slug }}/">Read more</a></p>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Want to know when the next one lands?</h2>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

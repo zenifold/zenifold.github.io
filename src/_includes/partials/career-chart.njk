@@ -1,0 +1,89 @@
+{#
+  Career Gantt. Rendered fully server-side — the filter buttons only hide lanes,
+  so with JS off every bar is still visible and the table view carries the dates.
+#}
+{%- set span = careerChart.axisEnd - careerChart.axisStart -%}
+
+<div class="viz gantt">
+  <div class="viz__head">
+    <p class="viz__title">Career at a glance</p>
+    <p class="viz__sub">Employment, founded companies, and advisory work, {{ careerChart.axisStart }}&ndash;present. The overlaps are the point: the ventures ran alongside the jobs.</p>
+  </div>
+
+  <div class="filter-bar" role="group" aria-label="Filter career chart by type" style="margin-block:0 1.75rem;padding-bottom:1.25rem">
+    <button class="filter-chip" type="button" data-gantt-filter="all" aria-pressed="true">All</button>
+    {%- for lane in careerChart.lanes %}
+    <button class="filter-chip" type="button" data-gantt-filter="{{ lane.key }}" aria-pressed="false">{{ lane.label }}</button>
+    {%- endfor %}
+  </div>
+
+  {#- Year axis. A tick every two years keeps labels from colliding. -#}
+  <div class="gantt__axis" aria-hidden="true">
+    <div></div>
+    <div class="gantt__ticks">
+      {%- for i in range(0, span + 1) %}
+      {%- set yr = careerChart.axisStart + i %}
+      {%- if yr % 2 == 0 %}
+      <span class="gantt__tick" style="left:{{ (i / span * 100) | round(2) }}%">{{ yr }}</span>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+
+  {%- for lane in careerChart.lanes %}
+  <div class="gantt__lane" data-gantt-lane="{{ lane.key }}" data-series="{{ lane.series }}">
+    <div class="gantt__lane-head">
+      <span class="gantt__lane-swatch" style="background:{{ 'var(--viz-s1)' if lane.series == 1 else ('var(--viz-s2)' if lane.series == 2 else 'var(--viz-s3)') }}"></span>
+      {{ lane.label }}
+    </div>
+
+    {%- for item in lane.items %}
+    {%- set startPct = ((item.start - careerChart.axisStart) / span * 100) | round(2) -%}
+    {%- set endVal = item.end if item.end else careerChart.today -%}
+    {%- set widthPct = ((endVal - item.start) / span * 100) | round(2) -%}
+    <div class="gantt__row">
+      <div class="gantt__label">{{ item.label }}</div>
+      <div class="gantt__track" style="--gantt-year:{{ (100 / span) | round(3) }}%">
+        <div class="gantt__bar{{ ' gantt__bar--ongoing' if not item.end }}"
+             style="left:{{ startPct }}%;width:{{ widthPct }}%"
+             data-viz-mark
+             tabindex="0"
+             data-label="{{ item.label }}"
+             data-value="{{ item.role }}"
+             data-note="{{ item.start | yearLabel }} – {{ 'present' if not item.end else item.end | yearLabel }}"></div>
+        {%- if loop.first %}
+        <div class="gantt__today" style="left:{{ ((careerChart.today - careerChart.axisStart) / span * 100) | round(2) }}%"></div>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+  {%- endfor %}
+
+  <button class="viz-table-toggle" data-viz-table-toggle
+          aria-expanded="false" aria-controls="career-table">Show data table</button>
+
+  <table class="viz-table" id="career-table" hidden>
+    <thead>
+      <tr><th scope="col">Organisation</th><th scope="col">Role</th><th scope="col">Type</th><th scope="col">From</th><th scope="col">To</th></tr>
+    </thead>
+    <tbody>
+      {%- for lane in careerChart.lanes %}
+      {%- for item in lane.items %}
+      <tr>
+        <td>{{ item.label }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ lane.label }}</td>
+        <td>{{ item.start | yearLabel }}</td>
+        <td>{{ 'Present' if not item.end else item.end | yearLabel }}</td>
+      </tr>
+      {%- endfor %}
+      {%- endfor %}
+    </tbody>
+  </table>
+
+  <p class="viz__note">
+    Between 2018 and 2024 there was never a year without at least one venture or advisory
+    role running alongside a full-time job.
+  </p>
+</div>

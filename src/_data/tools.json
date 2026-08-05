@@ -1,0 +1,79 @@
+[
+  {
+    "slug": "operational-drag",
+    "name": "Operational Drag Scan",
+    "category": "Operations",
+    "status": "live",
+    "tagline": "How much of your week exists only because your systems don't talk?",
+    "summary": "A 12-question diagnostic scoring operational drag across four types — re-entry, reconciliation, chasing, and workarounds — with targeted guidance on which to fix first.",
+    "output": "Scored diagnostic across four drag types",
+    "time": "~3 min",
+    "privacy": "Runs entirely in your browser"
+  },
+  {
+    "slug": "geo-readiness",
+    "name": "GEO Readiness Check",
+    "category": "SEO",
+    "status": "live",
+    "tagline": "Can an AI system tell who you are from your own HTML?",
+    "summary": "Paste a page's HTML and get a machine-readability report — structured data, entity claims, canonical URLs, social cards, and heading structure — scored and ranked by what to fix first.",
+    "output": "Scored report with prioritised fixes",
+    "time": "~1 min",
+    "privacy": "Parsed in your browser; nothing is uploaded"
+  },
+  {
+    "slug": "estimate-interrogator",
+    "name": "Estimate Interrogator",
+    "category": "Product",
+    "status": "planned",
+    "tagline": "Find the soft spot in a technical estimate.",
+    "summary": "Walk an estimate through seven questions that surface hidden dependencies, undefined done-criteria, and novel work. Outputs a risk profile rather than a verdict.",
+    "output": "Risk profile by uncertainty type",
+    "time": "~5 min",
+    "privacy": "Runs entirely in your browser"
+  },
+  {
+    "slug": "wedge-scoper",
+    "name": "Wedge Scoper",
+    "category": "Product",
+    "status": "planned",
+    "tagline": "What's the smallest thing you could actually close in 90 days?",
+    "summary": "A guided narrowing exercise for 0→1 products: one workflow, one buyer, one pricing unit. Outputs a scoped first release and the assumption it tests.",
+    "output": "Scoped MVP definition",
+    "time": "~10 min",
+    "privacy": "Runs entirely in your browser"
+  },
+  {
+    "slug": "ai-readiness",
+    "name": "AI Readiness Assessment",
+    "category": "AI",
+    "status": "planned",
+    "tagline": "Where should you actually start with AI?",
+    "summary": "Scores readiness across data availability, process documentation, tolerance for error, and human-in-the-loop capacity — then recommends a starting point rather than a strategy.",
+    "output": "Readiness score and recommended entry point",
+    "time": "~5 min",
+    "privacy": "Runs entirely in your browser"
+  },
+  {
+    "slug": "calibration-scorer",
+    "name": "Forecast Calibration Scorer",
+    "category": "Data",
+    "status": "planned",
+    "tagline": "Are your predictions honest, or just confident?",
+    "summary": "Paste a set of past forecasts and outcomes to get a Brier score, a reliability/resolution decomposition, and a calibration curve. The same method used in the Data series.",
+    "output": "Brier score and calibration curve",
+    "time": "~2 min",
+    "privacy": "Parsed in your browser; nothing is uploaded"
+  },
+  {
+    "slug": "funnel-leak-finder",
+    "name": "Funnel Leak Finder",
+    "category": "Marketing",
+    "status": "planned",
+    "tagline": "Which stage is actually costing you the most?",
+    "summary": "Enter stage-by-stage volumes and it identifies where the largest absolute loss sits — which is rarely the stage with the worst conversion rate.",
+    "output": "Ranked leak analysis with absolute impact",
+    "time": "~3 min",
+    "privacy": "Runs entirely in your browser"
+  }
+]

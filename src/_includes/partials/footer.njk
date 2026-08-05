@@ -1,0 +1,46 @@
+<footer class="site-footer footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer__brand">{{ site.name }}</p>
+        <p class="footer__bio">{{ profile.footerBio }}</p>
+        <address class="footer__address">
+          {{ site.address.locality }}, {{ site.address.region }}<br>
+          {{ site.address.country }}
+        </address>
+        <a class="footer__link-blue" href="{{ site.socials.linkedin }}" rel="me noopener" target="_blank">LinkedIn &rarr;</a>
+      </div>
+
+      {%- for heading, links in nav.footer %}
+      <div>
+        <h4>{{ heading }}</h4>
+        <ul>
+          {%- for link in links %}
+          <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+
+      <div>
+        <h4>Stay in Touch</h4>
+        <p class="newsletter__note">I send almost nothing. When I do, it&rsquo;s worth opening.</p>
+        {% if site.newsletterAction %}
+        <form class="newsletter__form" action="{{ site.newsletterAction }}" method="post">
+          <label class="skip-link" for="nl-email">Email address</label>
+          <input id="nl-email" type="email" name="email" placeholder="Email Address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        {% else %}
+        <p class="newsletter__note">
+          {# No provider configured yet. Set `newsletterAction` in src/_data/site.json
+             to a Buttondown / ConvertKit / Formspree endpoint to switch the form on. #}
+          <a href="mailto:{{ site.email }}">Email me</a> and I&rsquo;ll add you.
+        </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer-bottom">&copy; <span id="year">{{ build.year }}</span> {{ site.name }}</div>
+  </div>
+</footer>

@@ -1,0 +1,341 @@
+[
+  {
+    "slug": "qsr-supply-chain",
+    "number": "001",
+    "title": "Modernizing the World's Largest QSR Supply Chain",
+    "externalUrl": "https://maxs.page/stories/qsr-supply-chain",
+    "image": "/assets/img/project-1.jpg",
+    "summary": "I led the design of an enterprise-grade logistics platform for the world's largest QSR, leveraging AI to enhance predictive ordering and consolidating three legacy systems into one.",
+    "role": "Lead Product Designer & Strategist",
+    "year": "2024",
+    "date": "2024-02-22",
+    "tech": ["Enterprise", "B2B", "SaaS", "AI/ML"],
+    "readTime": "3 min read",
+
+    "facts": [
+      { "label": "Client", "value": "Global QSR · NDA" },
+      { "label": "Role", "value": "Lead Product Designer & Strategist" },
+      { "label": "Timeline", "value": "10 months" },
+      { "label": "Team", "value": "1 PM · 4 Engineers · 2 Designers · 1 Data Scientist" }
+    ],
+
+    "kpis": [
+      { "value": "3 → 1", "label": "Legacy systems consolidated" },
+      { "value": "+27%", "label": "Forecast accuracy lift" },
+      { "value": "−45%", "label": "Operator onboarding time" }
+    ],
+
+    "problem": "Operators were juggling three legacy supply-chain tools daily. Forecasts were opaque, trust was zero, and stockouts were measured in millions of dollars per quarter.",
+
+    "stages": {
+      "title": "How I worked it",
+      "sub": "Four moves across ten months.",
+      "items": [
+        { "title": "Embed", "body": "Two weeks shadowing operators across four regions to map the real workflow." },
+        { "title": "Reframe", "body": "Shifted the goal from 'better forecasts' to 'forecasts operators trust' — a UX problem, not an ML problem." },
+        { "title": "Co-design", "body": "Built the recommendation surface with operators in the room, exposing the why behind every number." },
+        { "title": "Roll out", "body": "Region-by-region migration with a parallel-run safety net before each legacy tool was sunset." }
+      ]
+    },
+
+    "challenge": "The world's largest QSR ran its supply chain on three overlapping legacy platforms — each owned by a different team, each with a different data model. Operators toggled between tools daily to plan orders, leading to stockouts, over-orders, and millions in waste.\n\nLeadership wanted a single pane of glass: a modern, AI-assisted platform that could ingest historical demand, weather, and promo data and surface a confident order recommendation operators could trust.",
+
+    "approach": "I embedded with operators across four regions for two weeks of contextual interviews. The takeaway: nobody trusted the existing forecasts because the math was opaque. Trust — not accuracy — was the real constraint.\n\nSo we built a recommendation surface that always showed the why behind a number: trailing demand, anomalies, and editable assumptions. The model became a teammate, not an oracle.",
+
+    "flow": {
+      "title": "System consolidation",
+      "sub": "Three overlapping platforms, each owned by a different team with its own data model, replaced by one.",
+      "from": ["Legacy platform · Team A", "Legacy platform · Team B", "Legacy platform · Team C"],
+      "to": "Unified logistics platform",
+      "note": "All three were sunset within twelve months of launch."
+    },
+
+    "dumbbell": {
+      "title": "Regional manager sentiment",
+      "sub": "NPS among regional managers, historically a vocal critic group, before and after rollout.",
+      "min": -50,
+      "max": 50,
+      "rows": [
+        { "label": "Regional manager NPS", "before": -12, "after": 44, "beforeDisplay": "−12", "afterDisplay": "+44" }
+      ],
+      "note": "NPS runs from −100 to +100; the axis is clipped to −50…+50 to keep the change readable."
+    },
+
+    "meter": null,
+    "bars": null,
+    "compare": null,
+    "phases": null,
+
+    "outcome": "Three legacy tools were sunset within twelve months of launch. Forecast accuracy improved 27% and operator onboarding time dropped nearly in half. Most importantly, NPS among regional managers — historically a vocal critic group — flipped from −12 to +44.",
+
+    "challenges": [
+      "Three engineering teams with conflicting data models and incentives.",
+      "A vocal regional-manager group burned by previous tech rollouts.",
+      "Legal and compliance gates on AI-assisted decisions for high-volume orders."
+    ],
+
+    "quote": {
+      "text": "For the first time in a decade, I'm not double-checking the system in a spreadsheet.",
+      "attribution": "Regional Supply Chain Manager"
+    },
+
+    "lessons": [
+      "Trust beats accuracy. A 90%-accurate model people use crushes a 95%-accurate model they don't.",
+      "Sunsetting legacy tools is a change-management project, not an engineering project.",
+      "Showing the math — even messy math — earns more buy-in than hiding it behind a confidence score."
+    ],
+
+    "stack": ["Figma", "React", "Python", "Snowflake", "dbt", "Looker"]
+  },
+
+  {
+    "slug": "consumer-debt",
+    "number": "002",
+    "title": "Innovating the Consumer Debt Landscape, 0 to 1",
+    "externalUrl": "https://maxs.page/stories/consumer-debt",
+    "image": "/assets/img/project-2.jpg",
+    "summary": "As the second product hire at a fintech startup, I led the strategy and launch of a B2B SaaS platform for consumer debt resolution, exceeding initial revenue targets by 80%.",
+    "role": "Founding Product Manager",
+    "year": "2023",
+    "date": "2023-09-05",
+    "tech": ["FinTech", "Product Management", "B2B", "SaaS"],
+    "readTime": "6 min read",
+
+    "facts": [
+      { "label": "Client", "value": "Series A Fintech · Stealth" },
+      { "label": "Role", "value": "Founding Product Manager" },
+      { "label": "Timeline", "value": "14 months · 0 → 1" },
+      { "label": "Team", "value": "2 PMs · 6 Engineers · 1 Designer" }
+    ],
+
+    "kpis": [
+      { "value": "+80%", "label": "Revenue vs. plan" },
+      { "value": "7", "label": "Enterprise pilots closed" },
+      { "value": "11 weeks", "label": "Time to first dollar" }
+    ],
+
+    "problem": "A $14B U.S. industry was running on faxes and spreadsheets. The startup had a wedge hypothesis, eight weeks of runway, and no shipped product.",
+
+    "stages": {
+      "title": "How I worked it",
+      "sub": "Four moves from nothing to a platform.",
+      "items": [
+        { "title": "Narrow the wedge", "body": "One workflow (settlement offer routing) for one buyer (mid-market collection agencies)." },
+        { "title": "Sales-as-discovery", "body": "Every demo was an interview; every objection became a backlog item." },
+        { "title": "Price on outcomes", "body": "Packaged on dollars resolved — not seats — to bypass the procurement gauntlet." },
+        { "title": "Platform expansion", "body": "Used the wedge as a beachhead for a broader creditor-side platform." }
+      ]
+    },
+
+    "challenge": "U.S. consumer debt resolution is a $14B industry running on fax machines and spreadsheets. The startup's bet: replace the back office with a modern SaaS layer that could plug into both creditors and collection agencies.\n\nI joined as the second product hire with no shipped product, no design system, and no defined ICP — just a wedge hypothesis and an eight-week runway extension.",
+
+    "approach": "We ran a deliberately narrow first release: one workflow (settlement offer routing) for one buyer (mid-market collection agencies). I built a sales-engineering loop where every demo became a discovery interview and every objection became a backlog item.\n\nPricing was packaged around outcomes — dollars resolved, not seats — which let us land enterprise pilots without a procurement gauntlet.",
+
+    "meter": {
+      "title": "Revenue against plan",
+      "sub": "Year one, indexed to the revenue plan.",
+      "value": 180,
+      "display": "180%",
+      "caption": "of the year-one revenue plan",
+      "target": 100,
+      "targetDisplay": "100%",
+      "max": 200,
+      "maxDisplay": "200%",
+      "note": "Indexed to plan, set to 100. Derived from the reported 80% overperformance; absolute revenue figures are not published."
+    },
+
+    "flow": null,
+    "bars": null,
+    "dumbbell": null,
+    "compare": null,
+    "phases": null,
+
+    "outcome": "We blew past the year-one revenue plan by 80% and closed seven enterprise pilots in twelve months. The wedge product became the entry point for a broader platform play that's still expanding today.",
+
+    "challenges": [
+      "Heavily regulated space with state-by-state compliance variance.",
+      "Two-sided market — neither side wanted to move first.",
+      "Existing vendors with deep, ugly integrations into customer back offices."
+    ],
+
+    "quote": {
+      "text": "Max ran our first ten enterprise deals like a designer — every objection ended up in the product within a week.",
+      "attribution": "Founder & CEO"
+    },
+
+    "lessons": [
+      "A wedge isn't a feature — it's the smallest contract you can close in 90 days.",
+      "Pricing is the fastest product lever a 0→1 team has.",
+      "If procurement is the bottleneck, you're selling at the wrong altitude."
+    ],
+
+    "stack": ["Figma", "Linear", "Notion", "TypeScript", "Postgres", "Stripe"]
+  },
+
+  {
+    "slug": "cross-functional-okrs",
+    "number": "003",
+    "title": "Cross-Functional OKRs for a Hyper-Scale Startup",
+    "externalUrl": "https://maxs.page/stories/cross-functional-okrs",
+    "image": "/assets/img/project-3.jpg",
+    "summary": "As a Delivery Lead, I architected a cross-functional OKR framework to align priorities for a hyper-growth startup, boosting goal completion rates and reducing team friction.",
+    "role": "Delivery Lead & Operating Partner",
+    "year": "2023",
+    "date": "2023-04-19",
+    "tech": ["Strategy", "Operations", "Leadership"],
+    "readTime": "3 min read",
+
+    "facts": [
+      { "label": "Client", "value": "Series C Startup · 400 employees" },
+      { "label": "Role", "value": "Delivery Lead & Operating Partner" },
+      { "label": "Timeline", "value": "2 quarters" },
+      { "label": "Team", "value": "11 squads across Product, Eng, GTM" }
+    ],
+
+    "kpis": [
+      { "value": "41% → 78%", "label": "OKR completion rate" },
+      { "value": "−63%", "label": "Cross-team blockers" },
+      { "value": "3 wk → 5 days", "label": "Planning cycle length" }
+    ],
+
+    "problem": "Post Series C, headcount doubled in nine months. OKRs existed on paper but planning had become a tug-of-war over engineering capacity.",
+
+    "stages": {
+      "title": "How I worked it",
+      "sub": "Four moves across two quarters.",
+      "items": [
+        { "title": "Two-layer model", "body": "Company bets set top-down; squad commitments built bottom-up against those bets." },
+        { "title": "Dependency forum", "body": "A 30-minute weekly standup that surfaced cross-team blockers in week one." },
+        { "title": "Kill the deck", "body": "Replaced a 30-page planning deck with one shared doc and one shared scoreboard." },
+        { "title": "Coach the leaders", "body": "Worked 1:1 with each squad lead on writing measurable, falsifiable KRs." }
+      ]
+    },
+
+    "challenge": "After a Series C, the company doubled headcount in nine months. OKRs existed on paper, but every team wrote them in isolation — so quarterly planning devolved into a tug-of-war over engineering capacity.",
+
+    "approach": "I introduced a two-layer model: company bets (set top-down) and squad commitments (set bottom-up against those bets). A lightweight weekly forum exposed dependencies early instead of at the end of the quarter.\n\nWe killed the 30-page planning deck. In its place: a single shared doc, a shared scoreboard, and a 30-minute Friday standup.",
+
+    "dumbbell": {
+      "title": "Before and after, two quarters",
+      "sub": "Completion rate rose while the planning cycle shortened.",
+      "min": 0,
+      "max": 100,
+      "rows": [
+        { "label": "OKR completion rate", "before": 41, "after": 78, "beforeDisplay": "41%", "afterDisplay": "78%" },
+        { "label": "Planning cycle (days)", "before": 21, "after": 5, "beforeDisplay": "21 days", "afterDisplay": "5 days" }
+      ],
+      "note": "Both rows share a 0–100 scale: completion is a percentage, planning cycle is days. They are plotted together because both moved in the intended direction over the same two quarters."
+    },
+
+    "meter": null,
+    "flow": null,
+    "bars": null,
+    "compare": null,
+    "phases": null,
+
+    "outcome": "Goal completion nearly doubled and cross-team blockers fell 63% within two quarters. The framework outlived me — it's still how the company plans today.",
+
+    "challenges": [
+      "Eleven squads with eleven planning rituals — none of them compatible.",
+      "Leadership wanted speed; ICs wanted predictability. Both were right.",
+      "A culture that confused activity with progress."
+    ],
+
+    "quote": {
+      "text": "Two quarters in, planning stopped being the thing we dreaded. That alone was worth it.",
+      "attribution": "VP of Engineering"
+    },
+
+    "lessons": [
+      "Goals don't fail at the goal-setting meeting. They fail at the dependency you didn't write down.",
+      "The shortest planning cycle that surfaces real conflict is the right one.",
+      "Operating frameworks are software — they need owners, releases, and bug fixes."
+    ],
+
+    "stack": ["Notion", "Linear", "Slack", "Loom"]
+  },
+
+  {
+    "slug": "paypal-value-chain",
+    "number": "004",
+    "title": "4x-ing PayPal's Digital Value Chain",
+    "externalUrl": "https://maxs.page/stories/paypal-value-chain",
+    "image": "/assets/img/project-4.jpg",
+    "summary": "How I led the product strategy and development of a new enterprise content management system for PayPal, increasing content velocity by 4x and boosting conversions by 40%.",
+    "role": "Senior Product Manager",
+    "year": "2023",
+    "date": "2023-01-15",
+    "tech": ["Product Strategy", "Enterprise", "Content Management"],
+    "readTime": "4 min read",
+
+    "facts": [
+      { "label": "Client", "value": "PayPal · Global Marketing Tech" },
+      { "label": "Role", "value": "Senior Product Manager" },
+      { "label": "Timeline", "value": "18 months" },
+      { "label": "Team", "value": "3 PMs · 14 Engineers · 4 Designers" }
+    ],
+
+    "kpis": [
+      { "value": "4x", "label": "Content velocity" },
+      { "value": "+40%", "label": "Conversion lift" },
+      { "value": "weeks → hours", "label": "Time-to-publish" }
+    ],
+
+    "problem": "PayPal's marketing org spanned dozens of regions piped through a decade-old CMS. A single campaign change could take six weeks to ship globally.",
+
+    "stages": {
+      "title": "How I worked it",
+      "sub": "Four moves across eighteen months.",
+      "items": [
+        { "title": "Composable blocks", "body": "Decomposed pages into governed, reusable blocks owned by regional teams." },
+        { "title": "Paved road", "body": "An opinionated workflow for the 80% of campaigns that fit a standard pattern." },
+        { "title": "Off-road lane", "body": "A clearly fenced workflow for the 20% of campaigns that needed custom engineering." },
+        { "title": "Governance ≠ gatekeeping", "body": "Brand and compliance baked into the system, not enforced by review queues." }
+      ]
+    },
+
+    "challenge": "PayPal's marketing org spanned dozens of regions and product lines, all funneling through a single overworked CMS that hadn't been seriously rearchitected in nearly a decade. A campaign change in one market could take six weeks to ship globally.",
+
+    "approach": "We rebuilt the system around composable content blocks owned by regional teams, with a global governance layer that enforced brand and compliance without bottlenecking publishing.\n\nI championed a 'paved road' for the 80% of campaigns that fit a standard pattern, and a clearly fenced 'off-road' workflow for the 20% that needed custom engineering.",
+
+    "compare": {
+      "title": "Publishing, before and after",
+      "sub": "What changed for a regional marketer shipping a campaign.",
+      "rows": [
+        { "dimension": "Time to publish a routine change", "before": "Weeks", "after": "Hours" },
+        { "dimension": "Global campaign rollout", "before": "Up to six weeks", "after": "Same-day in a single market" },
+        { "dimension": "Page construction", "before": "One-off pages and accumulated workarounds", "after": "Governed, reusable composable blocks" },
+        { "dimension": "Brand and compliance", "before": "Enforced by review queues", "after": "Built into the system" }
+      ],
+      "note": "TODO: Add a fifth row if you have one — anything you measured that isn't already a headline KPI."
+    },
+
+    "meter": null,
+    "flow": null,
+    "bars": null,
+    "dumbbell": null,
+    "phases": null,
+
+    "outcome": "Content velocity quadrupled and on-page conversion improved 40% across high-traffic surfaces. Time-to-publish for routine changes dropped from weeks to hours.",
+
+    "challenges": [
+      "A decade of accumulated CMS workarounds and one-off pages.",
+      "Regional teams with genuine local requirements that resisted standardisation.",
+      "SEO and performance regressions on every migration milestone."
+    ],
+    "_comment_challenges": "TODO: The second challenge was truncated when I captured it — it read 'Regional t…'. Confirm the wording.",
+
+    "quote": {
+      "text": "We shipped a localized campaign in a single afternoon — something that would have taken a quarter on the old stack.",
+      "attribution": "Global Marketing Director, PayPal"
+    },
+
+    "lessons": [
+      "Composability is governance. The structure of your blocks IS the policy.",
+      "Marketers don't want a CMS — they want time back. Optimize the hour, not the click.",
+      "A paved road is only paved if the off-ramp is clearly marked."
+    ],
+
+    "stack": ["Figma", "React", "Contentful", "GraphQL", "Vercel", "Datadog"]
+  }
+]

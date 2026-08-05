@@ -1,0 +1,350 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: caseStudies
+  size: 1
+  alias: study
+  addAllPagesToCollections: true
+permalink: "/case-studies/{{ study.slug }}/"
+hasViz: true
+eleventyComputed:
+  title: "{{ study.title }}"
+  description: "{{ study.summary }}"
+  image: "{{ study.image }}"
+---
+<article>
+
+  <!-- ===================== HEADER ===================== -->
+  <section class="page-head wrap">
+    <p class="study-meta">
+      <span>Case {{ study.number }}</span>
+      {%- for t in study.tech %}<span>{{ t }}</span>{% endfor %}
+      <span>{{ study.readTime }}</span>
+    </p>
+    <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ study.title }}</h1>
+    <p class="prose measure" style="font-size:1.2rem">{{ study.summary }}</p>
+
+    {% if study.facts.length %}
+    <div class="study-facts">
+      {%- for f in study.facts %}
+      <div class="study-fact">
+        <div class="study-fact__label">{{ f.label }}</div>
+        <div class="study-fact__value">{{ f.value }}</div>
+      </div>
+      {%- endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  <div class="wrap">
+
+    <!-- ===================== OUTCOMES ===================== -->
+    {% if study.kpis.length %}
+    <div class="viz" style="margin-top:2rem">
+      <div class="viz__head"><p class="viz__title">Outcomes</p></div>
+      <div class="kpi-row">
+        {%- for k in study.kpis %}
+        <div class="kpi">
+          <div class="kpi__value">{{ k.value }}</div>
+          <div class="kpi__label">{{ k.label }}</div>
+          {% if k.note %}<div class="kpi__note">{{ k.note }}</div>{% endif %}
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- ===================== PROBLEM ===================== -->
+    {% if study.problem %}
+    <section class="study-section">
+      <h2>The problem</h2>
+      <p class="lede measure">{{ study.problem }}</p>
+    </section>
+    {% endif %}
+
+    <!-- ===================== HOW I WORKED IT ===================== -->
+    {% if study.stages %}
+    <section class="study-section">
+      <div class="viz">
+        <div class="viz__head">
+          <p class="viz__title">{{ study.stages.title }}</p>
+          <p class="viz__sub">{{ study.stages.sub }}</p>
+        </div>
+        <div class="stages">
+          {%- for item in study.stages.items %}
+          <div class="stage">
+            <div class="stage__num">{{ "0" + (loop.index | string) }}</div>
+            <div>
+              <h3 class="stage__title">{{ item.title }}</h3>
+              <p class="stage__body">{{ item.body }}</p>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== CONTEXT ===================== -->
+    <section class="study-section">
+      <h2>Context</h2>
+      <div class="measure prose">
+        {%- for para in study.challenge | paragraphs %}<p>{{ para }}</p>{% endfor %}
+      </div>
+    </section>
+
+    {#- ---------- Consolidation diagram ---------- #}
+    {% if study.flow %}
+    <section class="study-section">
+      <div class="viz">
+        <div class="viz__head">
+          <p class="viz__title">{{ study.flow.title }}</p>
+          <p class="viz__sub">{{ study.flow.sub }}</p>
+        </div>
+        <div class="flow">
+          <div class="flow__stack">
+            {%- for node in study.flow.from %}
+            <div class="flow__node flow__node--legacy">{{ node }}</div>
+            {%- endfor %}
+          </div>
+          <div class="flow__arrow" aria-hidden="true">
+            <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
+              <path d="M0 8h36M30 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flow__stack">
+            <div class="flow__node flow__node--target">{{ study.flow.to }}</div>
+          </div>
+        </div>
+        {% if study.flow.note %}<p class="viz__note">{{ study.flow.note }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== APPROACH ===================== -->
+    <section class="study-section">
+      <h2>Approach</h2>
+      <div class="measure prose">
+        {%- for para in study.approach | paragraphs %}<p>{{ para }}</p>{% endfor %}
+      </div>
+    </section>
+
+    {#- ---------- Meter: one ratio against a target ---------- #}
+    {% if study.meter %}
+    <section class="study-section">
+      <div class="viz">
+        <div class="viz__head">
+          <p class="viz__title">{{ study.meter.title }}</p>
+          <p class="viz__sub">{{ study.meter.sub }}</p>
+        </div>
+        <div class="meter">
+          <div class="meter__readout">
+            <span class="meter__value">{{ study.meter.display }}</span>
+            <span class="meter__caption">{{ study.meter.caption }}</span>
+          </div>
+          {%- set pct = (study.meter.value / study.meter.max * 100) | round(1) -%}
+          {%- set targetPct = (study.meter.target / study.meter.max * 100) | round(1) -%}
+          <div class="meter__track" role="img"
+               aria-label="{{ study.meter.display }} against a target of {{ study.meter.targetDisplay }}.">
+            <div class="meter__fill" style="width:{{ pct }}%"
+                 data-viz-mark data-label="{{ study.meter.title }}" data-value="{{ study.meter.display }}"></div>
+            <div class="meter__marker" style="left:{{ targetPct }}%">
+              <span class="meter__marker-label">Target {{ study.meter.targetDisplay }}</span>
+            </div>
+          </div>
+          <div class="meter__scale"><span>0</span><span>{{ study.meter.maxDisplay }}</span></div>
+        </div>
+        {% if study.meter.note %}<p class="viz__note">{{ study.meter.note }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    {#- ---------- Dumbbell: before → after ----------
+        Positions are scaled between min and max so negative values (NPS) plot
+        correctly rather than clipping at zero. -#}
+    {% if study.dumbbell %}
+    <section class="study-section">
+      <div class="viz">
+        <div class="viz__head">
+          <p class="viz__title">{{ study.dumbbell.title }}</p>
+          <p class="viz__sub">{{ study.dumbbell.sub }}</p>
+        </div>
+
+        {%- set span = study.dumbbell.max - study.dumbbell.min -%}
+        <div class="dumbbell">
+          {%- for row in study.dumbbell.rows %}
+          {%- set beforePct = ((row.before - study.dumbbell.min) / span * 100) | round(1) -%}
+          {%- set afterPct = ((row.after - study.dumbbell.min) / span * 100) | round(1) -%}
+          <div class="dumbbell__row">
+            <div class="dumbbell__label">{{ row.label }}</div>
+            <div class="dumbbell__plot">
+              <div class="dumbbell__line"
+                   style="left:{{ beforePct if beforePct < afterPct else afterPct }}%;width:{{ (afterPct - beforePct) | abs | round(1) }}%"></div>
+              <div class="dumbbell__dot dumbbell__dot--before" style="left:{{ beforePct }}%"
+                   data-viz-mark data-label="{{ row.label }} — before" data-value="{{ row.beforeDisplay }}"></div>
+              <div class="dumbbell__dot dumbbell__dot--after" style="left:{{ afterPct }}%"
+                   data-viz-mark data-label="{{ row.label }} — after" data-value="{{ row.afterDisplay }}"></div>
+              <span class="dumbbell__cap" style="left:{{ afterPct }}%">{{ row.afterDisplay }}</span>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+
+        <div class="bar-legend">
+          <span class="bar-legend__item"><span class="bar-legend__swatch" style="background:#9ec5f4"></span>Before</span>
+          <span class="bar-legend__item"><span class="bar-legend__swatch" style="background:var(--viz-s1)"></span>After</span>
+        </div>
+
+        <button class="viz-table-toggle" data-viz-table-toggle
+                aria-expanded="false" aria-controls="dbl-{{ study.slug }}">Show data table</button>
+        <table class="viz-table" id="dbl-{{ study.slug }}" hidden>
+          <thead><tr><th scope="col">Measure</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+          <tbody>
+            {%- for row in study.dumbbell.rows %}
+            <tr><td>{{ row.label }}</td><td>{{ row.beforeDisplay }}</td><td>{{ row.afterDisplay }}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+
+        {% if study.dumbbell.note %}<p class="viz__note">{{ study.dumbbell.note }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    {#- ---------- Before / after, as tabs ---------- #}
+    {% if study.compare %}
+    <section class="study-section">
+      <div class="viz">
+        <div class="viz__head">
+          <p class="viz__title">{{ study.compare.title }}</p>
+          <p class="viz__sub">{{ study.compare.sub }}</p>
+        </div>
+        <div data-viz-tabs>
+          <div class="viz-tabs" role="tablist" aria-label="{{ study.compare.title }}">
+            <button class="viz-tab" role="tab" type="button" id="tab-side-{{ study.slug }}"
+                    aria-controls="panel-side-{{ study.slug }}" aria-selected="true">Side by side</button>
+            <button class="viz-tab" role="tab" type="button" id="tab-before-{{ study.slug }}"
+                    aria-controls="panel-before-{{ study.slug }}" aria-selected="false">Before</button>
+            <button class="viz-tab" role="tab" type="button" id="tab-after-{{ study.slug }}"
+                    aria-controls="panel-after-{{ study.slug }}" aria-selected="false">After</button>
+          </div>
+
+          <div class="viz-tabpanel" role="tabpanel" id="panel-side-{{ study.slug }}" aria-labelledby="tab-side-{{ study.slug }}">
+            <table class="compare">
+              <thead><tr><th scope="col">Dimension</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+              <tbody>
+                {%- for row in study.compare.rows %}
+                <tr><th scope="row">{{ row.dimension }}</th><td>{{ row.before }}</td><td>{{ row.after }}</td></tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="viz-tabpanel" role="tabpanel" id="panel-before-{{ study.slug }}" aria-labelledby="tab-before-{{ study.slug }}" hidden>
+            <table class="compare"><tbody>
+              {%- for row in study.compare.rows %}
+              <tr><th scope="row">{{ row.dimension }}</th><td>{{ row.before }}</td></tr>
+              {%- endfor %}
+            </tbody></table>
+          </div>
+          <div class="viz-tabpanel" role="tabpanel" id="panel-after-{{ study.slug }}" aria-labelledby="tab-after-{{ study.slug }}" hidden>
+            <table class="compare"><tbody>
+              {%- for row in study.compare.rows %}
+              <tr><th scope="row">{{ row.dimension }}</th><td>{{ row.after }}</td></tr>
+              {%- endfor %}
+            </tbody></table>
+          </div>
+        </div>
+        {% if study.compare.note %}<p class="viz__note">{{ study.compare.note }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== OUTCOME ===================== -->
+    <section class="study-section">
+      <h2>Outcome</h2>
+      <div class="measure prose">
+        {%- for para in study.outcome | paragraphs %}<p>{{ para }}</p>{% endfor %}
+      </div>
+    </section>
+
+    <!-- ===================== CHALLENGES ===================== -->
+    {% if study.challenges.length %}
+    <section class="study-section">
+      <h2>Challenges</h2>
+      <div class="challenge-list measure">
+        {%- for c in study.challenges %}
+        <div class="challenge">
+          <div class="challenge__num">{{ "0" + (loop.index | string) }}</div>
+          <div class="challenge__text">{{ c }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== QUOTE ===================== -->
+    {% if study.quote %}
+    <figure class="pullquote">
+      <blockquote>&ldquo;{{ study.quote.text }}&rdquo;</blockquote>
+      <figcaption>&mdash; {{ study.quote.attribution }}</figcaption>
+    </figure>
+    {% endif %}
+
+    <!-- ===================== LESSONS ===================== -->
+    {% if study.lessons.length %}
+    <section class="study-section">
+      <h2>What I&rsquo;d take with me</h2>
+      <div class="lessons">
+        {%- for l in study.lessons %}
+        <div class="lesson">
+          <div class="lesson__arrow" aria-hidden="true">&rarr;</div>
+          <div class="lesson__text">{{ l }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== STACK ===================== -->
+    {% if study.stack.length %}
+    <section class="study-section">
+      <h2 style="font-size:1.3rem">Tools &amp; stack</h2>
+      <div class="stack-pills">
+        {%- for tool in study.stack %}
+        <span class="stack-pill">{{ tool }}</span>
+        {%- endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ===================== PREV / NEXT ===================== -->
+    {%- set idx = 0 -%}
+    {%- for s in caseStudies -%}{%- if s.slug == study.slug -%}{%- set idx = loop.index0 -%}{%- endif -%}{%- endfor -%}
+    {%- set prev = caseStudies[idx - 1] if idx > 0 else caseStudies[caseStudies.length - 1] -%}
+    {%- set next = caseStudies[idx + 1] if idx < caseStudies.length - 1 else caseStudies[0] -%}
+
+    <nav class="study-nav" aria-label="Case studies">
+      <div class="study-nav__item">
+        <div class="study-nav__label">Previous &middot; {{ prev.number }}</div>
+        <div class="study-nav__title"><a href="/case-studies/{{ prev.slug }}/">{{ prev.title }}</a></div>
+      </div>
+      <div class="study-nav__item study-nav__item--next">
+        <div class="study-nav__label">Next &middot; {{ next.number }}</div>
+        <div class="study-nav__title"><a href="/case-studies/{{ next.slug }}/">{{ next.title }}</a></div>
+      </div>
+    </nav>
+
+    <p style="margin-top:2.5rem"><a class="arrow-link" href="/case-studies/">All case studies</a></p>
+
+  </div>
+</article>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Have a similar problem?</h2>
+    <p class="prose measure" style="margin-inline:auto">Tell me about it. I&rsquo;ll tell you what I&rsquo;d do.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Start a conversation</a>
+    </p>
+  </div>
+</section>

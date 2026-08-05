@@ -1,0 +1,111 @@
+{# -----------------------------------------------------------------------------
+   Meta tags and structured data.
+
+   The JSON-LD blocks are the part that matters most for AI systems: they state,
+   in machine-readable form, that this site / this LinkedIn / this GitHub are one
+   entity. `sameAs` is what lets a model resolve "Max Murphy" to the right person.
+----------------------------------------------------------------------------- #}
+
+{%- set pageTitle = title if title else site.name -%}
+{%- set pageDesc  = description if description else site.description -%}
+{%- set canonical = (page.url | absolute(site.url)) -%}
+{%- set ogImage   = (image if image else "/assets/img/og-default.jpg") | absolute(site.url) -%}
+
+<title>{% if title %}{{ pageTitle }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
+<meta name="description" content="{{ pageDesc }}">
+<link rel="canonical" href="{{ canonical }}">
+
+<meta property="og:type" content="{{ 'article' if layout == 'layouts/post.njk' else 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDesc }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogImage }}">
+<meta name="twitter:card" content="summary_large_image">
+
+{# Discovery for feed readers, and for agents probing for structured versions. #}
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} — Blog" href="{{ '/feed.xml' | absolute(site.url) }}">
+<link rel="alternate" type="application/feed+json" title="{{ site.name }} — Blog" href="{{ '/feed.json' | absolute(site.url) }}">
+<link rel="alternate" type="text/markdown" title="Plain-text site index for LLMs" href="{{ '/llms.txt' | absolute(site.url) }}">
+
+{%- set sameAs = [] -%}
+{%- for key, value in site.socials -%}{% if value and 'TODO' not in value %}{% set sameAs = (sameAs.push(value), sameAs) %}{% endif %}{%- endfor -%}
+{%- for key, value in site.identifiers -%}{% if value %}{% set sameAs = (sameAs.push(value), sameAs) %}{% endif %}{%- endfor -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#person",
+      "name": "{{ site.name }}",
+      "url": "{{ site.url }}/",
+      "email": "mailto:{{ site.email }}",
+      "jobTitle": "{{ site.jobTitle }}",
+      "description": {{ profile.bioThirdPerson | dump | safe }},
+      "knowsAbout": {{ profile.knowsAbout | dump | safe }},
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{ site.address.locality }}",
+        "addressRegion": "{{ site.address.region }}",
+        "addressCountry": "{{ site.address.country }}"
+      },
+      "sameAs": {{ sameAs | dump | safe }},
+      "worksFor": [
+        {#- Collect current roles first: emitting inside a filtered loop makes
+            `loop.last` refer to the wrong item and leaves a trailing comma. -#}
+        {%- set currentJobs = [] -%}
+        {%- for job in profile.experience -%}
+          {%- if not job.endDate -%}{%- set currentJobs = (currentJobs.push(job), currentJobs) -%}{%- endif -%}
+        {%- endfor -%}
+        {%- for job in currentJobs %}
+        { "@type": "Organization", "name": {{ job.org | dump | safe }}{% if job.orgUrl %}, "url": {{ job.orgUrl | dump | safe }}{% endif %} }{{ "," if not loop.last }}
+        {%- endfor %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.name }}",
+      "description": {{ site.description | dump | safe }},
+      "publisher": { "@id": "{{ site.url }}/#person" },
+      "inLanguage": "{{ site.locale }}"
+    }
+    {%- if layout == "layouts/post.njk" -%},
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ canonical }}#article",
+      "headline": {{ title | dump | safe }},
+      "description": {{ pageDesc | dump | safe }},
+      "datePublished": "{{ page.date | isoDate }}",
+      "dateModified": "{{ page.date | isoDate }}",
+      "url": "{{ canonical }}",
+      "author": { "@id": "{{ site.url }}/#person" },
+      "publisher": { "@id": "{{ site.url }}/#person" },
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "mainEntityOfPage": "{{ canonical }}"
+      {%- if tags %}, "keywords": {{ tags | dump | safe }}{% endif %}
+    }
+    {%- endif -%}
+    {%- if hasFaq -%},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonical }}#faq",
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "about": { "@id": "{{ site.url }}/#person" },
+      "mainEntity": [
+        {%- for item in faq %}
+        {
+          "@type": "Question",
+          "name": {{ item.q | dump | safe }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
+        }{{ "," if not loop.last }}
+        {%- endfor %}
+      ]
+    }
+    {%- endif -%}
+  ]
+}
+</script>

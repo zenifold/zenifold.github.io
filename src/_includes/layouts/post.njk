@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+hasReading: true
+---
+<article data-reading>
+  <section class="page-head wrap">
+    <div class="post-card__meta" style="margin-bottom:1rem">
+      {%- for tag in tags %}
+      <a class="post-card__cat" href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>
+      {%- endfor %}
+      <span>{{ site.name }}</span>
+      <span><time datetime="{{ page.date | htmlDate }}">{{ page.date | readableDate }}</time></span>
+    </div>
+
+    <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ title }}</h1>
+    <p class="prose measure" style="font-size:1.2rem">{{ description }}</p>
+  </section>
+
+  <div class="section section--tight wrap" style="padding-top:1rem">
+    <div class="about-grid">
+      <div class="prose post-body">
+        {{ content | safe }}
+      </div>
+
+      {#- Built from the rendered h2s, so it can't drift from the post. Hidden
+          until populated, and skipped entirely for short posts. -#}
+      <nav class="toc" data-toc aria-label="On this page" hidden>
+        <p class="toc__label">On this page</p>
+      </nav>
+    </div>
+
+    {% if tags.length %}
+    <div class="measure">
+      <div class="tag-list">
+        {%- for tag in tags %}
+        <a class="tag-pill" href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>
+        {%- endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <p class="measure" style="margin-top:3rem">
+      <a class="arrow-link" href="/blog/">All posts</a>
+    </p>
+  </div>
+</article>
+
+{% if collections.posts.length > 1 %}
+<section class="section section--tight wrap">
+  <h2 class="section-title" style="text-align:left">More writing</h2>
+  <div class="posts">
+    {%- set shown = 0 %}
+    {%- for post in collections.posts %}
+    {%- if post.url != page.url and shown < 3 %}
+    {%- set shown = shown + 1 %}
+    <article class="post">
+      <div class="post__date"><time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time></div>
+      <div>
+        <h3 class="post__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p class="post__excerpt">{{ post.data.description }}</p>
+      </div>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Have an ambitious idea?</h2>
+    <p class="prose measure" style="margin-inline:auto">I take on a small number of strategic engagements each year. Tell me about your problem &mdash; I&rsquo;ll tell you what I&rsquo;d do about it.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

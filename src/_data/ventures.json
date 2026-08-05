@@ -1,0 +1,42 @@
+[
+  {
+    "name": "YO",
+    "role": "Co-Founder",
+    "dates": "Sep 2024 – Present",
+    "status": "Active",
+    "url": "",
+    "summary": "A GenAI-powered platform for creating and sharing personalized, interactive stories."
+  },
+  {
+    "name": "SINSA",
+    "role": "Founder",
+    "dates": "2021 – Present",
+    "status": "Active",
+    "url": "https://sinsa.ai",
+    "summary": "AI consulting company covering AI strategy and roadmapping, rapid prototyping and MVPs, custom model fine-tuning and RAG, and AI-powered application development, supported by an in-house research division."
+  },
+  {
+    "name": "Quanti Research",
+    "role": "Founder",
+    "dates": "2020 – 2023",
+    "status": "Solo venture",
+    "url": "",
+    "summary": "A research and analytics firm, run solo alongside my consulting and product work."
+  },
+  {
+    "name": "CraniumTap Research",
+    "role": "Founder",
+    "dates": "Jun 2018 – Sep 2021",
+    "status": "Acquired by Tribune Publishing, 2021",
+    "url": "",
+    "summary": "A Qualtrics-based SaaS product for advanced survey analytics and data visualization. Exited in 2021."
+  },
+  {
+    "name": "Innovate Hampton Roads",
+    "role": "Founding Member",
+    "dates": "Jun 2018 – Jul 2021",
+    "status": "Non-profit",
+    "url": "",
+    "summary": "A non-profit dedicated to fostering the tech and startup ecosystem in the Hampton Roads area of Virginia."
+  }
+]

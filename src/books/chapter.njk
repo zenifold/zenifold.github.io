@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: publishedChapters
+  size: 1
+  alias: chapter
+  addAllPagesToCollections: true
+permalink: "/books/{{ chapter.bookSlug }}/{{ chapter.slug }}/"
+eleventyComputed:
+  title: "{{ chapter.title }}"
+  description: "{{ chapter.summary }}"
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">
+    <a href="/books/{{ chapter.bookSlug }}/" style="color:inherit;text-decoration:none">{{ chapter.bookTitle }}</a>
+    &middot; Chapter {{ chapter.number }}
+  </p>
+  <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem)">{{ chapter.title }}</h1>
+  <p class="prose measure" style="font-size:1.2rem">{{ chapter.summary }}</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:1rem">
+  <div class="measure prose post-body">
+    {% if chapter.body %}
+      {%- for para in chapter.body %}
+      <p>{{ para }}</p>
+      {%- endfor %}
+    {% else %}
+      <p>TODO: Chapter text goes here. Add a <code>body</code> array to this chapter
+        in <code>src/_data/books.json</code>, or move the chapter into its own
+        Markdown file if it gets long.</p>
+    {% endif %}
+  </div>
+
+  <p class="measure" style="margin-top:3rem">
+    <a class="arrow-link" href="/books/{{ chapter.bookSlug }}/">Back to {{ chapter.bookTitle }}</a>
+  </p>
+</section>

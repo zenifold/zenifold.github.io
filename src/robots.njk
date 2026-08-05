@@ -1,0 +1,70 @@
+---
+permalink: "/robots.txt"
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}
+{% if site.allowAiCrawlers %}
+# AI crawlers are allowed. Flip `allowAiCrawlers` to false in
+# src/_data/site.json to block them instead.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+{% else %}
+# AI crawlers are blocked. This protects your writing from training use,
+# but it also removes you from AI-generated answers.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+{% endif %}
+User-agent: *
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absolute(site.url) }}

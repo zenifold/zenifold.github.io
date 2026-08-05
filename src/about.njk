@@ -1,0 +1,332 @@
+---
+layout: layouts/base.njk
+permalink: "/about/"
+title: "About"
+description: "Max Murphy is a product strategist and builder with 12+ years shipping products from MVP to enterprise scale — founder of SINSA, Director of Product at SourceFuse, formerly PayPal, Relief Financial, People Rocket, and Cognizant."
+hasViz: true
+---
+<!-- ===================== BIO + FACT PANEL ===================== -->
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">About</p>
+  <h1 class="display">{{ site.name }}</h1>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="about-grid">
+    <div class="prose">
+      <p class="lede">Max Murphy is a product strategist, architect, and builder who turns ambitious ideas into shipped products &mdash; from MVP to enterprise scale.</p>
+
+      <p>He is Principal Strategy Consultant at <strong><a href="https://modea.com" rel="noopener" target="_blank">Modea</a></strong>, where he built the strategy practice from the ground up and now leads both it and the consulting arm of the firm&rsquo;s software agency.</p>
+
+      <p>He is also the founder of <strong><a href="https://sinsa.ai" rel="noopener" target="_blank">SINSA</a></strong>, an AI consulting company built around a simple position: AI is an operational standard now, not a forecast, and the work that matters is what reaches production. SINSA covers AI strategy and roadmapping, rapid prototyping, custom model fine-tuning and RAG, and application development, supported by its own research division.</p>
+
+      <p>Before Modea he was Director of Product Management &amp; Strategy for the US market at <strong>SourceFuse</strong>, directing a portfolio of six product managers and more than $6M in annual delivery, and leading internal AI product innovation &mdash; a user story generator, infrastructure-as-code scaffolding, and automated code review.</p>
+
+      <p>Over more than twelve years he has shipped products across fintech, enterprise SaaS, marketplaces, and early-stage ventures. At <strong>PayPal</strong> he led the Enterprise Content Management platform, quadrupling content velocity and lifting conversion 40% across nine global markets. As second product hire at <strong>Relief Financial</strong> he scoped and shipped the MVP and raised ML prediction accuracy 35% for debt and credit risk. At <strong>Dominion Enterprises</strong> he delivered Homes.com to more than ten million monthly users and launched the AutoTrader vehicle listing ads platform, driving $25M+ in annual revenue.</p>
+
+      <p>Alongside all of it, he has been building the web for over twenty years &mdash; starting with customizing MySpace pages in HTML and CSS, and turning into more than 150 websites as a freelance developer. That work has run parallel to every job he has held, and it is where most of the product instincts came from.</p>
+
+      <p>He works across the full arc of product development &mdash; research, strategy, prototyping, design, and code &mdash; and takes on a small number of strategic engagements each year.</p>
+    </div>
+
+    <div class="factbar">
+      <div class="factbar__row">
+        <div class="factbar__label">Based in</div>
+        <div class="factbar__value">{{ site.address.locality }}, {{ site.address.region }}</div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Role</div>
+        <div class="factbar__value">
+          {%- set currentRoles = [] -%}
+          {%- for job in profile.experience -%}
+            {%- if not job.endDate -%}{%- set currentRoles = (currentRoles.push(job), currentRoles) -%}{%- endif -%}
+          {%- endfor -%}
+          {%- for job in currentRoles %}{{ job.title }}, {{ job.org }}{{ " · " if not loop.last }}{% endfor %}
+        </div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Works on</div>
+        <div class="factbar__value">{{ profile.knowsAbout | join(", ") }}</div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Previously</div>
+        <div class="factbar__value">PayPal · Relief Financial · People Rocket · Cognizant · Dominion Enterprises · Marathon Consulting</div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Also</div>
+        <div class="factbar__value">Freelance web developer &mdash; 150+ sites over 20+ years</div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Updated</div>
+        <div class="factbar__value">{{ build.time | readableDate }}</div>
+      </div>
+      <div class="factbar__row">
+        <div class="factbar__label">Verify</div>
+        <div class="factbar__value">
+          <a href="/who-is-max-murphy/">Disambiguation</a> &middot;
+          <a href="/resume.json">resume.json</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AREAS OF WORK ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Areas of Work</p>
+    <h2 class="headline">Four questions I keep <em>working</em> on.</h2>
+
+    <div class="cards">
+      {%- for area in areas %}
+      <article class="card">
+        <div class="card__meta"><span>{{ area.title }}</span><span class="card__num">{{ "0" + (loop.index | string) }}</span></div>
+        <p class="card__question">{{ area.question }}</p>
+        <p class="prose">{{ area.summary }}</p>
+        <a class="arrow-link" href="/work/{{ area.slug }}/">Explore {{ area.title }}</a>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <p style="margin-top:3rem"><a class="arrow-link" href="/work/" style="color:#fff">Explore everything</a></p>
+  </div>
+</section>
+
+<!-- ===================== WHAT I DO ===================== -->
+<section class="section wrap">
+  <p class="eyebrow" style="color:var(--blue)">What I do</p>
+  <h2 class="headline">Strategy and delivery, treated as one job.</h2>
+
+  <div class="posts" style="margin-top:2.5rem">
+    {%- for job in profile.experience %}
+    {%- if not job.endDate %}
+    <article class="post">
+      <div class="post__date">{{ job.org }}<span class="post__tag">{{ job.title }}</span></div>
+      <div>
+        <p class="prose">{{ job.summary | safe }}</p>
+      </div>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- ===================== HOW I WORK ===================== -->
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">How I work</p>
+  <h2 class="headline">Good product work is unglamorous and repeatable.</h2>
+
+  <div style="margin-top:2rem">
+    <div class="principle">
+      <h3>Systems thinking came before design.</h3>
+      <p class="prose">I didn&rsquo;t start in a design studio. I started taking things apart, and not long after, building websites for anyone who would let me. Somewhere past a hundred of them you stop seeing pages and start seeing systems &mdash; the same handful of problems wearing different visual clothes. Before I ask what a screen should look like, I want to know what the system underneath it is actually doing, because most product problems that present as design problems aren&rsquo;t.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Vision and delivery are the same job.</h3>
+      <p class="prose">Product development is a cycle: identify the problem, explore solutions, test, gather feedback, change what&rsquo;s wrong, ship to real people, measure what happened. A strategy that never reaches that last step is a document, not a strategy. I stay close enough to delivery to know whether the plan survived contact with reality.</p>
+    </div>
+
+    <div class="principle">
+      <h3>AI belongs in the product, not the pitch deck.</h3>
+      <p class="prose">The interesting question isn&rsquo;t whether you can add AI &mdash; it&rsquo;s whether it changes the outcome. Predictive ordering that actually reduces waste. An internal QA tool that cuts critical errors. Story generation and code review that give a team back real hours. If it doesn&rsquo;t move a number someone cares about, it&rsquo;s decoration.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Hard data and soft data both count.</h3>
+      <p class="prose">I integrate quantitative and qualitative signal into every plan I write. Analytics tell you what happened; conversations tell you why. Teams that only trust the first ship confidently in the wrong direction, and teams that only trust the second never find out whether they were right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IN MY OWN WORDS ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">In my own words</p>
+    <h2 class="headline">It started with a soldering iron, not a studio.</h2>
+
+    <div class="measure prose" style="margin-top:2rem">
+      <p>My path into product didn&rsquo;t run through design school. It ran through MySpace. I was customizing profile pages with HTML and CSS &mdash; learning by breaking things and then working out how to fix them &mdash; and that was the first time it landed that you could type something and change what another person saw. I never really stopped.</p>
+
+      <p>Twenty years and more than 150 websites later, freelance work has run alongside every job I&rsquo;ve held. It&rsquo;s the part of my career that never had a title. Building for clients teaches you something no spec ever will: nobody actually wants a website. They want the thing the website does for them. Learning to hear the second thing when someone asks for the first is most of what product management turns out to be.</p>
+
+      <p>Marketplaces, then enterprise consulting, then payments, then fintech, then AI-native product work &mdash; on paper it reads like drift. The through line is that I&rsquo;ve been shipping to real users the entire time, and each sector taught me a different way things break. Dominion taught me scale. Cognizant taught me how large organisations actually make decisions. PayPal taught me what nine markets and a compliance review do to a roadmap. Relief Financial taught me how little you know at the start.</p>
+
+      <p>What&rsquo;s stayed constant is the part I enjoy most: the space between a rough idea and a polished product. It isn&rsquo;t about making things look good. It&rsquo;s about building systems that work, solving real problems for real people, and making software that feels less like software and more like a well-made tool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section wrap">
+  <p class="eyebrow" style="color:var(--blue)">Frequently asked questions</p>
+  <h2 class="headline">The short answers.</h2>
+
+  <div class="faq" style="margin-top:2.5rem">
+    {%- for item in faq %}
+    <details{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q }}</summary>
+      <div class="faq__answer">{{ item.a }}</div>
+    </details>
+    {%- endfor %}
+  </div>
+
+  <p style="margin-top:2rem"><a class="arrow-link" href="/faq/">All questions</a></p>
+</section>
+
+<!-- ===================== RECOGNITION ===================== -->
+{% if recognition.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Recognition</p>
+  <h2 class="headline">Honours and memberships.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for item in recognition %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ item.name }}</div>
+        <div class="recognition__detail">{{ item.detail }}</div>
+      </div>
+      <div class="recognition__when">{{ item.when }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===================== CAREER CHART ===================== -->
+<section class="section section--tight wrap">
+  {% include "partials/career-chart.njk" %}
+</section>
+
+<!-- ===================== CAREER TIMELINE ===================== -->
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Career timeline</p>
+  <h2 class="headline">Every role, in order.</h2>
+  <p class="prose measure" style="margin-top:1rem">A chronological view across marketplaces, enterprise consulting, payments, fintech, and AI-native product work.</p>
+
+  <div style="margin-top:2.5rem">
+    {%- for group in timeline %}
+    <div class="timeline__group">
+      <h3 class="timeline__org">{{ group.org }}</h3>
+      {%- for role in group.roles %}
+      <div class="timeline__role">
+        <div class="timeline__title">{{ role.title }}</div>
+        <div class="timeline__dates">{{ role.dates }}</div>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- ===================== FOUNDED COMPANIES ===================== -->
+{% if ventures.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Founded</p>
+  <h2 class="headline">Companies I&rsquo;ve started.</h2>
+
+  <div style="margin-top:2.5rem">
+    {%- for v in ventures %}
+    <div class="timeline__group">
+      <h3 class="timeline__org">
+        {% if v.url %}<a href="{{ v.url }}" rel="noopener" target="_blank" style="text-decoration:none">{{ v.name }}</a>{% else %}{{ v.name }}{% endif %}
+      </h3>
+      <div class="timeline__role">
+        <div class="timeline__title">{{ v.role }}{% if v.status %} &middot; {{ v.status }}{% endif %}</div>
+        <div class="timeline__dates">{{ v.dates }}</div>
+      </div>
+      <p class="prose" style="margin-top:.75rem;max-width:46rem">{{ v.summary }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===================== VOLUNTEER & ADVISORY ===================== -->
+{% if service.advisory.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Volunteer &amp; advisory</p>
+  <h2 class="headline">Where else I show up.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for a in service.advisory %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ a.org }}</div>
+        <div class="recognition__detail">{{ a.role }} &middot; {{ a.summary }}</div>
+      </div>
+      <div class="recognition__when">{{ a.dates }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===================== OTHER PROJECTS ===================== -->
+{% if service.projects.length %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Other projects</p>
+  <h2 class="headline">Things built on the side.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for p in service.projects %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ p.name }}</div>
+        <div class="recognition__detail">{{ p.role }} &middot; {{ p.summary }}</div>
+      </div>
+      <div class="recognition__when">{{ p.dates }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===================== EDUCATION ===================== -->
+{% if profile.education.length and "TODO" not in profile.education[0].institution %}
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">Education</p>
+  <h2 class="headline">Where the credentials come from.</h2>
+
+  <div style="margin-top:2rem">
+    {%- for item in profile.education %}
+    <div class="recognition__item">
+      <div>
+        <div class="recognition__name">{{ item.institution }}</div>
+        <div class="recognition__detail">{{ item.studyType }}{% if item.area %}, {{ item.area }}{% endif %}</div>
+      </div>
+      <div class="recognition__when">{{ item.startDate }}{% if item.endDate %} – {{ item.endDate }}{% endif %}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===================== VERIFY ===================== -->
+<section class="section wrap">
+  <p class="eyebrow" style="color:var(--blue)">Verify this identity</p>
+  <h2 class="headline">There is more than one Max Murphy.</h2>
+
+  <div class="measure prose" style="margin-top:1.5rem">
+    <p>This Max Murphy is the product strategist based in Roanoke, Virginia, currently Director of Product Management &amp; Strategy at SourceFuse &mdash; also referred to as Maximilian Murphy. Murphy is a common surname, and the records below all point to the same person.</p>
+    <ul>
+      <li><a href="/who-is-max-murphy/">Name disambiguation</a></li>
+      <li><a href="{{ site.socials.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="{{ site.socials.github }}" rel="me noopener" target="_blank">GitHub</a></li>
+      {%- if site.identifiers.orcid %}<li><a href="{{ site.identifiers.orcid }}" rel="me noopener" target="_blank">ORCID</a></li>{% endif %}
+      {%- if site.identifiers.wikidata %}<li><a href="{{ site.identifiers.wikidata }}" rel="me noopener" target="_blank">Wikidata</a></li>{% endif %}
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="display">Have an ambitious idea?</h2>
+    <p class="prose measure" style="margin-inline:auto">I take on a small number of strategic engagements each year. Tell me about your problem &mdash; I&rsquo;ll tell you what I&rsquo;d do about it.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+  </div>
+</section>

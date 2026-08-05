@@ -1,0 +1,96 @@
+---
+permalink: "/llms-full.txt"
+eleventyExcludeFromCollections: true
+---
+{#- text/plain output — every interpolation needs `| safe`. See the note in
+    llms.njk for why. -#}
+# {{ site.name | safe }} — Full Content
+
+> {{ site.description | safe }}
+> Generated from {{ site.url | safe }}/. Every page's text in one document.
+
+{{ profile.bioThirdPerson | safe }}
+
+---
+
+## Profile
+
+{{ profile.lede | plain | safe }}
+
+{{ profile.intro | plain | safe }}
+
+{{ profile.throughLine | plain | safe }}
+{% if profile.current %}
+{{ profile.current | plain | safe }}
+{% endif %}
+
+---
+
+## Experience
+
+{% for job in profile.experience %}
+### {{ job.title | safe }}
+
+- Organisation: {{ job.org | safe }}
+- Period: {{ job.startDate | safe }}–{{ job.endDate | safe if job.endDate else "present" }}
+- Category: {{ job.meta | safe }}
+
+{{ job.summary | plain | safe }}
+{% endfor %}
+---
+
+## Case studies
+
+{% for study in caseStudies %}
+### {{ study.title | safe }}
+
+- Role: {{ study.role | safe }}
+- Year: {{ study.year | safe }}
+{%- if study.tech.length %}
+- Stack: {{ study.tech | join(", ") | safe }}
+{%- endif %}
+- URL: {{ ('/case-studies/' + study.slug + '/') | absolute(site.url) | safe }}
+
+{{ study.summary | plain | safe }}
+{% endfor %}
+---
+
+## Areas of work
+
+{% for area in areas %}
+### {{ area.title | safe }}
+
+{{ area.question | plain | safe }}
+
+{{ area.summary | plain | safe }}
+
+{% for para in area.body %}{{ para | plain | safe }}
+
+{% endfor %}
+{%- endfor %}
+---
+
+## Writing
+
+{% for post in collections.posts %}
+### {{ post.data.title | safe }}
+
+- Published: {{ post.date | htmlDate }}
+- URL: {{ post.url | absolute(site.url) | safe }}
+{%- if post.data.tags %}
+- Tags: {{ post.data.tags | join(", ") | safe }}
+{%- endif %}
+
+{{ post.templateContent | plain | safe }}
+{% endfor %}
+---
+
+## Contact
+
+- Email: {{ site.email | safe }}
+- Location: {{ site.address.locality | safe }}, {{ site.address.region | safe }}, {{ site.address.country | safe }}
+{%- for key, value in site.socials %}
+{%- if value and 'TODO' not in value %}
+- {{ key | safe }}: {{ value | safe }}
+{%- endif %}
+{%- endfor %}

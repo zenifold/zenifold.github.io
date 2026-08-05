@@ -1,0 +1,45 @@
+---
+pagination:
+  data: collections.postTags
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+permalink: "/blog/tag/{{ tag | slugify }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ tag }}"
+  description: "Posts by Max Murphy tagged {{ tag }}."
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)">Category</p>
+  <h1 class="display">{{ tag }}</h1>
+  <p class="prose measure">Posts filed under {{ tag }}.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  {%- set tagged = collections.posts | filterByTag(tag) %}
+  <p class="filter-count">{{ tagged.length }} post{{ "" if tagged.length == 1 else "s" }}</p>
+
+  {%- for post in tagged %}
+  <article class="post-card">
+    <a href="{{ post.url }}" aria-hidden="true" tabindex="-1">
+      <img class="post-card__thumb"
+           src="{{ post.data.image if post.data.image else '/assets/img/post-default.jpg' }}"
+           alt="" width="576" height="360" loading="lazy">
+    </a>
+    <div>
+      <div class="post-card__meta">
+        {%- for t in post.data.tags %}
+        <a class="post-card__cat" href="/blog/tag/{{ t | slugify }}/">{{ t }}</a>
+        {%- endfor %}
+        <span><time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time></span>
+      </div>
+      <h2 class="post-card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <p class="post-card__excerpt">{{ post.data.description }}</p>
+      <a class="arrow-link" href="{{ post.url }}">Read</a>
+    </div>
+  </article>
+  {%- endfor %}
+
+  <p style="margin-top:2.5rem"><a class="arrow-link" href="/blog/">All posts</a></p>
+</section>

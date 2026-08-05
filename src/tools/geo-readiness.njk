@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+permalink: "/tools/geo-readiness/"
+title: "GEO Readiness Check"
+description: "Paste a page's HTML and get a machine-readability report — structured data, entity claims, canonical URLs, social cards, and heading structure — scored and ranked by what to fix first."
+hasViz: true
+hasGeoCheck: true
+---
+<section class="page-head wrap">
+  <p class="eyebrow" style="color:var(--blue)"><a href="/tools/" style="color:inherit">Tools</a> &middot; SEO</p>
+  <h1 class="display">GEO Readiness Check</h1>
+  <p class="prose measure" style="font-size:1.2rem">Search engines send people to your page. AI systems answer questions about it without sending anyone. This checks whether a machine can tell what your page is and who it belongs to &mdash; from the HTML alone.</p>
+</section>
+
+<section class="section section--tight wrap" style="padding-top:0">
+  <div class="measure prose">
+    <p><strong>How to use it:</strong> open the page you want to check, view source, copy everything, and paste it below. View source rather than DevTools &mdash; you want the HTML as delivered, not after JavaScript has rewritten it, because that&rsquo;s what most AI crawlers see.</p>
+    <p style="font-size:.9rem;color:var(--ink-faint)">
+      Parsed locally with <code>DOMParser</code>. Nothing is uploaded, and nothing in the pasted markup executes.
+    </p>
+  </div>
+</section>
+
+<div data-geo>
+  <section class="section section--tight wrap" style="padding-top:0">
+    <label class="assess-group__label" for="geo-input" style="display:block;margin-bottom:.75rem">Page HTML</label>
+    <textarea id="geo-input" class="geo-input" data-geo-input rows="10"
+              placeholder="Paste the full page source here…" spellcheck="false"></textarea>
+
+    <div class="assess-actions">
+      <button class="btn btn--solid" type="button" data-geo-run>Run the check</button>
+      <button class="viz-table-toggle" type="button" data-geo-sample>Try it on this site</button>
+      <button class="viz-table-toggle" type="button" data-geo-clear>Clear</button>
+    </div>
+
+    <div data-geo-results hidden></div>
+  </section>
+</div>
+
+<section class="section section--tight wrap">
+  <p class="eyebrow" style="color:var(--blue)">What it checks</p>
+  <h2 class="headline">Eleven checks, four groups.</h2>
+
+  <div class="measure prose" style="margin-top:1.5rem">
+    <p><strong>Machine readability</strong> &mdash; JSON-LD presence and validity, <code>sameAs</code> entity claims, declared language. Weighted highest, because this is the difference between a machine knowing who you are and inferring it.</p>
+    <p><strong>Discovery</strong> &mdash; title, meta description, canonical URL. The meta description is often the exact sentence an AI quotes back.</p>
+    <p><strong>Sharing</strong> &mdash; Open Graph tags. Miss <code>og:image</code> and every shared link renders as a blank card, which for most sites is the majority of first impressions.</p>
+    <p><strong>Structure</strong> &mdash; single H1, heading hierarchy, image alt coverage, and how much text is actually in the HTML. That last one is the tell for client-side rendering: if the content arrives via JavaScript, this check sees roughly what a crawler sees.</p>
+  </div>
+
+  <p style="margin-top:2rem"><a class="arrow-link" href="/blog/rebuilt-my-site-to-be-read-by-machines/">The reasoning behind these checks</a></p>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <h2 class="headline">Score lower than you expected?</h2>
+    <p class="prose measure" style="margin-inline:auto">Most of these are an afternoon&rsquo;s work. If you&rsquo;d rather not spend it, that&rsquo;s what I do.</p>
+    <p style="margin-top:2rem">
+      <a class="btn btn--solid" href="/contact/" style="background:#fff;color:var(--blue)">Get in touch</a>
+    </p>
+    <p style="margin-top:1.5rem"><a class="arrow-link" href="/tools/" style="color:#fff">All tools</a></p>
+  </div>
+</section>

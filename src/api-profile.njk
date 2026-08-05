@@ -1,0 +1,79 @@
+---
+permalink: "/api/profile.json"
+eleventyExcludeFromCollections: true
+---
+{#
+  A single, predictable endpoint an agent can fetch instead of parsing pages.
+  Deliberately flat and self-describing: every value an agent might want about
+  this person, plus pointers to the other machine-readable representations.
+#}
+{
+  "person": {
+    "name": {{ site.name | dump | safe }},
+    "jobTitle": {{ site.jobTitle | dump | safe }},
+    "summary": {{ profile.bioThirdPerson | dump | safe }},
+    "email": {{ site.email | dump | safe }},
+    "url": "{{ site.url }}/",
+    "location": {
+      "locality": {{ site.address.locality | dump | safe }},
+      "region": {{ site.address.region | dump | safe }},
+      "country": {{ site.address.country | dump | safe }}
+    },
+    "sameAs": [
+      {#- Placeholder URLs are filtered out: sameAs is an identity claim, and a
+          claim pointing somewhere you don't control is worse than none. -#}
+      {%- set links = [] -%}
+      {%- for key, value in site.socials -%}{%- if value and 'TODO' not in value -%}{%- set links = (links.push(value), links) -%}{%- endif -%}{%- endfor -%}
+      {%- for key, value in site.identifiers -%}{%- if value and 'TODO' not in value -%}{%- set links = (links.push(value), links) -%}{%- endif -%}{%- endfor -%}
+      {%- for link in links %}
+      {{ link | dump | safe }}{{ "," if not loop.last }}
+      {%- endfor %}
+    ],
+    "knowsAbout": {{ profile.knowsAbout | dump | safe }}
+  },
+  "currentRoles": [
+    {%- set current = [] -%}
+    {%- for job in profile.experience -%}{%- if not job.endDate -%}{%- set current = (current.push(job), current) -%}{%- endif -%}{%- endfor -%}
+    {%- for job in current %}
+    {
+      "title": {{ job.title | dump | safe }},
+      "organization": {{ job.org | dump | safe }},
+      "startDate": {{ job.startDate | dump | safe }},
+      "summary": {{ job.summary | plain | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  "caseStudies": [
+    {%- for study in caseStudies %}
+    {
+      "title": {{ study.title | dump | safe }},
+      "summary": {{ study.summary | dump | safe }},
+      "role": {{ study.role | dump | safe }},
+      "year": {{ study.year | dump | safe }},
+      "tech": {{ study.tech | dump | safe }},
+      "url": "{{ ('/case-studies/' + study.slug + '/') | absolute(site.url) }}"
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  "posts": [
+    {%- for post in collections.posts %}
+    {
+      "title": {{ post.data.title | dump | safe }},
+      "url": "{{ post.url | absolute(site.url) }}",
+      "date": "{{ post.date | htmlDate }}",
+      "description": {{ post.data.description | dump | safe }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ],
+  "representations": {
+    "html": "{{ site.url }}/",
+    "resumeJson": "{{ '/resume.json' | absolute(site.url) }}",
+    "llmsTxt": "{{ '/llms.txt' | absolute(site.url) }}",
+    "llmsFullTxt": "{{ '/llms-full.txt' | absolute(site.url) }}",
+    "jsonFeed": "{{ '/feed.json' | absolute(site.url) }}",
+    "atomFeed": "{{ '/feed.xml' | absolute(site.url) }}",
+    "sitemap": "{{ '/sitemap.xml' | absolute(site.url) }}",
+    "disambiguation": "{{ '/who-is-max-murphy/' | absolute(site.url) }}"
+  },
+  "generatedAt": "{{ build.time }}"
+}

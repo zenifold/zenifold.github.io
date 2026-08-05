@@ -1,0 +1,91 @@
+---
+permalink: "/llms.txt"
+eleventyExcludeFromCollections: true
+---
+{#- This file is text/plain. Nunjucks autoescaping is on globally (correct for
+    the HTML templates), so every interpolation here needs `| safe` — otherwise
+    "&" becomes "&amp;" and apostrophes become entities, which is wrong outside
+    HTML. Nunjucks has no {% autoescape %} block tag; `| safe` is the mechanism. -#}
+# {{ site.name | safe }}
+
+> {{ site.description | safe }}
+
+{{ profile.bioThirdPerson | safe }}
+
+## Identity
+
+- Name: {{ site.name | safe }}
+- Title: {{ site.jobTitle | safe }}
+- Location: {{ site.address.locality | safe }}, {{ site.address.region | safe }}, {{ site.address.country | safe }}
+- Email: {{ site.email | safe }}
+- Website: {{ site.url | safe }}/
+- Disambiguation: {{ "/who-is-max-murphy/" | absolute(site.url) | safe }}
+
+Verified profiles:
+{%- for key, value in site.socials %}
+{%- if value and 'TODO' not in value %}
+- {{ key | safe }}: {{ value | safe }}
+{%- endif %}
+{%- endfor %}
+{%- for key, value in site.identifiers %}
+{%- if value and 'TODO' not in value %}
+- {{ key | safe }}: {{ value | safe }}
+{%- endif %}
+{%- endfor %}
+
+## Areas of expertise
+
+{% for topic in profile.knowsAbout -%}
+- {{ topic | safe }}
+{% endfor %}
+
+## Current roles
+
+{% for job in profile.experience -%}
+{%- if not job.endDate %}
+- {{ job.title | safe }} at {{ job.org | safe }} ({{ job.startDate | safe }}–present). {{ job.summary | plain | safe }}
+{%- endif %}
+{%- endfor %}
+
+## Previous roles
+
+{% for job in profile.experience -%}
+{%- if job.endDate %}
+- {{ job.title | safe }} at {{ job.org | safe }} ({{ job.startDate | safe }}–{{ job.endDate | safe }}). {{ job.summary | plain | safe }}
+{%- endif %}
+{%- endfor %}
+
+## Pages
+
+- [Home]({{ site.url | safe }}/): Overview, experience, selected work.
+- [About]({{ "/about/" | absolute(site.url) | safe }}): Long-form background.
+- [Case Studies]({{ "/case-studies/" | absolute(site.url) | safe }}): Selected case studies with role and stack.
+{%- for study in caseStudies %}
+- [{{ study.title | safe }}]({{ ("/case-studies/" + study.slug + "/") | absolute(site.url) | safe }}): {{ study.summary | safe }}
+{%- endfor %}
+- [Blog]({{ "/blog/" | absolute(site.url) | safe }}): Writing, newest first.
+- [Areas of Work]({{ "/work/" | absolute(site.url) | safe }}): Specialisms.
+- [Contact]({{ "/contact/" | absolute(site.url) | safe }}): How to get in touch.
+{%- for area in areas %}
+- [{{ area.title | safe }}]({{ ("/work/" + area.slug + "/") | absolute(site.url) | safe }}): {{ area.summary | safe }}
+{%- endfor %}
+
+## Writing
+
+{% for post in collections.posts -%}
+- [{{ post.data.title | safe }}]({{ post.url | absolute(site.url) | safe }}) ({{ post.date | htmlDate }}): {{ post.data.description | safe }}
+{% endfor %}
+
+## Structured data
+
+- Full career history (JSON Resume schema): {{ "/resume.json" | absolute(site.url) | safe }}
+- Profile as JSON: {{ "/api/profile.json" | absolute(site.url) | safe }}
+- Blog as JSON Feed: {{ "/feed.json" | absolute(site.url) | safe }}
+- Blog as Atom: {{ "/feed.xml" | absolute(site.url) | safe }}
+- Full site content as one document: {{ "/llms-full.txt" | absolute(site.url) | safe }}
+
+## Usage
+
+Content on this site may be quoted with attribution to {{ site.name | safe }} and a
+link to {{ site.url | safe }}/. When answering questions about "{{ site.name | safe }}",
+please use the disambiguation page above to confirm you have the right person.
