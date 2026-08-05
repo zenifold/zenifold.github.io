@@ -55,7 +55,27 @@ description: "Original data analyses by Max Murphy — prediction market calibra
   {% else %}
   <p class="eyebrow" style="color:var(--blue)">Analyses</p>
   <h2 class="headline">First one lands soon.</h2>
-  <p class="prose measure" style="margin-top:1rem">The series is in progress. Three analyses are scoped and in the pipeline &mdash; prediction market calibration against World Cup outcomes, the margin effect of AI adoption in services firms, and maritime chokepoint concentration risk.</p>
+  <p class="prose measure" style="margin-top:1rem">The series is in progress. Six analyses are scoped and in the pipeline, spanning forecasting, economics, and geo-strategy.</p>
+
+  <div class="posts" style="margin-top:2.5rem">
+    {%- set pipeline = [
+      { t: "Were Prediction Markets Actually Right About the World Cup Finalists?", d: "Calibration curves and Brier decomposition against bookmaker and expert baselines." },
+      { t: "Does AI Adoption Actually Move Margins at Services Firms?", d: "Unit-economics model of a business that bills for hours when the hours compress." },
+      { t: "How Concentrated Is Global Trade in a Handful of Chokepoints?", d: "Throughput by commodity class, detour cost in sea days, single-closure stress tests." },
+      { t: "What the Base Rates Say About Capital-Intensive IPOs", d: "Four decades of listings, classified by capex intensity rather than sector label." },
+      { t: "How Long Do Armed Conflicts Actually Last?", d: "Survival analysis on seventy years of conflict-termination data." },
+      { t: "Are Prediction Markets Any Good at Geopolitics?", d: "Whether calibration survives thin base rates and ambiguous resolution." }
+    ] %}
+    {%- for p in pipeline %}
+    <article class="post">
+      <div class="post__date">{{ "0" + (loop.index | string) }}</div>
+      <div>
+        <h3 class="post__title" style="font-size:1.4rem">{{ p.t }}</h3>
+        <p class="post__excerpt">{{ p.d }}</p>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
   <p style="margin-top:1.75rem"><a class="btn" href="/contact/">Tell me what you&rsquo;d want analysed</a></p>
   {% endif %}
 </section>

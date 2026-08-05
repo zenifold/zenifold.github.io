@@ -1,8 +1,8 @@
 {
   "name": "Max Murphy",
   "shortName": "Max",
-  "_comment_url": "Local placeholder. Replace with the real domain before deploying — this feeds every canonical URL, the sitemap, both feeds, and all structured data.",
-  "url": "http://localhost:8080",
+  "_comment_url": "The PUBLISHED SITE url, not the repo url. Feeds every canonical tag, the sitemap, both feeds, and all structured data. Change to your custom domain when it's live — a user site serves from the root either way, so no other changes are needed.",
+  "url": "https://zenifold.github.io",
   "_comment_email": "TODO: This is your work address. Use a personal one for a personal site — work email breaks if you change jobs, and it's the contact point in your structured data.",
   "email": "maximilian.murphy@sourcefuse.com",
   "locale": "en",
